@@ -1,11 +1,11 @@
 import './styles/App.css'
-import Buscador from "./utils/hooks/Buscador.jsx"
+import Searcher from "./utils/hooks/Searcher.jsx"
 
 function App() {
   return (
     <>
       <main className="buscador-main">
-        <Buscador/>
+        <Searcher/>
       </main>
     </>
   )

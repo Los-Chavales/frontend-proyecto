@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-export function active_debounce(textoBusq, retraso = 1000) {
+export default function active_debounce(textoBusq, retraso = 1000) {
     const [debounceValor, setDebounceValor] = useState(textoBusq);
     useEffect(() => {
         const actTexto = setTimeout(() => {
