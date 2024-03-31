@@ -9,22 +9,33 @@ function Form (){
   const [date_sighting, setDateSighting] = useState("");
   const [phone, setPhone] = useState("");
   const [state, setState] = useState("");
-  const [number_sighting, setNumberSighting] = useState(0);
+  const [number_sighting, setNumberSighting] = useState(0); 
+  const [photo, setPhoto] = useState();
 
-  const registerReport = () =>{
-    Axios.post("http://localhost:4000/report/",{
-      name:name,
-      email:email,
-      date_sighting:date_sighting,
-      phone:phone,
-      state:state,
-      number_sighting:number_sighting
-    })
+  const registerReport = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("name", name)
+    formData.append("email", email)
+    formData.append("date_sighting", date_sighting)
+    formData.append("phone", phone)
+    formData.append("state", state)
+    formData.append("number_sighting", number_sighting)
+    formData.append("image", photo)
+
+    Axios.post(
+      "http://localhost:4000/report/", 
+      formData,
+      {
+        headers: {"Content-Type": "multipart/form-data"},
+      }
+    )
   }
-
+  
   return(
     <div>
-      <form>
+      <form onSubmit={registerReport}>
         <label htmlFor="name" name="name">Nombre completo</label>
         <input 
           type="text" id="name" 
@@ -74,10 +85,18 @@ function Form (){
           type="number" 
           id="number_sighting" 
           onClick={(e)=>{setNumberSighting(e.target.value)}}
+        />  <br></br> 
+
+        <label htmlFor="photo">Foto del avistamiento</label>
+        <input 
+          type="file" 
+          id="photo" 
+          name="photo" 
+          accept="image/*" 
+          onChange={(e)=>{setPhoto(e.target.files[0])}}
         />  <br></br>
-  {/*       <label htmlFor="photo" name="photo">Foto del avistamiento</label>
-        <input type="file" id="photo" />  <br></br> */}
-        <input type="submit" onClick={registerReport} />
+
+        <input type="submit" />
       </form>
     </div>
   );

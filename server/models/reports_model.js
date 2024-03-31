@@ -27,6 +27,11 @@ const ReportsSchema = mongoose.Schema({
   number_sighting:{
     type: Number,
     require: true
+  },
+  photo:{
+    type: String,
+    require: true,
+    trim: true
   }
 });
 
