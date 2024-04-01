@@ -83,11 +83,13 @@ function Form (){
         <label htmlFor="number_sighting" name="number_sighting">Número de avistamientos</label>
         <input 
           type="number" 
-          id="number_sighting" 
+          id="number_sighting"
+          min="1"
+          max="50"
           onClick={(e)=>{setNumberSighting(e.target.value)}}
         />  <br></br> 
 
-        <label htmlFor="photo">Foto del avistamiento</label>
+        <label htmlFor="photo">Foto del avistamiento más reciente</label>
         <input 
           type="file" 
           id="photo" 
