@@ -40,28 +40,28 @@ function Form (){
         <input 
           type="text" id="name" 
           onChange={(e)=>{setName(e.target.value)}}
-        />   <br></br>
+        />   
 
         <label htmlFor="email" name="email">Email</label>
         <input 
           type="email" 
           id="email" 
           onChange={(e)=>{setEmail(e.target.value)}}
-        />   <br></br>
+        />   
 
         <label htmlFor="date_sighting" name="date_sighting">Fecha del avistamiento más reciente</label>
         <input 
           type="date" 
           id="date_sighting"
           onChange={(e)=>{setDateSighting(e.target.value)}} 
-        />  <br></br>
+        />  
 
         <label htmlFor="phone" name="phone" >Teléfono</label>
         <input 
           type="tel" 
           id="phone" 
           onChange={(e)=>{setPhone(e.target.value)}}
-        />  <br></br>
+        /> 
 
         <label htmlFor="reported">Reportado</label>
         <input 
@@ -78,7 +78,7 @@ function Form (){
           name="state" 
           value="Desaparecido" 
           onClick={(e)=>{setState(e.target.value)}}
-        />  <br></br>
+        />  
 
         <label htmlFor="number_sighting" name="number_sighting">Número de avistamientos</label>
         <input 
@@ -87,7 +87,7 @@ function Form (){
           min="1"
           max="50"
           onClick={(e)=>{setNumberSighting(e.target.value)}}
-        />  <br></br> 
+        />  
 
         <label htmlFor="photo">Foto del avistamiento más reciente</label>
         <input 
@@ -96,7 +96,7 @@ function Form (){
           name="photo" 
           accept="image/*" 
           onChange={(e)=>{setPhoto(e.target.files[0])}}
-        />  <br></br>
+        />  
 
         <input type="submit" />
       </form>

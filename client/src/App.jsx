@@ -1,19 +1,19 @@
 import './styles/App.css'
-import Searcher from "./utils/hooks/Searcher.jsx"
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from './hooks/Form.jsx'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+import FormPage from './pages/Form_page'
+import SearcherPage from './pages/Searcher_page'
 
 function App() {
 
   return (
     <>
-      <main className="buscador-main">
-        <Searcher/>
-      </main>
-      <Form />
+      <Router>
+        <Routes>
+          <Route path="/" element={<SearcherPage />} />
+          <Route path="/report" element={<FormPage />} />
+        </Routes>
+      </Router>
     </>
   )
 }
