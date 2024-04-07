@@ -10,7 +10,7 @@ class ReportsController{
       return res.status(400).json({status:false,errors:validationRes});
     }
 
-    const {name, email, date_sighting, phone, state, number_sighting} = req.body
+    const {name, email, date_sighting, phone, state, description} = req.body
     const photo = req.file.filename
 
     try {      
@@ -20,7 +20,7 @@ class ReportsController{
         date_sighting, 
         phone, 
         state, 
-        number_sighting,
+        description,
         photo
       });
       await saveReport.save();

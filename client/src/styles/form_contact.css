@@ -1,0 +1,11 @@
+.description_area{
+  resize: none;
+}
+
+.form_contact{
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  background-color: blue;
+}

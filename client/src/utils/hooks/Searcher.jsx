@@ -48,6 +48,8 @@ function Buscador() {
     let noticesArr = [];
     let cError = 0;
     let items = dataRes._embedded.notices;
+    console.log(dataRes)
+    console.log(items)
 
     for (const notice of items) {
       //let LINK_IMAGE = notice._links.images.href;
@@ -75,10 +77,28 @@ function Buscador() {
       }
       notice.image = image;
 
+      //Para buscar los crimenes de la persona
+      let arrest_details = ""
+      //const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
+      const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}`)
+      .catch((error) => {
+        console.warn('Notice:', notice.entity_id, 'Error:', error.message);
+        cError++
+        //console.debug(error);
+        return { data: false }
+      });
+
+      if(RESPONSE3){
+        let cases = RESPONSE3.data.arrest_warrants
+        arrest_details = ""
+        for (let i = 0; i < cases.length; i++) {
+          arrest_details += cases[i].charge
+        }
+      }
+      notice.arrest_details = arrest_details;
       noticesArr.push(notice)
     }
     console.table(noticesArr);
-    //if (cError === 3) setCarga(false);
     setLoad(false);
     return setNotices(noticesArr);
   }
@@ -150,6 +170,7 @@ function Buscador() {
                 nationality={noticeDat.nationalities}
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/red/${noticeDat.entity_id}`}
+                arrest_details={noticeDat.arrest_details} 
               />
             ))
           }
