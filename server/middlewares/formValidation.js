@@ -4,6 +4,9 @@ const FormValidations = (formData, formDatafile) => {
   if(formData.name === undefined || formData.name === "" || typeof(formData.name) !== "string" || !isNaN(parseInt(formData.name))){
     errors.push("El nombre es requerido")
   }
+  if(formData.reported_name === undefined || formData.reported_name === "" || typeof(formData.reported_name) !== "string" || !isNaN(parseInt(formData.reported_name))){
+    errors.push("El nombre de la persona que reconoció es requerido")
+  }
   if(formData.email === undefined || formData.email === "" || typeof(formData.email) !== "string"){
     errors.push("El email es requerido")
   }
