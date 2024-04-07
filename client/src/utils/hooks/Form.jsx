@@ -5,6 +5,7 @@ import Axios from "axios";
 function Form (){
 
   const [name, setName] = useState("");
+  const [reported_name, setReportedName] = useState("");
   const [email, setEmail] = useState("");
   const [date_sighting, setDateSighting] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,6 +18,7 @@ function Form (){
     const formData = new FormData();
 
     formData.append("name", name)
+    formData.append("reported_name", reported_name)
     formData.append("email", email)
     formData.append("date_sighting", date_sighting)
     formData.append("phone", phone)
@@ -36,10 +38,16 @@ function Form (){
   return(
     <div className="container_form">
       <form onSubmit={registerReport} className="form_contact">
-        <label htmlFor="name" name="name">Nombre completo</label>
+        <label htmlFor="name" name="name">Su nombre completo</label>
         <input 
           type="text" id="name" 
           onChange={(e)=>{setName(e.target.value)}}
+        />  
+
+        <label htmlFor="reported_name" name="reported_name">Nombre de la persona que reconoció</label>
+        <input 
+          type="text" id="reported_name" 
+          onChange={(e)=>{setReportedName(e.target.value)}}
         />   
 
         <label htmlFor="email" name="email">Email</label>

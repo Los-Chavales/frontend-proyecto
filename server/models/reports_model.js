@@ -6,6 +6,11 @@ const ReportsSchema = mongoose.Schema({
     require: true,
     trim: true
   },
+  reported_name:{
+    type: String,
+    require: true,
+    trim: true
+  },
   email:{
     type: String,
     require: true,

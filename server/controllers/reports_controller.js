@@ -10,12 +10,13 @@ class ReportsController{
       return res.status(400).json({status:false,errors:validationRes});
     }
 
-    const {name, email, date_sighting, phone, state, description} = req.body
+    const {name, reported_name, email, date_sighting, phone, state, description} = req.body
     const photo = req.file.filename
 
     try {      
       const saveReport = new ReportsModel({
         name, 
+        reported_name,
         email, 
         date_sighting, 
         phone, 
