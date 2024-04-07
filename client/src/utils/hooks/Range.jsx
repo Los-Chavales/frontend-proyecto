@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect} from 'react';
 import API_TRANSLATE from "../api/translator_api";
-import calculate_range from "../api/calculate_range";
+import calculate_range from "../functions/calculate_range";
 
 function Range({ arrest_details }) {
 

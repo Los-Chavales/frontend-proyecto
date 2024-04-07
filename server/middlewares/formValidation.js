@@ -18,8 +18,8 @@ const FormValidations = (formData, formDatafile) => {
   }else if(formData.state !== "Reportado" && formData.state !== "Desaparecido"){
     errors.push("No es un estado válido")
   }
-  if(formData.number_sighting === undefined || formData.number_sighting === "" || isNaN(formData.number_sighting) || formData.number_sighting < 1 || formData.number_sighting > 50){
-    errors.push("El número de avistamientos es requerido")
+  if(formData.description === undefined || formData.description === ""){
+    errors.push("La descripción del avistamiento es requerida")
   }
   if(formDatafile === undefined){
     errors.push("La imagen del avistamiento es requerida")

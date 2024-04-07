@@ -24,14 +24,14 @@ const ReportsSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  number_sighting:{
-    type: Number,
-    require: true
+  description:{
+    type: String,
+    require: true,
+    trim: true
   },
   photo:{
     type: String,
     require: true,
-    trim: true
   }
 });
 
