@@ -4,7 +4,8 @@ import { AuthProvider } from './context/Auth_context';
 import Header from './components/Header.jsx'
 import Footer from "./components/Footer.jsx"
 import FormPage from './pages/Form_page';
-import SearcherPage from './pages/Searcher_page';
+import SearcherPage_red from './pages/Searcher_page_red.jsx';
+import SearcherPage_yellow from './pages/Searcher_page_yellow.jsx';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
 
@@ -17,7 +18,8 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<SearcherPage />} />
+            <Route path="/red" element={<SearcherPage_red />} />
+            <Route path="/yellow" element={<SearcherPage_yellow />} />
             <Route path="/report" element={<FormPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />

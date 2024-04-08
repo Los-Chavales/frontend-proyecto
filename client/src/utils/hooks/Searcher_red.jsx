@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 
 import API_INTERPOL from "../api/conexion_api.js"
 import active_debounce from "./debounce.jsx";
-import Coincidence from "../../components/Coincidence.jsx"
+import Coincidence from "../../components/Coincidence_red.jsx"
 import Loading from "../../components/Loading.jsx";
 
-function Buscador() {
+function Searcher_red() {
   const [search, setSearch] = useState("");
   const [notices, setNotices] = useState([]);
   const [load, setLoad] = useState(false);
@@ -180,4 +180,4 @@ function Buscador() {
   )
 }
 
-export default Buscador
+export default Searcher_red
