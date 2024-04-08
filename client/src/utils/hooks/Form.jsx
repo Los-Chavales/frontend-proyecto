@@ -10,11 +10,7 @@ function Form (){
   const { register, handleSubmit, formState: { errors }, } = useForm();
   const { register_report, report, isAuth, errorsServer } = useAuth();
 
-  console.log(report)
-
   const onSubmit = handleSubmit(async (values) =>{
-    console.log("Antes de enviar")
-    console.log(values)
     const formData = new FormData();
 
     formData.append("name", values.name)
@@ -126,6 +122,13 @@ function Form (){
           <label htmlFor="photo" className="contact_evidence_button">Subir archivo</label>
         </div>
         {errors.photo && (<p className="p-input">Se requiere una foto para la evidencia</p>)}
+        {
+          errorsServer.map((error, i) => (
+            <div className="p-input" key={i}>
+                {error}
+            </div>
+          ))
+        }
 
         <input type="submit" className="contact_submit_button"/>
       </form>

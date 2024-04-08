@@ -93,7 +93,8 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             let menError = error.message;
             if (error.response) menError = error.response.data.message;
-            console.error('Error al registar reporte:', menError);
+            console.error('Error al registar reporte:');
+            console.error(menError);
             setErrorsServer([menError]);
             return error;
         }
