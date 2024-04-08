@@ -7,7 +7,34 @@
 }
 
 .logo-header {
-    height: 45px;
+   height: 45px;
+   /*margin-left: 20px;
+   margin-top: 5px;*/
+}
+
+.div-logo{
+    display: flex;
     margin-left: 20px;
     margin-top: 5px;
+}
+
+@media (max-width: 700px){ /*Tablet*/
+    .div-logo{
+     align-items: center; 
+     margin-left: auto;
+     margin-right: auto;
+    }
+}
+
+@media (max-width: 900px){ /*Tablet*/
+    /*.div-logo{
+        display: flex;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+    .div-logo{
+        align-items: center; 
+        margin-left: auto;
+        margin-right: auto;
+       }*/
 }

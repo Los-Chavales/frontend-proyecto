@@ -8,3 +8,7 @@ main {
   place-items: center;
   flex-direction: column;
 }
+
+.contenido{
+  min-height: 100vh;
+}
