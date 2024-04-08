@@ -8,10 +8,14 @@ if (!URL_BASE) {
   throw errorENV //Archivo .env
 }
 
-const API_SERVER = axios.create({
-  baseURL: URL_BASE,
+export const API_SERVER = axios.create({
+  baseURL: URL_BASE + 'auth/',
   headers: HEADER,
   timeout: 60000,
 });
 
-export default API_SERVER;
+export const API_REPORTS = axios.create({
+  baseURL: URL_BASE + 'report/',
+  headers: HEADER,
+  timeout: 60000,
+});

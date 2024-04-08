@@ -8,6 +8,7 @@ import SearcherPage_red from './pages/Searcher_page_red.jsx';
 import SearcherPage_yellow from './pages/Searcher_page_yellow.jsx';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
+import ReportsPage from './pages/Reports_page.jsx';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/report" element={<FormPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/home" element={<ReportsPage />} />
           </Routes>
         </Router>
       </AuthProvider>

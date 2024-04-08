@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import API_SERVER from "../utils/api/conexion_server.js"
+import { API_SERVER } from "../utils/api/conexion_server.js"
 
 export const AuthContext = createContext();
 
@@ -19,12 +19,12 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (errorsServer.length > 0) {
-          const timer = setTimeout(() => {
-            setErrorsServer([]);
-          }, 5000);
-          return () => clearTimeout(timer);
+            const timer = setTimeout(() => {
+                setErrorsServer([]);
+            }, 5000);
+            return () => clearTimeout(timer);
         }
-      }, [errorsServer]);
+    }, [errorsServer]);
 
 
     async function signup(dataForm) {
