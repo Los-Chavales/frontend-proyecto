@@ -34,6 +34,11 @@
     line-height: normal;
 }
 
+.p-input-user {
+    margin-top: -30px;
+    color: #A00000;
+}
+
 .button-user {
     padding: 16px 45px;
     border-radius: 20px;

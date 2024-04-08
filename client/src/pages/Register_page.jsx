@@ -1,62 +1,57 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import API_SERVER from "../utils/api/conexion_server.js"
+import { useAuth } from "../context/Auth_context";
+
 import "../styles/form.css";
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const [isAuth, setIsAuth] = useState(false);
+    const { signin, user, isAuth, errorsServer } = useAuth();
     const navigate = useNavigate();
 
-    async function signin(dataForm) {
-        console.log(dataForm)
-        const RESPONSE = await API_SERVER
-            .post("/register", dataForm)
-            .catch((error) => {
-                if (!error.response) { console.error('Error al registar usuario:', error.message); return error };
-                console.error('Error al registar usuario:', error.response.data.message);
-                return error;
-            });
-        console.info(RESPONSE);
-
-        if (RESPONSE.status != 200) {
-            return console.log(RESPONSE.response.data);
-        }
-
-        console.log(RESPONSE.data);
-        setIsAuth(true)
-
-    }
+    //console.log(user)
 
     const onSubmit = (data) => signin(data);
 
     useEffect(() => {
         if (isAuth) {
             console.log('Navegar')
-            navigate("/");
+            //navigate("/");
         }
     }, [isAuth]);
 
     return (
         <main>
             <div className="form-user-container">
+                {
+                    errorsServer.map((error, i) => (
+                        <div key={i}>
+                            {error}
+                        </div>
+                    ))
+                }
+
                 <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
                     <h1>Regístrate</h1>
 
                     <input className="input-user" type="email" name="email" placeholder="Correo Electrónico"
                         {...register("email", { required: true })}
-                    />
-
-                    <input className="input-user" type="text" name="username" placeholder="Usuario"
-                        {...register("username")}
                         autoFocus
                     />
+                    {errors.email && (<p className="p-input-user">Se requiere un email</p>)}
+
+                    <input className="input-user" type="text" name="username" placeholder="Usuario"
+                        {...register("username", { required: true })}
+                    />
+                    {errors.username && (<p className="p-input-user">Se requiere un nombre de usuario</p>)}
 
                     <input className="input-user" type="password" name="password" placeholder="Contraseña"
-                        {...register("password", { required: true, minLength: 4 })}
+                        {...register("password", { required: true })}
                     />
+                    {errors.password && (<p className="p-input-user">Se requiere una contraseña</p>)}
+
 
                     <button className="button-user" type="submit">Siguiente</button>
                 </form>
