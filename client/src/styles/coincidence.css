@@ -1,0 +1,134 @@
+.usuariosContainer {
+  display: flex;
+  padding: 35px 0px;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 10px 45px;
+  align-self: stretch;
+  flex-wrap: wrap;
+  text-align: center;
+  padding-bottom: 65px;
+}
+
+.usuarioCard {
+  text-align: center;
+  color-scheme: only light;
+  color: black;
+  background: var(--card-color, #D9D9D9);
+  /*min-height: 230px;*/
+  height: 100%;
+  display: flex;
+  min-width: 289px;
+  max-width: 385px;
+  padding: 20px 15px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.usuarioCard ul {
+ list-style: none;
+ text-align: center;
+}
+
+.username {
+  font-size: 24px;
+}
+.imagenCard {
+  width: 124px;
+  height: 124px;
+}
+
+.buscadorContainer{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buscadorContainer h1{
+  margin-bottom: 10px;
+}
+
+.buscadorContainer input{
+  width: 550px;
+  height: 62px;
+  border: none;
+  background-color:#D9D9D9;
+  color: #000;
+  text-align: center;
+  transition: all .2s;
+  font-size: 20px;
+}
+
+.buscadorContainer input:hover{
+  background-color:#ecdede;
+  color: #000;
+  text-align: center;
+}
+
+.buscadorContainer input:active{
+  background-color:#ecdede;
+  color: #000;
+  text-align: center;
+  outline: 1px solid #f3baba;
+
+}
+
+.buscador-mensaje{
+  margin: 15vh 0;
+}
+
+@media (max-width: 820px){ /*Mobile*/
+  .buscador-main{
+    margin: 0 15px;
+  }
+}
+
+
+@media (max-width: 540px){ /*Mobile*/
+  .usuariosContainer {
+    padding-bottom: 70px;
+  }
+  
+  .buscadorContainer input{
+    width: 305px;
+    height: 62px;
+    font-size: 15px;
+  }
+
+  .buscadorContainer h1{
+    font-size: 18px;
+  }
+  
+  .usuarioCard {
+    min-width: 289px;
+    max-width: 210px;
+
+  }
+}
+
+
+@media (max-width: 280px){ /*Mobile*/
+  .usuariosContainer {
+    padding-bottom: 70px;
+  }
+  
+  .buscadorContainer input{
+    width: 205px;
+    height: 62px;
+    font-size: 15px;
+  }
+
+  .buscadorContainer h1{
+    font-size: 15px;
+  }
+  
+  .usuarioCard {
+    min-width: 189px;
+    max-width: 110px;
+    font-size: 15px;
+  }
+}
