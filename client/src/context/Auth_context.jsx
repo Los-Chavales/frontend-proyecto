@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     async function signup(dataForm) {
         console.log(dataForm)
         try {
-            const RESPONSE = await API_SERVER.post("/register", dataForm);
+            const RESPONSE = await API_SERVER.post("auth/register", dataForm);
 
             //console.debug(RESPONSE);
 
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     async function signin(dataForm) {
         console.log(dataForm)
         try {
-            const RESPONSE = await API_SERVER.post("/login", dataForm);
+            const RESPONSE = await API_SERVER.post("auth/login", dataForm);
             if (RESPONSE.status != 200) {
                 return console.warn(RESPONSE.response.data);
             }
