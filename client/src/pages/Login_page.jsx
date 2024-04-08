@@ -1,48 +1,54 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/Auth_context";
 import "../styles/form.css";
 
 export default function LoginPage() {
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { signin, user, isAuth, errorsServer } = useAuth();
     const navigate = useNavigate();
 
-    function signin(dataForm) {
-        console.log(dataForm)
-    }
-
+    console.log(user);
+    
     const onSubmit = (data) => signin(data);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            navigate("/");
+        if (isAuth) {
+            //navigate("/");
+            console.log('navegar')
         }
-    }, [isAuthenticated]);
+    }, [isAuth]);
 
     return (
         <main>
-            <div className="form-login-container">
-                <h1 className="text-2xl font-bold">Login</h1>
+            <div className="form-user-container">
+                {
+                    errorsServer.map((error, i) => (
+                        <div key={i}>
+                            {error}
+                        </div>
+                    ))
+                }
 
-                <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-                    <label htmlFor="email">Email:</label>
-                    <input label="Write your email" type="email" name="email" placeholder="youremail@domain.tld"
+                <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
+                    <h1>Acceso</h1>
+
+                    <input className="input-user" type="email" name="email" placeholder="Correo Electrónico"
                         {...register("email", { required: true })}
+                        autoFocus
                     />
+                    {errors.email && (<p className="p-input-user">Se requiere un email</p>)}
 
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" placeholder="Write your password"
-                        {...register("password", { required: true, minLength: 4 })}
+                    <input className="input-user" type="password" name="password" placeholder="Contraseña"
+                        {...register("password", { required: true })}
                     />
+                    {errors.password && (<p className="p-input-user">Se requiere una contraseña</p>)}
 
-                    <button type="submit">Login</button>
+
+                    <button className="button-user" type="submit">Siguiente</button>
                 </form>
-
-                <p className="flex gap-x-2 justify-between">
-                    Don't have an account? <Link to="/register" className="text-sky-500">Sign up</Link>
-                </p>
             </div>
         </main>
     );
