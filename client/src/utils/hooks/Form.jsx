@@ -39,7 +39,7 @@ function Form (){
   return(
     <div className="container_form">
       <div className="container_form_img"> 
-        <img src={logo_contact} ></img>
+        <img src={logo_contact} className="form_img"></img>
       </div>
       <form onSubmit={registerReport} className="form_contact">
         <input 
@@ -72,7 +72,7 @@ function Form (){
           className="input_form_contact input_contact"
         />   
 
-        <div>
+        <div className="input_contact_date">
           <label htmlFor="date_sighting" name="date_sighting" className="label_contact_date">Avistamiento</label> 
             <input 
               type="date" 
@@ -112,15 +112,17 @@ function Form (){
           placeholder="Descripción del avistamiento"
         ></textarea>
 
-        <div className="input_contact">
-          <label htmlFor="photo" className="label_contact_evidence">Evidencia </label>
+        <div className="input_contact_file">
+          <label htmlFor="photo" className="label_contact_evidence">Evidencia</label>
           <input 
             type="file" 
             id="photo" 
             name="photo" 
             accept="image/*" 
             onChange={(e)=>{setPhoto(e.target.files[0])}}
+            className="input_file"
           />  
+          <label htmlFor="photo" className="contact_evidence_button">Subir archivo</label>
         </div>
 
         <input type="submit" className="contact_submit_button"/>
