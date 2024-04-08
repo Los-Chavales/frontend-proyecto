@@ -6,6 +6,11 @@ const ReportsSchema = mongoose.Schema({
     require: true,
     trim: true
   },
+  reported_name:{
+    type: String,
+    require: true,
+    trim: true
+  },
   email:{
     type: String,
     require: true,
@@ -24,14 +29,14 @@ const ReportsSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  number_sighting:{
-    type: Number,
-    require: true
+  description:{
+    type: String,
+    require: true,
+    trim: true
   },
   photo:{
     type: String,
     require: true,
-    trim: true
   }
 });
 
