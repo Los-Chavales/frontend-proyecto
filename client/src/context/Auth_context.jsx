@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       }, [errorsServer]);
 
 
-    async function signin(dataForm) {
+    async function signup(dataForm) {
         console.log(dataForm)
         try {
             const RESPONSE = await API_SERVER.post("/register", dataForm);
@@ -51,12 +51,33 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+    async function signin(dataForm) {
+        console.log(dataForm)
+        try {
+            const RESPONSE = await API_SERVER.post("/login", dataForm);
+            if (RESPONSE.status != 200) {
+                return console.warn(RESPONSE.response.data);
+            }
+            //console.log(RESPONSE.data);
+            setUser(RESPONSE.data)
+            setIsAuth(true)
 
+        } catch (error) {
+            let menError = error.message;
+            if (error.response) menError = error.response.data.message;
+            console.error('Error al iniciar sesión:', menError);
+            setErrorsServer([menError]);
+            return error;
+        }
+
+
+    }
 
     return (
         <AuthContext.Provider
             value={{
                 user,
+                signup,
                 signin,
                 isAuth,
                 errorsServer,
