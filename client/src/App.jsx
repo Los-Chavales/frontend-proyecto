@@ -29,10 +29,10 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route element={<ProtectRoute />}>
-              <Route path="/home" element={<ReportsPage />} />
-              <Route path="/discleimer" element={<Disclaimer />} />
+                <Route path="/home" element={<ReportsPage />} />
+               
               </Route>
-
+              <Route path="/discleimer" element={<Disclaimer />} />
             </Routes>
           </Router>
         </AuthProvider>
