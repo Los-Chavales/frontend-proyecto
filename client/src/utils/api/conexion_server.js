@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const URL_BASE = import.meta.env.VITE_URL_SERVER;
-const HEADER = { 'Accept': 'application / json' };
+const HEADER = {
+  "Accept": "*/*",
+  "Content-Type": "application/json"
+};
 
 if (!URL_BASE) {
   let errorENV = 'No se encontró alguna de las variables en el archivo .env'
@@ -11,11 +14,13 @@ if (!URL_BASE) {
 export const API_SERVER = axios.create({
   baseURL: URL_BASE + 'auth/',
   headers: HEADER,
+  withCredentials: true,
   timeout: 60000,
 });
 
 export const API_REPORTS = axios.create({
   baseURL: URL_BASE + 'report/',
   headers: HEADER,
+  withCredentials: true,
   timeout: 60000,
 });

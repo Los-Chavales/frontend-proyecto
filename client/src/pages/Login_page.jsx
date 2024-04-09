@@ -11,13 +11,13 @@ export default function LoginPage() {
     const navigate = useNavigate();
 
     //console.log(user);
-    
+
     const onSubmit = (data) => signin(data);
 
     useEffect(() => {
         if (isAuth) {
             navigate("/home");
-            console.log('navegar')
+            //console.log('navegar')
         }
     }, [isAuth]);
 
