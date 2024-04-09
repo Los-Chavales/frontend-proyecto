@@ -9,7 +9,9 @@ import SearcherPage_red from './pages/Searcher_page_red.jsx';
 import SearcherPage_yellow from './pages/Searcher_page_yellow.jsx';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
+import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
+
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
     <>
       <Header />
       <div className='contenido'>
+
         <AuthProvider>
           <Router>
             <Routes>
@@ -26,12 +29,14 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route element={<ProtectRoute />}>
-                <Route path="/home" element={<ReportsPage />} />
+              <Route path="/home" element={<ReportsPage />} />
+              <Route path="/discleimer" element={<Disclaimer />} />
               </Route>
 
             </Routes>
           </Router>
         </AuthProvider>
+
       </div>
       <Footer />
     </>
