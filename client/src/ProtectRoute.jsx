@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom"
 
 function ProtectRoute() {
     const { user, isAuth, loading } = useAuth();
-    console.log(loading, isAuth)
+    //console.log(loading, isAuth)
     if (loading) return <h1>Loading...</h1>
     if (!loading && !isAuth) return <Navigate to="/login" replace />
 

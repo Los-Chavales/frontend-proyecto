@@ -2,15 +2,20 @@ import { useState, useEffect } from "react";
 import "../styles/App.css";
 import TableReports from "../components/Table_reports";
 import { API_REPORTS } from "../utils/api/conexion_server";
+import { useAuth } from "../context/Auth_context";
+import { Link } from "react-router-dom";
 
 function ReportsPage() {
     const [data, setData] = useState([]);
+
+    const { user, logout } = useAuth();
+    //console.log(user)
 
     useEffect(() => {
         const dataReport = async function () {
             try {
                 const RESPONSE = await API_REPORTS.get("/");
-                console.debug(RESPONSE)
+                //console.debug(RESPONSE)
                 if (RESPONSE.status != 200) {
                     console.warn(RESPONSE.response.data);
                     return setData([]);
@@ -35,7 +40,14 @@ function ReportsPage() {
 
 
     return (
-        <TableReports data={data} />
+
+        <>
+            <div>
+                <p>Hola, {user.username}</p>
+                <Link to="/" onClick={() => { logout() }}><button>Cerrar Sesión</button></Link>
+            </div>
+            <TableReports data={data} />
+        </>
     )
 }
 

@@ -17,8 +17,8 @@ export default function RegisterPage() {
 
     useEffect(() => {
         if (isAuth) {
-            console.log('/home')
-            //navigate("/");
+            //console.log('/home')
+            navigate("/home");
         }
     }, [isAuth]);
 

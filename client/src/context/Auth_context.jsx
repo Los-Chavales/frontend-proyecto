@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const [errorsServer, setErrorsServer] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
+    //Limpiar errores en el formulario de login
     useEffect(() => {
         if (errorsServer.length > 0) {
             const timer = setTimeout(() => {
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         }
     }, [errorsServer]);
 
-
+    //Registar usuarios
     async function signup(dataForm) {
         //console.log(dataForm)
         try {
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
 
     }
-
+    //Iniciar sesión
     async function signin(dataForm) {
         //console.log(dataForm)
         try {
@@ -76,6 +76,12 @@ export const AuthProvider = ({ children }) => {
 
 
     }
+    //Cerrar sesión
+    const logout = () => {
+        Cookies.remove("token");
+        setUser(null);
+        setIsAuth(false);
+    };
 
     //Para validar la cookie del token
     useEffect(() => {
@@ -97,7 +103,7 @@ export const AuthProvider = ({ children }) => {
                     setIsAuth(false);
                     return setLoading(false);
                 }
-                console.log(RESPONSE.data);
+                //console.log(RESPONSE.data);
                 setUser(RESPONSE.data)
                 setIsAuth(true)
                 setLoading(false);
@@ -149,6 +155,7 @@ export const AuthProvider = ({ children }) => {
                 report,
                 signup,
                 signin,
+                logout,
                 register_report,
                 isAuth,
                 loading,
