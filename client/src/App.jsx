@@ -7,6 +7,7 @@ import FormPage from './pages/Form_page';
 import SearcherPage from './pages/Searcher_page';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
+import Disclaimer from './pages/Disclaimer_page.jsx';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/report" element={<FormPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
           </Routes>
         </Router>
       </AuthProvider>
