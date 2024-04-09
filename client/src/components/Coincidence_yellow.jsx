@@ -12,7 +12,6 @@ function Coincidence_yellow({ image_url, name, lastname, date, nationality, link
         <li>Nacionalidad: {nationality}</li>
         <li><a href={link} target="_blank">Más detalles</a></li>
       </ul>
-      
     </div>
   );
 }

@@ -11,6 +11,14 @@
   padding-bottom: 65px;
 }
 
+.div_detail{
+  width: 900px;
+  height: 600px;
+  background-color: red;
+  position: absolute;
+  margin: 0 40vh;
+}
+
 .personCard, .containerCard{
   text-align: center;
   color-scheme: only light;
