@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/coincidence.css";
-import buttonModal from "../../as" 
 
 function Coincidence_yellow({ image_url, name, lastname, date, nationality, link }) {
   return (
