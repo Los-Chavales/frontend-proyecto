@@ -1,30 +1,30 @@
 const ReportsModel = require("../models/reports_model");
 const FormValidations = require("../middlewares/formValidation")
 
-class ReportsController{
+class ReportsController {
   async registerReport(req, res) {
 
     let validationRes = FormValidations(req.body, req.file)
-    if(validationRes.length !== 0){
+    if (validationRes.length !== 0) {
       console.log(validationRes)
       return res.status(400).json({
         message: "Uno o más datos son incorrectos",
-        status:false,
-        errors:validationRes
+        status: false,
+        errors: validationRes
       });
     }
 
-    const {name, reported_name, email, date_sighting, phone, state, description} = req.body
+    const { name, reported_name, email, date_sighting, phone, state, description } = req.body
     const photo = req.file.filename
 
-    try {      
+    try {
       const saveReport = new ReportsModel({
-        name, 
+        name,
         reported_name,
-        email, 
-        date_sighting, 
-        phone, 
-        state, 
+        email,
+        date_sighting,
+        phone,
+        state,
         description,
         photo
       });
@@ -42,7 +42,7 @@ class ReportsController{
     }
   }   
 
-  async getReports (req, res) { // GET
+  async showReports (req, res) { // GET
     try {
       ReportsModel.find({}).then((data) => {
         return res.status(200).json({

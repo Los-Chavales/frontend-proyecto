@@ -5,7 +5,20 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-app.use(cors());
+app.use(
+  cors({
+      origin: 'http://localhost:3000',
+      credentials: true,
+      optionSuccessStatus: 200,
+      methods: ['GET', 'POST'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+  next()
+})
 app.use(express.json());
 app.use(cookieParser());
 

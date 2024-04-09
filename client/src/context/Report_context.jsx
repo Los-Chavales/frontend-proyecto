@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import API_SERVER from "../utils/api/conexion_server.js"
+import { API_REPORTS_FILES } from "../utils/api/conexion_server.js"
 
 export const ReportContext = createContext();
 
@@ -27,7 +27,7 @@ export const ReportProvider = ({ children }) => {
     async function register_report(dataForm) {
         console.log(dataForm)
         try {
-            const RESPONSE = await API_SERVER.post("/report/", dataForm);
+            const RESPONSE = await API_REPORTS_FILES.post("/register", dataForm);
 
             //console.debug(RESPONSE);
 
@@ -49,17 +49,17 @@ export const ReportProvider = ({ children }) => {
         }
     }
 
-    async function get_reports() {
-        const RESPONSE = await API_SERVER.get("/report/watch");
+/*     async function get_reports() {
+        const RESPONSE = await API_REPORTS.get("/report/watch");
         console.log(RESPONSE)
-    }
+    } */
 
     return (
         <ReportContext.Provider
             value={{
                 report,
                 register_report,
-                get_reports,
+          /*       get_reports, */
                 mensage,
                 errorsServer,
             }}

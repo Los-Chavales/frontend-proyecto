@@ -3,12 +3,15 @@ let router = express.Router();
 const ReportsController = require("../controllers/reports_controller");
 const upload = require("../middlewares/storage")
 
+
+/* GET */ 
+router.get("/", ReportsController.showReports);
+
 /* POST */
+router.post('/register', upload.single("image"), ReportsController.registerReport);
 
-router.post('/', upload.single("image"), ReportsController.registerReport);
+ /* GET */
 
-/* GET */
-
-router.get('/watch', ReportsController.getReports);
+/*router.get('/watch', ReportsController.showReports); */
 
 module.exports = router;

@@ -49,7 +49,11 @@ const register = async (req, res) => {
             username: userSaved.username,
             role: userSaved.role,
         });
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: false,
+        });
 
         //Retornar datos guardados
         res.json({
@@ -86,7 +90,11 @@ const login = async (req, res) => {
             role: userFound.role,
         });
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: false,
+        });
 
         res.json({
             id: userFound._id,
