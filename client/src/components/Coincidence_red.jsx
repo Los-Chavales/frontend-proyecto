@@ -18,7 +18,7 @@ function Coincidence_red({ image_url, name, lastname, date, nationality, link, a
           <li><button onClick={() => { setVar1(true) }}>Más detalles</button></li>
         </ul>
       </div>
-      {var1 && <MoreDetails />};
+      {var1 && <MoreDetails />}
       <Range arrest_details={arrest_details} />
     </div>
   );
