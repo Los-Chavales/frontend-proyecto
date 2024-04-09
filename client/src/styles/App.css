@@ -8,3 +8,91 @@ main {
   place-items: center;
   flex-direction: column;
 }
+
+.contenido{
+  background-image: url(../assets/imgs/fondo2.jpg);
+  background-position-x: -100px;
+  background-size: 110vh;
+  background-repeat:repeat;
+  overflow:hidden;
+  box-sizing: content-box;
+  height: 100%;
+}
+
+body{
+  height: 100vh;
+}
+
+/* Large Desktops (1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles for large screens */
+  .contenido{
+      background-size: 100%, auto ,cover;
+      background-position-x: 0;
+  }
+  .main_text{
+      height: 297px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  } 
+  .page_title{
+      font-size: 50px;
+      margin: 10px 0 50px 0;
+  }
+  .page_subtitle{
+      font-size: 16px;
+  }
+  .main_titles{
+      width: 765px;
+      height: 160px;
+      overflow: hidden;
+  }
+  .landing_main{
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+  }
+  .main_title_1{
+      margin:0;
+      justify-content: flex-end;
+      position: absolute;
+      left: -150px;
+  }
+  
+  .main_title_2{
+      margin: 0;
+      justify-content: flex-start;
+      margin-left: 800px;
+      overflow: hidden;
+  }
+
+  .main_title_3{
+      margin: 0;
+      justify-content: center;
+      margin: 50px 0;
+  }
+  
+}
+
+
+/* Desktops (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Styles for standard desktops */
+  .contenido{
+      background-size: 100vh, 100vh ,contain;
+      background-position-x: 0;
+      background-repeat:repeat;
+  }
+}
+
+
+/* Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Styles for tablets */
+  .contenido{
+      background-size: 100vh, auto ,cover;
+      background-position-x: 0;
+      background-repeat:repeat;
+  } 
+}

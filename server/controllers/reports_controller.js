@@ -7,7 +7,11 @@ class ReportsController{
     let validationRes = FormValidations(req.body, req.file)
     if(validationRes.length !== 0){
       console.log(validationRes)
-      return res.status(400).json({status:false,errors:validationRes});
+      return res.status(400).json({
+        message: "Uno o más datos son incorrectos",
+        status:false,
+        errors:validationRes
+      });
     }
 
     const {name, reported_name, email, date_sighting, phone, state, description} = req.body
@@ -26,11 +30,15 @@ class ReportsController{
       });
       await saveReport.save();
       console.log("Registrado con éxito")
-      res.status(200).send("Registrado con éxito")
+      return res.status(200).json({
+        message: "Registrado con éxito",
+      });
 
     } catch (error) {
       console.log(error)
-      res.status(500).send("Error al registrar")
+      return res.status(500).json({
+        message: "Error al registrar",
+      });
     }
   }   
 }
