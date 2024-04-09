@@ -20,7 +20,7 @@ app.use("/auth", users_auth);
 mongoose.connect(process.env.DB_URI)
   .then(() => {
     console.log("Conexión exitosa")
-    app.listen(4000, () => {
+    app.listen(4001, () => {
       console.log("Servidor corriendo en el puerto 4000")
     })
   })
