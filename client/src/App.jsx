@@ -8,6 +8,7 @@ import SearcherPage_red from './pages/Searcher_page_red.jsx';
 import SearcherPage_yellow from './pages/Searcher_page_yellow.jsx';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
+import LandingPage from './pages/LandingPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/red" element={<SearcherPage_red />} />
             <Route path="/yellow" element={<SearcherPage_yellow />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/report" element={<FormPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
