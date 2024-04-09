@@ -41,6 +41,21 @@ class ReportsController{
       });
     }
   }   
+
+  async getReports (req, res) { // GET
+    try {
+      ReportsModel.find({}).then((data) => {
+        return res.status(200).json({
+          data: data,
+        });
+      });
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Error al obtener datos",
+      });
+    }
+  }
 }
 
 module.exports = new ReportsController();

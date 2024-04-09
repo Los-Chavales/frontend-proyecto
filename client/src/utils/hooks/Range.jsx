@@ -10,8 +10,14 @@ function Range({ arrest_details }) {
 
   const fETCH_TRANSLATE = async (text) => {
     const RESULT = await API_TRANSLATE(text); 
-    let res = RESULT.data.translatedText
-    let range = calculate_range(res)
+    let res = RESULT.data
+    let range;
+    if(res){
+      range = calculate_range(res.translatedText)
+    }else{
+      range = calculate_range(text)
+    }
+   
     setRangeDanger(range)
   }
 

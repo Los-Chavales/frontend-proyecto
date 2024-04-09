@@ -7,4 +7,8 @@ const upload = require("../middlewares/storage")
 
 router.post('/', upload.single("image"), ReportsController.registerReport);
 
+/* GET */
+
+router.get('/watch', ReportsController.getReports);
+
 module.exports = router;
