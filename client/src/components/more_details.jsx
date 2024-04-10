@@ -6,21 +6,21 @@ import Searcher_red from "../utils/hooks/Searcher_red.jsx"
 
 
 
-function MoreDetails({ image_url, name, lastname, date, nationality, link, arrest_details }) {
+function MoreDetails({ dates }) {
   return (
     <>
     <div className="div_detail">
     <div className="containerCard redCard">
       <div className="personCardRed">
-        <img className="imagenCard" src={image_url} alt="Reportado"></img>
+        <img className="imagenCard" src={dates.image} alt="Reportado"></img>
         <ul>
-          <li className="username"><strong>{lastname}</strong></li>
-          <li>Nombre: {name}</li>
-          <li>Fecha de nacimiento: {date}</li>
-          <li>Nacionalidad: {nationality}</li>
+          <li className="username"><strong>{dates.forename}</strong></li>
+          <li>Nombre: {dates.name}</li>
+          <li>Fecha de nacimiento: {dates.date_of_birth} </li>
+          <li>Nacionalidad: {dates.nationalities}</li>
         </ul>
       </div>
-      <Range arrest_details={arrest_details} />
+      <Range arrest_details={dates.arrest_details} />
 
     </div>
       </div>
