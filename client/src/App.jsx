@@ -19,12 +19,11 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div className='contenido'>
-
-        <AuthProvider>
-          <ReportProvider>
-            <Router>
+      <AuthProvider>
+        <ReportProvider>
+          <Router>
+            <Header />
+            <div className='contenido'>
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/red" element={<SearcherPage_red />} />
@@ -39,11 +38,11 @@ function App() {
                 </Route>
 
               </Routes>
-            </Router>
-          </ReportProvider>
-        </AuthProvider>
-      </div>
-      <Footer />
+            </div>
+            <Footer />
+          </Router>
+        </ReportProvider>
+      </AuthProvider>
     </>
   )
 }
