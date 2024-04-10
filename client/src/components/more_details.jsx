@@ -3,8 +3,7 @@ import "../styles/coincidence.css"
 import "../styles/bar_range.css"
 import Range from "../utils/hooks/Range";
 import Searcher_red from "../utils/hooks/Searcher_red.jsx"
-
-
+/* import { Link } from "react-router-dom"; */
 
 function MoreDetails({ dates }) {
   return (
@@ -21,6 +20,7 @@ function MoreDetails({ dates }) {
         </ul>
       </div>
       <Range arrest_details={dates.arrest_details} />
+{/*       <Link to="/report" ><button>Reportar</button></Link> */}
 
     </div>
       </div>

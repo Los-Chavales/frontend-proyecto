@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/Auth_context';
 import ProtectRoute from './ProtectRoute.jsx';
 import { ReportProvider } from './context/Report_context';
-
+import { ReportVProvider } from './context/Verified_context';
 import Header from './components/Header.jsx'
 import Footer from "./components/Footer.jsx"
 import FormPage from './pages/Form_page';
@@ -25,22 +25,27 @@ function App() {
 
         <AuthProvider>
           <ReportProvider>
-            <Router>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/red" element={<SearcherPage_red />} />
-                <Route path="/yellow" element={<SearcherPage_yellow />} />
-                <Route path="/report" element={<FormPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/discleimer" element={<Disclaimer />} />
-                <Route element={<ProtectRoute />}>
-                  <Route path="/home" element={<ReportsPage />} />
-                  <Route path="/users" element={<UsersPage />} />
-                </Route>
 
-              </Routes>
-            </Router>
+            <ReportVProvider>
+
+              <Router>
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/red" element={<SearcherPage_red />} />
+                  <Route path="/yellow" element={<SearcherPage_yellow />} />
+                  <Route path="/report" element={<FormPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/discleimer" element={<Disclaimer />} />
+                  <Route element={<ProtectRoute />}>
+                    <Route path="/home" element={<ReportsPage />} />
+                    <Route path="/users" element={<UsersPage />} />
+                  </Route>
+                </Routes>
+              </Router>
+              
+            </ReportVProvider>
+
           </ReportProvider>
         </AuthProvider>
       </div>

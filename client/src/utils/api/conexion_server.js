@@ -31,3 +31,10 @@ export const API_REPORTS = axios.create({
   withCredentials: true,
   timeout: 60000,
 });
+
+export const API_REPORTSV = axios.create({
+  baseURL: URL_BASE + 'verified/',
+  headers: HEADER,
+  withCredentials: true,
+  timeout: 60000,
+});

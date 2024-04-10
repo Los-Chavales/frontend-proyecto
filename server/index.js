@@ -27,9 +27,11 @@ app.use(express.static('uploads'))
 
 let contact_form = require("./routes/reports_route");
 let users_auth = require("./routes/users_route");
+let verified_reports = require("./routes/verified_reports");
 
 app.use("/report", contact_form);
 app.use("/auth", users_auth);
+app.use("/verified", verified_reports);
 
 
 /* conexión a la base de datos */
