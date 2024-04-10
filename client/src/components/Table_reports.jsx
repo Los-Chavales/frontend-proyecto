@@ -1,7 +1,7 @@
 import DataTable from "react-data-table-component"
 
 function TableReports(report) {
-    //console.log(report.data)
+    console.log(report.data)
     const columns = [
         {
             name: "Reportado",
