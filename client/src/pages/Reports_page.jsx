@@ -15,13 +15,15 @@ function ReportsPage() {
         const dataReport = async function () {
             try {
                 const RESPONSE = await API_REPORTS.get("/");
-                console.log(RESPONSE)
                 //console.debug(RESPONSE)
                 if (RESPONSE.status != 200) {
                     console.warn(RESPONSE.response.data);
                     return setData([]);
                 }
-                if (!Array.isArray(RESPONSE.data)) return setData([]);
+                if (!Array.isArray(RESPONSE.data)) {
+                    console.warn("No es un array");
+                    return setData([]);
+                };
                 //ESTO ES PARA MULTIPLICAR LAS FILAS, PARA PROBAR
                 for (let index = 1; index < 20; index++) {
                     RESPONSE.data[index] = RESPONSE.data[0];
@@ -41,7 +43,6 @@ function ReportsPage() {
 
 
     return (
-
         <>
             <div>
                 <p>Hola, {user.username}</p>

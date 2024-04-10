@@ -45,9 +45,7 @@ class ReportsController {
   async showReports (req, res) { // GET
     try {
       ReportsModel.find({}).then((data) => {
-        return res.status(200).json({
-          data: data,
-        });
+        return res.status(200).json(data);
       });
     } catch (error) {
       console.log(error)
