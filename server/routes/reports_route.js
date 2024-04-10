@@ -2,15 +2,16 @@ let express = require('express');
 let router = express.Router();
 const ReportsController = require("../controllers/reports_controller");
 const upload = require("../middlewares/storage")
+const { auth } = require("../middlewares/validate_token.js");
 
 
-/* GET */ 
-router.get("/", ReportsController.showReports);
+/* GET */
+router.get("/", auth, ReportsController.showReports);
 
 /* POST */
 router.post('/register', upload.single("image"), ReportsController.registerReport);
 
- /* GET */
+/* GET */
 
 /*router.get('/watch', ReportsController.showReports); */
 

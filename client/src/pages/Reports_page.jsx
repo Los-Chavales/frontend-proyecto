@@ -5,6 +5,38 @@ import { API_REPORTS } from "../utils/api/conexion_server";
 import { useAuth } from "../context/Auth_context";
 import { Link } from "react-router-dom";
 
+const columns = [
+    {
+        name: "Reportado",
+        selector: row => row.reported_name,
+    },
+    {
+        name: "Nombre",
+        selector: row => row.name,
+    },
+    {
+        name: "Email",
+        selector: row => row.email,
+    },
+    {
+        name: "Teléfono",
+        selector: row => row.phone,
+    },
+    {
+        name: "Fecha",
+        selector: row => row.date_sighting.toString(),
+    },
+    {
+        name: "Mensaje",
+        selector: row => row.description,
+    },
+    {
+        name: "Evidencia",
+        selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
+    },
+]
+
+
 function ReportsPage() {
     const [dataRed, setDataRed] = useState([])
     const [dataYellow, setDataYellow] = useState([]);
@@ -76,8 +108,8 @@ function ReportsPage() {
                 <p>Hola, {user.username}</p>
                 <Link to="/" onClick={() => { logout() }}><button>Cerrar Sesión</button></Link>
             </div>
-            <TableReports data={dataRed} title="Reporte de Alertas Rojas" />
-            <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" />
+            <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns}/>
+            <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} />
         </>
     )
 }
