@@ -41,11 +41,10 @@ export const ReportProvider = ({ children }) => {
 
         } catch (error) {
             let menError = error.message;
-            console.log("Error:")
-            console.log(error)
-            if (error.response) menError = error.response.data.message;
-            console.error('Error al registar reporte:');
-            console.error(menError);
+            if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
+            if (!menError) menError = "Error";
+            console.error('Error al registrar reporte:', menError);
+            console.debug(menError);
             setErrorsServer([menError]);
             return error;
         }
