@@ -2,10 +2,11 @@ import { useState, useEffect } from "react"
 
 import API_INTERPOL from "../api/conexion_api.js"
 import active_debounce from "./debounce.jsx";
-import Coincidence from "../../components/Coincidence.jsx"
-import Loading from "../../components/Loading.jsx";
+import Coincidence from "../../components/Coincidence_red.jsx"
+import Loading from "../../components/Loading.jsx"
+import Search_glass from "../../assets/search-sharp.png"
 
-function Buscador() {
+function Searcher_red() {
   const [search, setSearch] = useState("");
   const [notices, setNotices] = useState([]);
   const [load, setLoad] = useState(false);
@@ -148,15 +149,20 @@ function Buscador() {
 
   return (
     <>
-      <div className="buscadorContainer">
-        <h1>Ingresa el texto a buscar</h1>
-        <input type="text" id="input" placeholder="Buscar alertas rojas" onChange={(e) => debounceRes(e.target.value)}></input>
+      <div className="searcherContainer">
+        <div className="searchBarContainer">
+          <div className="searchBar red_alert">
+            <input type="text" id="input" /* placeholder="Buscar alertas rojas" */ onChange={(e) => debounceRes(e.target.value)}></input>
+            <img className="searchGlass" src={Search_glass} />
+          </div>
+        </div>
         <p>Selecciona el parámetro de búsqueda:</p>
         <select name="parameterS" id="selectParam" onChange={(e) => setParameter(e.target.value)}>
           <option value="forename">Nombre</option>
           <option value="name">Apellido</option>
           <option value="nationality">Nacionalidad</option>
         </select>
+        <h1>Reportados</h1>
         {load && <Loading />}
         {alert && <h2 className="buscador-mensaje">{message}</h2>}
         <div className='usuariosContainer' style={styleUsers} onLoad={visible}>
@@ -180,4 +186,4 @@ function Buscador() {
   )
 }
 
-export default Buscador
+export default Searcher_red

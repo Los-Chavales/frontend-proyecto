@@ -1,0 +1,11 @@
+.tables{
+    padding: 10%;
+    padding-inline: 30px;
+    padding-bottom: 20px;
+    padding-top: 25px;
+    color: white;
+}
+
+.tables-title {
+    text-align: center;
+}

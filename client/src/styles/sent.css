@@ -1,0 +1,21 @@
+.sent_container{
+  border-radius: 50px;
+  border: 4px solid #A00000;
+  background: #FFF;
+  width:  300px;
+  margin: 10% 0;
+}
+
+.sent_info{
+  margin: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+}
+
+@media (max-width: 912px) {   /* Tablet */
+  .sent_container{
+    margin: 0;
+  }
+}
