@@ -1,7 +1,7 @@
 import DataTable from "react-data-table-component"
 
 function TableReports(report) {
-    console.log(report.data)
+    console.log(report.title, report.data)
     const columns = [
         {
             name: "Reportado",
@@ -21,7 +21,7 @@ function TableReports(report) {
         },
         {
             name: "Fecha",
-            selector: row => row.date_sighting,
+            selector: row => row.date_sighting.toString(),
         },
         {
             name: "Mensaje",
@@ -29,13 +29,13 @@ function TableReports(report) {
         },
         {
             name: "Evidencia",
-            selector: row => row.photo,
+            selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
         },
     ]
 
     return (
         <div>
-            <h1>Reportes de Alertas Rojas</h1>
+            <h1>{report.title}</h1>
             <DataTable
                 columns={columns}
                 data={report.data}

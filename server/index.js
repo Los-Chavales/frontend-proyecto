@@ -21,6 +21,7 @@ app.use(function (req, res, next) {
 })
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static('uploads'))
 
 let contact_form = require("./routes/reports_route");
 let users_auth = require("./routes/users_route");
