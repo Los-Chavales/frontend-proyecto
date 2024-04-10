@@ -12,7 +12,6 @@ import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
 import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
-
 import LandingPage from './pages/LandingPage';
 
 function App() {
@@ -40,19 +39,6 @@ function App() {
             </Router>
           </ReportProvider>
         </AuthProvider>
-
-      <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/red" element={<SearcherPage_red />} />
-            <Route path="/yellow" element={<SearcherPage_yellow />} />
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/report" element={<FormPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </Router>
-      </AuthProvider>
       </div>
       <Footer />
     </>
