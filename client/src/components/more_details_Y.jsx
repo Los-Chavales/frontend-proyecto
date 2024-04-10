@@ -1,15 +1,15 @@
 import React from "react";
 import "../styles/coincidence.css"
 import "../styles/bar_range.css"
-import Range from "../utils/hooks/Range";
 import { Link } from "react-router-dom"; 
 
-function MoreDetails({ values }) {
+function MoreDetailsY({ values }) {
   console.log("Estás en detalles")
   console.log(values)
   console.log("El id es:")
   console.log(values.entity_id)
-  let rute = "/report/:" + values.forename
+  //let rute = "/report/:" + values.forename 
+  let rute = `/report/:${values.entity_id}/:${values.forename}`
   console.log("rutas:")
   console.log(rute)
   return (
@@ -25,8 +25,7 @@ function MoreDetails({ values }) {
           <li>Nacionalidad: {values.nationalities}</li>
         </ul>
       </div>
-      <Range arrest_details={values.arrest_details} />
-      <Link to="/report" ><button>Reportar</button></Link>
+      <Link to={rute} ><button>Reportar</button></Link>
 
     </div>
       </div>
@@ -36,4 +35,4 @@ function MoreDetails({ values }) {
   
 }
 
-export default MoreDetails;
+export default MoreDetailsY;

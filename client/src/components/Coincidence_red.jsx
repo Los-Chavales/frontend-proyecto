@@ -4,9 +4,7 @@ import "../styles/bar_range.css"
 import Range from "../utils/hooks/Range";
 import MoreDetails from "./more_details";
 
-function Coincidence_red({ image_url, name, lastname, date, nationality, link, arrest_details, dates }) {
-  console.log("dates")
-  console.log(dates)
+function Coincidence_red({ image_url, name, lastname, date, nationality, link, arrest_details, values }) {
   const [var1, setVar1] = useState(false);
   return (
     <div className="containerCard redCard">
@@ -21,7 +19,7 @@ function Coincidence_red({ image_url, name, lastname, date, nationality, link, a
         </ul>
       </div>
       <Range arrest_details={arrest_details} />
-      {var1 && <MoreDetails dates={dates} />}
+      {var1 && <MoreDetails values={values} />}
 
     </div>
   );
