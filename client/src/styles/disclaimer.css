@@ -1,6 +1,31 @@
-.discleimer-logo{
-   padding-top: 35%;
+/* .contenido{
+   opacity: 0.5;
+   background-image: url(../assets/imgs/fondo2.jpg)   lightgray 50%;
+ }
+  */
+.disclaimer_container{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
 }
+
+.disclaimer_info{
+   background-color: #fff;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding-bottom: 50px;
+   border-radius: 50px;
+   width: 90%;
+   margin: 20px;
+   position: absolute;
+   top: 50%;
+   transform: translate(0, -50%);
+   box-sizing: content-box;
+}
+
 .uvm-img{
     height: 210px;
     align-items: center;
@@ -15,7 +40,7 @@
    font-weight: 600;
    text-align: center;
    height: 150px;
-   width: 340px;
+   width: 100%;
    align-items: center;
    margin-top: 30px;
 }
@@ -24,28 +49,31 @@
     align-items: center; 
     height: 300px;
    }
-   .discleimer-logo{
-      padding-top: 22%;
-   }
    .discleimer-mensaje{
       width: 380px;
       font-size: 1.3em;
       text-align: center;
    }
+   .disclaimer_info{
+      width: 70vh;
+   }
+   .disclaimer_info{
+      width: 50vh;
+   }
+
 }
 @media (min-width: 1000px){ /*Desktop*/
    .uvm-img{
       align-items: center; 
       height: 300px;
      }
-     .discleimer-logo{
-        padding-top: 6%;
-     }
      .discleimer-mensaje{
         width: 380px;
         font-size: 1.3em;
         text-align: center;
-        margin-top: 40px;
      }
+     .disclaimer_info{
+         width: 50%;
+      }
 }
   
