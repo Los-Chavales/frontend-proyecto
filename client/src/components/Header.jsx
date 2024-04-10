@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/header.css"
+import logo from "../assets/logo.png"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/Auth_context";
@@ -24,7 +25,7 @@ function Header() {
     <>
       <header className="header" >
         <div className="div-logo" >
-          <img src="src/assets/logo.png" alt="Logo de la App" className="logo-header" />
+            <img src={logo} alt="Logo de la App" className="logo-header" />
         </div>
         {userData &&
           <div className="div-user">
