@@ -30,12 +30,12 @@ app.use("/report", contact_form);
 app.use("/auth", users_auth);
 
 /* conexión a la base de datos */
-
+const port = 4000;
 mongoose.connect(process.env.DB_URI)
   .then(() => {
     console.log("Conexión exitosa")
-    app.listen(4000, () => {
-      console.log("Servidor corriendo en el puerto 4000")
+    app.listen(port, () => {
+      console.log("Servidor corriendo en el puerto " + port)
     })
   })
   .catch((err) => console.error("Conexión fallida", err));
