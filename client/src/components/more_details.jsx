@@ -9,7 +9,6 @@ import Searcher_red from "../utils/hooks/Searcher_red.jsx"
 function MoreDetails({ image_url, name, lastname, date, nationality, link, arrest_details }) {
   return (
     <>
-    <Searcher_red/>
     <div className="div_detail">
     <div className="containerCard redCard">
       <div className="personCardRed">

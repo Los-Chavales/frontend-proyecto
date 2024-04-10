@@ -4,7 +4,6 @@ import "../styles/bar_range.css"
 import Range from "../utils/hooks/Range";
 import MoreDetails from "./more_details";
 
-
 function Coincidence_red({ image_url, name, lastname, date, nationality, link, arrest_details }) {
   const [var1, setVar1] = useState(false);
   return (
