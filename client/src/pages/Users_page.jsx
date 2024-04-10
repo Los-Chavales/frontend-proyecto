@@ -27,7 +27,6 @@ const columns = [
 
 function UsersPage() {
     const [dataUsers, setDataUsers] = useState([]);
-    const { user, logout } = useAuth();
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(true);
     //console.log(user)
@@ -75,10 +74,6 @@ function UsersPage() {
 
     return (
         <>
-            <div>
-                <p>Hola, {user.username}</p>
-                <Link to="/" onClick={() => { logout() }}><button>Cerrar Sesión</button></Link>
-            </div>
             {!errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} />}
             {errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
         </>
