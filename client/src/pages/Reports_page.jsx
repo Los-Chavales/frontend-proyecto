@@ -50,7 +50,6 @@ const tableStylesR = {
         }
     }
 }
-
 const tableStylesY = {
     headCells: {
         style: {
