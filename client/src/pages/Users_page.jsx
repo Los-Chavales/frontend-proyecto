@@ -23,8 +23,28 @@ const columns = [
     {
         name: "Última actualización",
         selector: row => row.updatedAt.toString(),
+    },
+    {
+        name: "Tipo",
+        selector: row => row.role,
     }
 ]
+
+const tableStyles = {
+    headCells: {
+        style: {
+            backgroundColor: "gray",
+            color: '#FFFFFF',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }
+    },
+    rows: {
+        style: {
+            fontSize: '15px',
+        }
+    }
+}
 
 function UsersPage() {
     const [dataUsers, setDataUsers] = useState([]);
@@ -79,7 +99,7 @@ function UsersPage() {
     return (
         <>
             {loadingTable && <Loading />}
-            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} />}
+            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} styles={tableStyles} />}
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
         </>
     )

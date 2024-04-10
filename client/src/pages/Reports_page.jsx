@@ -35,7 +35,37 @@ const columns = [
         selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
     },
 ]
+const tableStylesR = {
+    headCells: {
+        style: {
+            backgroundColor: "#A00000",
+            color: '#FFFFFF',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }
+    },
+    rows: {
+        style: {
+            fontSize: '15px',
+        }
+    }
+}
 
+const tableStylesY = {
+    headCells: {
+        style: {
+            backgroundColor: "#EC9F0B",
+            color: '#FFFFFF',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }
+    },
+    rows: {
+        style: {
+            fontSize: '15px',
+        }
+    }
+}
 
 function ReportsPage() {
     const [dataRed, setDataRed] = useState([])
@@ -115,10 +145,10 @@ function ReportsPage() {
         <>
             {loadingTable && <Loading />}
             {!loadingTable && !errorData &&
-                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} />
+                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} styles={tableStylesR} />
             }
              {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} />
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} styles={tableStylesY} />
             }
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
