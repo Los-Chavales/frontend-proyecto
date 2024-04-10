@@ -75,7 +75,7 @@ function UsersPage() {
 
     return (
         <>
-            <div>
+            <div className="logOut">
                 <p>Hola, {user.username}</p>
                 <Link to="/" onClick={() => { logout() }}><button>Cerrar Sesión</button></Link>
             </div>

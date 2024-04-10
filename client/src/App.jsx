@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/Auth_context';
 import ProtectRoute from './ProtectRoute.jsx';
 import { ReportProvider } from './context/Report_context';
-
 import Header from './components/Header.jsx'
 import Footer from "./components/Footer.jsx"
 import FormPage from './pages/Form_page';
