@@ -1,6 +1,6 @@
 const calculate_range = (crimes) => {
   if (!crimes || typeof crimes != "string") return console.warn("Error en 'calculate_range'", crimes);
-
+  
   let string = crimes
   let string_min = string.toLowerCase();
 
@@ -44,7 +44,7 @@ const calculate_range = (crimes) => {
     }
   }
 
-  let range = 0;
+  let range = 10;
   console.log(points)
   if(points.length === 0){
     range = 10
