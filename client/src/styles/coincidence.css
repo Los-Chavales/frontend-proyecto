@@ -14,7 +14,6 @@
 .div_detail{
   width: 900px;
   height: 600px;
-  background-color: red;
   position: absolute;
   margin: 0 40vh;
 }
@@ -87,7 +86,8 @@
 }
 
 .redCard{
-  border: 5px solid #A00000;
+  text-align: left;
+  border: 2px solid #A00000;
 }
 
 .searcherContainer{
@@ -151,7 +151,7 @@
 }
 
 .red_alert{
-  border: 5px solid #A00000;
+  border: 2px solid #A00000;
 }
 
 /* .buscadorContainer input:hover{
@@ -170,6 +170,60 @@
 
 .buscador-mensaje{
   margin: 15vh 0;
+}
+
+.containerCardMore{
+  color: rgb(0, 0, 0);
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  padding: 20px 15px;
+  justify-content: left;
+  overflow-wrap: anywhere;
+  border-radius: 5px;
+  height: 500px;
+  
+}
+
+.imagenCardMore{
+  min-width: 400px;
+  position: relative;
+}
+
+ul{
+  list-style: none;
+}
+
+.usernameMore{
+  margin-top: 30px;
+  position:static;
+  font-size: 40px;
+}
+
+.divMore1{
+  float: left;
+}
+
+
+.divMore{
+  text-align: left;
+  float: right;
+  margin-left: 50px;
+  font-size: 25px;
+}
+
+hr{
+  margin-top: 20px;
+}
+
+.buttonMore{
+  color: #fff;
+  margin-top: 30px;
+  background-color: #A00000;
+  transition: all .2s;
+}
+
+.buttonMore:hover{
+  background-color: #b92323;
 }
 
 @media (max-width: 820px){ /*Mobile*/

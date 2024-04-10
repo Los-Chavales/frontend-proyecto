@@ -10,17 +10,28 @@ function MoreDetails({ dates }) {
   return (
     <>
     <div className="div_detail">
-    <div className="containerCard redCard">
-      <div className="personCardRed">
-        <img className="imagenCard" src={dates.image} alt="Reportado"></img>
+    <div className="containerCardMore redCard">
+      <div className="personCardRedMore">
+        <div className="divMore1">
+        <img className="imagenCardMore" src={dates.image} alt="Reportado"></img>
+        <h2 className="usernameMore"><strong>{dates.forename}</strong></h2>
+        </div>
+
+        <div className="divMore">
         <ul>
-          <li className="username"><strong>{dates.forename}</strong></li>
-          <li>Nombre: {dates.name}</li>
+          <li>Apellido: {dates.name}</li>
+          <li>Nombre: {dates.lastname}</li>
+
           <li>Fecha de nacimiento: {dates.date_of_birth} </li>
           <li>Nacionalidad: {dates.nationalities}</li>
+          
         </ul>
+        <Range arrest_details={dates.arrest_details} />
+        <hr />
+        <button className="buttonMore">Reportar</button>
+        </div>
+
       </div>
-      <Range arrest_details={dates.arrest_details} />
 
     </div>
       </div>
