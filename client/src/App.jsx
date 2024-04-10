@@ -31,10 +31,11 @@ function App() {
                 <Route path="/report" element={<FormPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/discleimer" element={<Disclaimer />} />
                 <Route element={<ProtectRoute />}>
                   <Route path="/home" element={<ReportsPage />} />
                 </Route>
-                <Route path="/discleimer" element={<Disclaimer />} />
+
               </Routes>
             </Router>
           </ReportProvider>
