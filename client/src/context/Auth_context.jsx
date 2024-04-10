@@ -12,7 +12,6 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [report, setReport] = useState(null);
     const [isAuth, setIsAuth] = useState(false);
     const [mensage, setMensage] = useState(false);
     const [errorsServer, setErrorsServer] = useState([]);
@@ -121,42 +120,14 @@ export const AuthProvider = ({ children }) => {
         checkLogin();
     }, []);
 
-    async function register_report(dataForm) {
-        console.log(dataForm)
-        try {
-            const RESPONSE = await API_SERVER.post("/report/", dataForm);
-
-            //console.debug(RESPONSE);
-
-            if (RESPONSE.status != 200) {
-                return console.log(RESPONSE.response.data);
-            }
-
-            console.log(RESPONSE.data);
-            setReport(RESPONSE.data)
-            setMensage(true)
-
-        } catch (error) {
-            let menError = error.message;
-            if (error.response) menError = error.response.data.message;
-            console.error('Error al registar reporte:');
-            console.error(menError);
-            setErrorsServer([menError]);
-            return error;
-        }
-
-
-    }
 
     return (
         <AuthContext.Provider
             value={{
                 user,
-                report,
                 signup,
                 signin,
                 logout,
-                register_report,
                 isAuth,
                 loading,
                 mensage,

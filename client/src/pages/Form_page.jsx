@@ -1,10 +1,10 @@
 import Form from "../utils/hooks/Form.jsx"
 import Sent from "../components/Sent.jsx"
 import "../styles/form_contact.css"
-import { useAuth } from "../context/Auth_context.jsx"
+import { useReport } from "../context/Report_context.jsx"
 
 function FormPage() {
-  const { mensage } = useAuth();
+  const { mensage } = useReport();
   return (
     <>
       <section className="contact_container">

@@ -16,7 +16,8 @@ main {
   background-repeat:repeat;
   overflow:hidden;
   box-sizing: content-box;
-  height: 100%;
+  position: relative;
+  min-height: 100vh;
 }
 
 body{
