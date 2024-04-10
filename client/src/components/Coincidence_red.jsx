@@ -4,6 +4,7 @@ import "../styles/bar_range.css"
 import Range from "../utils/hooks/Range";
 import MoreDetails from "./more_details";
 
+
 function Coincidence_red({ image_url, name, lastname, date, nationality, link, arrest_details }) {
   const [var1, setVar1] = useState(false);
   return (
@@ -18,8 +19,9 @@ function Coincidence_red({ image_url, name, lastname, date, nationality, link, a
           <li><button onClick={() => { setVar1(true) }}>Más detalles</button></li>
         </ul>
       </div>
-      {var1 && <MoreDetails />}
       <Range arrest_details={arrest_details} />
+      {var1 && <MoreDetails />}
+
     </div>
   );
 }
