@@ -2,7 +2,7 @@ import "../styles/about_us.css"
 import LupaLogo from "../assets/lupita.png"
 function AboutUs(){
     return(
-        <main>
+        <main className="about_us-container">
            
             <div className="aboutus-logo">
                 <div className="imagen-div">

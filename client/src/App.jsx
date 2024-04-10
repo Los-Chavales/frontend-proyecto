@@ -12,6 +12,8 @@ import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
 import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
+import UsersPage from './pages/Users_page.jsx';
+import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs_page.jsx';
 
 
@@ -26,21 +28,24 @@ function App() {
           <ReportProvider>
             <Router>
               <Routes>
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/red" element={<SearcherPage_red />} />
                 <Route path="/yellow" element={<SearcherPage_yellow />} />
                 <Route path="/report" element={<FormPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/discleimer" element={<Disclaimer />} />
                 <Route element={<ProtectRoute />}>
                   <Route path="/home" element={<ReportsPage />} />
+                  <Route path="/users" element={<UsersPage />} />
                 </Route>
+
                 <Route path="/discleimer" element={<Disclaimer />} />
                 <Route path="/about_us" element={<AboutUs />} />
               </Routes>
             </Router>
           </ReportProvider>
         </AuthProvider>
-
       </div>
       <Footer />
     </>
