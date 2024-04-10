@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import "../styles/App.css";
 import TableReports from "../components/Table_reports";
 import { API_REPORTS } from "../utils/api/conexion_server";
-import { useAuth } from "../context/Auth_context";
-import { Link } from "react-router-dom";
+import Sent from "../components/Sent";
+import Loading from "../components/Loading";
 
 const columns = [
     {
@@ -40,7 +40,9 @@ const columns = [
 function ReportsPage() {
     const [dataRed, setDataRed] = useState([])
     const [dataYellow, setDataYellow] = useState([]);
-    const { user, logout } = useAuth();
+    const [errorAPI, setErrorAPI] = useState("");
+    const [errorData, setErrorData] = useState(false);
+    const [loadingTable, setLoadingTable] = useState(true);
     //console.log(user)
 
     useEffect(() => {
@@ -62,13 +64,19 @@ function ReportsPage() {
                         RESPONSE.data[index] = RESPONSE.data[0];
                     }
                 }
+                setErrorData(false);
+                setErrorAPI("");
+                setLoadingTable(false);
                 return RESPONSE.data;
 
             } catch (error) {
                 let menError = error.message;
                 if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
-                if (!menError) menError = error;
+                if (!menError) menError = "Error al obtener los datos del servidor";
                 console.error('Error al obtener los datos:', menError);
+                setErrorData(true);
+                setErrorAPI(menError);
+                setLoadingTable(false);
                 return false;
             }
         }
@@ -83,8 +91,9 @@ function ReportsPage() {
             console.table(rows);
             for (const row of rows) {
                 if (row.date_sighting) {
+                    //console.log(row.date_sighting)
                     let dateFormat = new Date(row.date_sighting);
-                    row.date_sighting = dateFormat.toLocaleDateString("es-ES",{timeZone: 'UTC'});
+                    if(dateFormat != "Invalid Date") row.date_sighting = dateFormat.toLocaleDateString("es-ES", { timeZone: 'UTC' });
                 }
                 if (row.state == "Reportado") {
                     tableR.push(row);
@@ -104,12 +113,14 @@ function ReportsPage() {
 
     return (
         <>
-            <div>
-                <p>Hola, {user.username}</p>
-                <Link to="/" onClick={() => { logout() }}><button>Cerrar Sesión</button></Link>
-            </div>
-            <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns}/>
-            <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} />
+            {loadingTable && <Loading />}
+            {!loadingTable && !errorData &&
+                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} />
+            }
+             {!loadingTable && !errorData &&
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} />
+            }
+            {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
     )
 }

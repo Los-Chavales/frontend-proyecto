@@ -5,6 +5,7 @@ import { API_SERVER } from "../utils/api/conexion_server";
 import { useAuth } from "../context/Auth_context";
 import { Link } from "react-router-dom";
 import Sent from "../components/Sent";
+import Loading from "../components/Loading";
 
 const columns = [
     {
@@ -28,7 +29,8 @@ const columns = [
 function UsersPage() {
     const [dataUsers, setDataUsers] = useState([]);
     const [errorAPI, setErrorAPI] = useState("");
-    const [errorData, setErrorData] = useState(true);
+    const [errorData, setErrorData] = useState(false);
+    const [loadingTable, setLoadingTable] = useState(true);
     //console.log(user)
 
     useEffect(() => {
@@ -47,15 +49,16 @@ function UsersPage() {
                 for (const row of RESPONSE.data) {
                     if (row.createdAt) {
                         let dateFormat = new Date(row.createdAt);
-                        row.createdAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
+                        if(dateFormat != "Invalid Date") row.createdAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
                     }
                     if (row.updatedAt) {
                         let dateFormat = new Date(row.updatedAt);
-                        row.updatedAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
+                        if(dateFormat != "Invalid Date") row.updatedAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
                     }
                 }
                 setErrorData(false);
                 setErrorAPI("");
+                setLoadingTable(false);
                 return setDataUsers(RESPONSE.data);
 
             } catch (error) {
@@ -65,6 +68,7 @@ function UsersPage() {
                 console.error('Error al obtener los datos:', menError);
                 setErrorData(true);
                 setErrorAPI(menError);
+                setLoadingTable(false);
                 return false;
             }
         }
@@ -74,8 +78,9 @@ function UsersPage() {
 
     return (
         <>
-            {!errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} />}
-            {errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
+            {loadingTable && <Loading />}
+            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} />}
+            {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
         </>
     )
 }
