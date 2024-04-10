@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/Auth_context';
 import ProtectRoute from './ProtectRoute.jsx';
 import { ReportProvider } from './context/Report_context';
+
 import Header from './components/Header.jsx'
 import Footer from "./components/Footer.jsx"
 import FormPage from './pages/Form_page';
@@ -12,6 +13,7 @@ import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
 import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
+import UsersPage from './pages/Users_page.jsx';
 import LandingPage from './pages/LandingPage';
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
                 <Route path="/discleimer" element={<Disclaimer />} />
                 <Route element={<ProtectRoute />}>
                   <Route path="/home" element={<ReportsPage />} />
+                  <Route path="/users" element={<UsersPage />} />
                 </Route>
 
               </Routes>

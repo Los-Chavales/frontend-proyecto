@@ -115,7 +115,8 @@ export const AuthProvider = ({ children }) => {
                 if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
                 if (!menError) menError = "Error";
                 console.error('Error al validar token:', menError);
-                setIsAuth(false);
+                logout();
+                //setIsAuth(false);
                 setLoading(false);
                 return;
             }
