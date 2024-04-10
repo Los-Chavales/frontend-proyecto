@@ -10,7 +10,9 @@ import SearcherPage_red from './pages/Searcher_page_red.jsx';
 import SearcherPage_yellow from './pages/Searcher_page_yellow.jsx';
 import RegisterPage from './pages/Register_page';
 import LoginPage from './pages/Login_page';
+import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
+
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
     <>
       <Header />
       <div className='contenido'>
+
         <AuthProvider>
           <ReportProvider>
             <Router>
@@ -30,11 +33,12 @@ function App() {
                 <Route element={<ProtectRoute />}>
                   <Route path="/home" element={<ReportsPage />} />
                 </Route>
-
+                <Route path="/discleimer" element={<Disclaimer />} />
               </Routes>
             </Router>
           </ReportProvider>
         </AuthProvider>
+
       </div>
       <Footer />
     </>
