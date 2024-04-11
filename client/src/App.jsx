@@ -38,8 +38,6 @@ function App() {
                   <Route path="/home" element={<ReportsPage />} />
                   <Route path="/users" element={<UsersPage />} />
                 </Route>
-
-                <Route path="/discleimer" element={<Disclaimer />} />
                 <Route path="/about_us" element={<AboutUs />} />
               </Routes>
             </div>
