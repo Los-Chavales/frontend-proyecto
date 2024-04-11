@@ -13,9 +13,9 @@
 }
 
 .div-logo{
-    display: flex;
     margin-left: 20px;
     margin-top: 5px;
+    float: left;
 }
 
 @media (max-width: 700px){ /*Tablet*/
@@ -93,18 +93,41 @@ ol,ul{
         display: none;
     }
     .ul_links{
+        background-color: rgb(255, 255, 255);
         position: static;
         width: auto;
         height: auto;
         flex-direction: row;
         gap: 2rem;
-        background-color: rgb(255, 255, 255);
-
     }
     .link{
         font-size: 1.2rem;
         transition: all .3s;
         padding: .2rem .7rem;
     }
+
+}
+
+/* Desktop */
+@media (min-width: 992px){
+.ul_links{
+    float:inline-end;
+    justify-content:flex-end;
+    margin:0;
+    top: 0px;
+    align-items:flex-end;
+    margin-right: 0px;
+
+
+}
+
+.link{
+    background-color: none;
+}
+
+}
+
+/*Huge*/
+@media (min-width: 1280px) {
 
 }
