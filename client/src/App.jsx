@@ -14,6 +14,8 @@ import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
 import UsersPage from './pages/Users_page.jsx';
 import LandingPage from './pages/LandingPage';
+import AboutUs from './pages/AboutUs_page.jsx';
+
 
 function App() {
 
@@ -36,7 +38,7 @@ function App() {
                   <Route path="/home" element={<ReportsPage />} />
                   <Route path="/users" element={<UsersPage />} />
                 </Route>
-
+                <Route path="/about_us" element={<AboutUs />} />
               </Routes>
             </div>
             <Footer />

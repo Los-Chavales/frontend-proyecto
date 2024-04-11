@@ -189,9 +189,15 @@
   
 }
 
-.imagenCardMore{
-  min-width: 400px;
+.imagenCardMoreContainer{
+  width: 400px;
   position: relative;
+}
+
+.imagenCardMore{
+  object-fit: scale-down;
+  width: 400px;
+  height: 400px;
 }
 
 ul{
