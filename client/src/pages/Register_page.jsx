@@ -25,14 +25,6 @@ export default function RegisterPage() {
     return (
         <main>
             <div className="form-user-container">
-                {
-                    errorsServer.map((error, i) => (
-                        <div key={i}>
-                            {error}
-                        </div>
-                    ))
-                }
-
                 <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
                     <h1>Regístrate</h1>
 
@@ -54,6 +46,15 @@ export default function RegisterPage() {
 
 
                     <button className="button-user" type="submit">Siguiente</button>
+
+                    {
+                        errorsServer.map((error, i) => (
+                            <div className="p-error-user" key={i}>
+                                <p>{error}</p>
+                            </div>
+                        ))
+                    }
+
                 </form>
             </div>
         </main>

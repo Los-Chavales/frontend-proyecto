@@ -202,6 +202,13 @@
   align-items: center;
 }
 
+.p-error-user {
+  background-color: gainsboro;
+  padding: 10px;
+  color: #A00000;
+  border-radius: 20px;
+}
+
 
 @media (max-width: 912px) {   /* Tablet */
   .contact_container{
