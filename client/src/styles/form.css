@@ -43,6 +43,13 @@
     color: #A00000;
 }
 
+.p-error-user {
+    background-color: gainsboro;
+    padding: 10px;
+    color: #A00000;
+    border-radius: 20px;
+}
+
 .button-user {
     padding: 16px 45px;
     border-radius: 20px;

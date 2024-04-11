@@ -25,14 +25,6 @@ export default function LoginPage() {
     return (
         <main>
             <div className="form-user-container">
-                {
-                    errorsServer.map((error, i) => (
-                        <div key={i}>
-                            {error}
-                        </div>
-                    ))
-                }
-
                 <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
                     <h1>Acceso</h1>
 
@@ -49,6 +41,15 @@ export default function LoginPage() {
 
 
                     <button className="button-user" type="submit">Siguiente</button>
+
+                    {//Mostrar errores
+                        errorsServer.map((error, i) => (
+                            <div className="p-error-user" key={i}>
+                                <p>{error}</p>
+                            </div>
+                        ))
+                    }
+
                 </form>
             </div>
         </main>
