@@ -189,6 +189,18 @@
   
 }
 
+
+
+#closeDiv{
+  position: absolute;
+  z-index: 1000;
+}
+
+#closeCheck:checked + .containerCard{
+    display: none;
+  
+}
+
 .imagenCardMoreContainer{
   width: 400px;
   position: relative;

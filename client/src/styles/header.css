@@ -75,6 +75,8 @@ ol,ul{
     cursor: pointer;
 }
 .ul_links {
+    background-color: rgb(255, 255, 255);
+
         width: 100%;
     position: absolute;
     top: 70px;
