@@ -19,6 +19,16 @@
     margin-top: 5px;
 }
 
+.div-user {
+    display: flex;
+    color: white;
+    margin-right: 20px;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: center;
+}
+
 @media (max-width: 700px){ /*Tablet*/
     .div-logo{
      align-items: center; 
