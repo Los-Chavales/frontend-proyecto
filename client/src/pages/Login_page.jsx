@@ -16,6 +16,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (isAuth) {
+            if (user && user.role == "admin") return navigate("/users");
             navigate("/home");
             //console.log('navegar')
         }

@@ -153,6 +153,32 @@ const viewUsers = async (req, res) => {
     }
 };
 
+const deleteUsers = async (req, res) => {
+    //console.log(req.body);
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+    if (!Array.isArray(req.body)) return res.status(400).json({ message: "No es un array" });
+    let delet = true;
+    for (const userDel of req.body) {
+        let id = userDel._id;
+        try {
+            const user = await User.findById(id);
+            if (user.role == "admin") return res.status(400).json({ message: "No puedes eliminar a un admin" });
+            const delUser = await User.deleteOne({ _id: user._id });
+            //console.log('Borrado', user, delUser);
+            console.log(delUser);
+        } catch (error) {
+            delet = false;
+            console.log(error);
+            return res.status(500).json({
+                message: "Error al obtener datos",
+            });
+        }
+    }
+    if (delet) {
+        console.log("Borrado")
+        return res.sendStatus(200);
+    };
+};
 
 
 const test = async (req, res) => {
@@ -189,7 +215,7 @@ module.exports = {
     verifyToken: verifyToken,
     logout: logout,
     viewUsers: viewUsers,
-    /*deleteUsers: deleteUsers,*/
+    deleteUsers: deleteUsers,
     test: test,
     testAdmin: testAdmin,
 }

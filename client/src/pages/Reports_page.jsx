@@ -50,7 +50,6 @@ const tableStylesR = {
         }
     }
 }
-
 const tableStylesY = {
     headCells: {
         style: {
@@ -89,11 +88,11 @@ function ReportsPage() {
                     return false;
                 };
                 //ESTO ES PARA MULTIPLICAR LAS FILAS, PARA PROBAR
-                for (let index = 1; index < 3; index++) {
+                /*for (let index = 1; index < 20; index++) {
                     if (RESPONSE.data[index] == undefined) {
                         RESPONSE.data[index] = RESPONSE.data[0];
                     }
-                }
+                }*/
                 setErrorData(false);
                 setErrorAPI("");
                 setLoadingTable(false);
@@ -123,7 +122,7 @@ function ReportsPage() {
                 if (row.date_sighting) {
                     //console.log(row.date_sighting)
                     let dateFormat = new Date(row.date_sighting);
-                    if(dateFormat != "Invalid Date") row.date_sighting = dateFormat.toLocaleDateString("es-ES", { timeZone: 'UTC' });
+                    if (dateFormat != "Invalid Date") row.date_sighting = dateFormat.toLocaleDateString("es-ES", { timeZone: 'UTC' });
                 }
                 if (row.state == "Reportado") {
                     tableR.push(row);
@@ -145,10 +144,10 @@ function ReportsPage() {
         <>
             {loadingTable && <Loading />}
             {!loadingTable && !errorData &&
-                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} styles={tableStylesR} />
+                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} />
             }
-             {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} styles={tableStylesY} />
+            {!loadingTable && !errorData &&
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} />
             }
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
