@@ -4,6 +4,7 @@ import TableReports from "../components/Table_reports";
 import { API_REPORTS } from "../utils/api/conexion_server";
 import Sent from "../components/Sent";
 import Loading from "../components/Loading";
+import { useReportV } from "../context/Verified_context";
 
 const columns = [
     {
@@ -72,6 +73,7 @@ function ReportsPage() {
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
+    const [noticeReport, setNoticeReport] = useState([]);
     //console.log(user)
 
     useEffect(() => {
@@ -140,6 +142,33 @@ function ReportsPage() {
     }, [])
 
 
+    const { register_reportV } = useReportV();
+
+    const registerSelect = async (data) =>{
+        /*
+        let data_v = await data.selectedRows
+        for (const data_v_1 of data_v) {
+            let date = data_v_1.date_sighting.split("/")
+            let formatDate = new Date(date[2]+"/"+date[1]+"/"+date[0]);
+            console.log("ASí queda la fecha")
+            console.log(formatDate)
+            const estructure = {
+                reported_name: data_v_1.reported_name,
+                date_sighting: formatDate,
+                state: data_v_1.state,
+                description: data_v_1.description,
+                photo: data_v_1.photo
+            }
+            register_reportV(estructure)
+        }
+        */
+    }
+
+    const selectNotices = (notices) => {
+        console.log(notices.selectedRows);
+        setNoticeReport(notices.selectedRows);
+    }
+
     return (
         <>
             {loadingTable && <Loading />}
@@ -147,7 +176,7 @@ function ReportsPage() {
                 <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} />
             }
             {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} />
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNotices} />
             }
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
