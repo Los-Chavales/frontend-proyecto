@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/Auth_context';
 import ProtectRoute from './ProtectRoute.jsx';
 import { ReportProvider } from './context/Report_context';
-
 import Header from './components/Header.jsx'
 import Footer from "./components/Footer.jsx"
 import FormPage from './pages/Form_page';
@@ -20,12 +19,11 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div className='contenido'>
-
-        <AuthProvider>
-          <ReportProvider>
-            <Router>
+      <AuthProvider>
+        <ReportProvider>
+          <Router>
+            <Header />
+            <div className='contenido'>
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/red" element={<SearcherPage_red />} />
@@ -40,11 +38,11 @@ function App() {
                 </Route>
 
               </Routes>
-            </Router>
-          </ReportProvider>
-        </AuthProvider>
-      </div>
-      <Footer />
+            </div>
+            <Footer />
+          </Router>
+        </ReportProvider>
+      </AuthProvider>
     </>
   )
 }

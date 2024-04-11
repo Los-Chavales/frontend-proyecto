@@ -177,7 +177,6 @@ function Searcher_red() {
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/red/${noticeDat.entity_id}`}
                 arrest_details={noticeDat.arrest_details} 
-                dates={noticeDat}
               />
             ))
           }
