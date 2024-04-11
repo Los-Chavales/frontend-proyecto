@@ -75,7 +75,7 @@ ol,ul{
     cursor: pointer;
 }
 .ul_links {
-    width: 100%;
+        width: 100%;
     position: absolute;
     top: 70px;
     left: 0;
@@ -132,13 +132,20 @@ ol,ul{
     margin:0;
     top: 0px;
     align-items:flex-end;
-    margin-right: 0px;
+    margin-right: 30px;
+    background-color: #042A53;
 
 
 }
 
 .link{
     background-color: none;
+    color: #fff;
+}
+
+
+.link:hover{
+    color: #bbbbbb;
 }
 
 }

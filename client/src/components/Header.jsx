@@ -45,19 +45,19 @@ function Header() {
                 <input type="checkbox" name="" id="menu_hamburguesa"/>
                 <ul className="ul_links">
                 <li className="li_links">
-                        <a href="#" className="link">Registrate</a>
+                        <a href="/register" className="link">Registrate</a>
                     </li>
                      <li className="li_links">
-                        <a href="#" className="link">Login</a>
+                        <a href="/login" className="link">Login</a>
                     </li>
                     <li className="li_links">
-                        <a href="#" className="link">Alerta Roja</a>
+                        <a href="/red" className="link">Alerta Roja</a>
                     </li>
                     <li className="li_links">
-                        <a href="#" className="link">Alerta Amarilla</a>
+                        <a href="/yellow" className="link">Alerta Amarilla</a>
                     </li>
                     <li className="li_links">
-                        <a href="#" className="link">Sobre Nosotros</a>
+                        <a href="/about_us" className="link">Sobre Nosotros</a>
                     </li>
                     
                 </ul>
