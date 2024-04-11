@@ -157,6 +157,7 @@ function Searcher_yellow() {
                 nationality={noticeDat.nationalities}
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/yellow/${noticeDat.entity_id}`}
+                values={noticeDat}
               />
             ))
           }
