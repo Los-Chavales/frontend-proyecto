@@ -3,32 +3,33 @@ import "../styles/coincidence.css"
 import "../styles/bar_range.css"
 import Range from "../utils/hooks/Range";
 import Searcher_red from "../utils/hooks/Searcher_red.jsx"
+import { Link } from "react-router-dom"; 
 
-
-
-function MoreDetails({ dates }) {
+function MoreDetails({ values }) {
   return (
     <>
     <div className="div_detail">
     <div className="containerCardMore redCard">
       <div className="personCardRedMore">
         <div className="divMore1">
-        <img className="imagenCardMore" src={dates.image} alt="Reportado"></img>
-        <h2 className="usernameMore"><strong>{dates.forename}</strong></h2>
+          <div className="imagenCardMoreContainer">
+            <img className="imagenCardMore" src={values.image} alt="Reportado"></img>
+          </div>
+          <h2 className="usernameMore"><strong>{values.forename}</strong></h2>
         </div>
 
         <div className="divMore">
         <ul>
-          <li>Apellido: {dates.name}</li>
-          <li>Nombre: {dates.lastname}</li>
+          <li>Apellido: {values.name}</li>
+          <li>Nombre: {values.lastname}</li>
 
-          <li>Fecha de nacimiento: {dates.date_of_birth} </li>
-          <li>Nacionalidad: {dates.nationalities}</li>
+          <li>Fecha de nacimiento: {values.date_of_birth} </li>
+          <li>Nacionalidad: {values.nationalities}</li>
           
         </ul>
-        <Range arrest_details={dates.arrest_details} />
+        <Range arrest_details={values.arrest_details} />
         <hr />
-        <button className="buttonMore">Reportar</button>
+        <Link to="/report" ><button className="buttonMore">Reportar</button></Link>
         </div>
 
       </div>
