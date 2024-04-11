@@ -115,9 +115,18 @@ ol,ul{
         height: auto;
         flex-direction: row;
         gap: 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        margin-right: 20px;
+    }
+    .li_links{
+        line-height: 100%;
     }
     .link{
-        font-size: 1.2rem;
+        font-size: 0.8rem;
         transition: all .3s;
         padding: .2rem .7rem;
     }
@@ -141,6 +150,7 @@ ol,ul{
 .link{
     background-color: none;
     color: #fff;
+    font-size: 1rem;
 }
 
 

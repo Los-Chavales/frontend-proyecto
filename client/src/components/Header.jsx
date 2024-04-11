@@ -25,7 +25,7 @@ function Header() {
     <>
       <header className="header" >
         <div className="div-logo" >
-            <img src={logo} alt="Logo de la App" className="logo-header" />
+          <Link to="/"><img src={logo} alt="Logo de la App" className="logo-header" /></Link> 
         </div>
         <label className="labe_hamburguesa" htmlFor="menu_hamburguesa">
                     <svg
