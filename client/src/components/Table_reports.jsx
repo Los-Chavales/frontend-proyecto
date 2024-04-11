@@ -1,46 +1,20 @@
 import DataTable from "react-data-table-component"
+import "../styles/table.css"
 
 function TableReports(report) {
-    //console.log(report.data)
-    const columns = [
-        {
-            name: "Reportado",
-            selector: row => row.reported_name,
-        },
-        {
-            name: "Nombre",
-            selector: row => row.name,
-        },
-        {
-            name: "Email",
-            selector: row => row.email,
-        },
-        {
-            name: "Teléfono",
-            selector: row => row.phone,
-        },
-        {
-            name: "Fecha",
-            selector: row => row.date_sighting,
-        },
-        {
-            name: "Mensaje",
-            selector: row => row.description,
-        },
-        {
-            name: "Evidencia",
-            selector: row => row.photo,
-        },
-    ]
-
+    //console.log(report.title, report.data, report.columns, report.number, report.styles, report.select, report.funSelDel, report.funDel)
     return (
-        <div>
-            <h1>Reportes de Alertas Rojas</h1>
+        <div className="tables">
+            <h1 className="tables-title">{report.title}</h1>
+            {report.select && <button className="tables-button" onClick={report.funDel}>Eliminar</button>}
             <DataTable
-                columns={columns}
+                columns={report.columns}
                 data={report.data}
                 pagination
-                paginationPerPage={3}
+                paginationPerPage={report.number}
+                customStyles={report.styles}
+                selectableRows={report.select}
+                onSelectedRowsChange={report.funSelDel}
             />
         </div>
     )

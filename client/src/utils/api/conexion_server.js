@@ -18,6 +18,13 @@ export const API_SERVER = axios.create({
   timeout: 60000,
 });
 
+export const API_REPORTS_FILES = axios.create({
+  baseURL: URL_BASE + 'report/',
+  headers: { "Content-Type": "multipart/form-data" },
+  withCredentials: true,
+  timeout: 60000,
+});
+
 export const API_REPORTS = axios.create({
   baseURL: URL_BASE + 'report/',
   headers: HEADER,

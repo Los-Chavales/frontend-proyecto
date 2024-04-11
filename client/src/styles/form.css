@@ -5,6 +5,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    margin: 10px;
 }
 
 
@@ -16,6 +18,8 @@
     border: 4px solid #A00000;
     border-radius: 50px;
     align-items: center;
+    background: #FFF;
+    justify-content: center;
 }
 
 .input-user {
@@ -59,3 +63,20 @@
     font-weight: 800;
     line-height: normal;
 }
+
+  
+  @media (max-width: 540px) {   /* Mobile */
+    .form-user {
+        padding: 25px 2rem;
+    }
+    .input-user {
+        width: 207px;
+        height: 50px;
+    }
+  }
+  
+  @media (max-width: 280px) {   /* Mobile */
+    .form-user {
+        padding: 25px 1rem;
+    }
+  }

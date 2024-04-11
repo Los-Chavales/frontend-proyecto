@@ -22,9 +22,13 @@ const API_TRANSLATE = async (text) => {
     console.log(response.data);
     return response.data
   } catch (error) {
-    console.error(error);
+    if (error.response.data.message) {
+      console.error("Error al traducir:", error.response.data.message);
+    } else {
+      console.error("Error al traducir (API)");
+    }
     return { data: false };
-  } 
-}; 
+  }
+};
 
 export default API_TRANSLATE;

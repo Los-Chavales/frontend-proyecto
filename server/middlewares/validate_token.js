@@ -22,8 +22,8 @@ const auth = (req, res, next) => {
 const authAdmin = (req, res, next) => {
   try {
     const { token } = req.cookies;
+    //console.log("Validar token: ", token);
     if (!token) return res.status(401).json({ message: "Sin token, autorización denegada" });
-
     jwt.verify(token, TOKEN_SECRET, (error, user) => {
       if (error) return res.status(401).json({ message: "Token inválido" });
       console.log("Validar token: ", user);

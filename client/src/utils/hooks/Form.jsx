@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import logo_contact from "../../assets//logo_contact.png";
-import { useAuth } from "../../context/Auth_context";
+import { useReport } from "../../context/Report_context";
 
 function Form() {
 
   const { register, handleSubmit, formState: { errors }, } = useForm();
-  const { register_report, report, isAuth, errorsServer } = useAuth();
+  const { register_report, report, errorsServer } = useReport();
 
   const onSubmit = handleSubmit(async (values) => {
     const formData = new FormData();

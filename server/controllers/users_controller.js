@@ -20,7 +20,7 @@ const register = async (req, res) => {
         const { username, email, password } = req.body;
         let { role } = req.body;
 
-        if ( !username || !email || !password ) return res.status(400).json({ message: 'Datos incompletos'});
+        if (!username || !email || !password) return res.status(400).json({ message: 'Datos incompletos' });
 
         //Buscar si ya existe el correo
         const userFound = await User.findOne({ email });
@@ -71,7 +71,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        if ( !email || !password ) return res.status(400).json({ message: 'Datos incompletos'});
+        if (!email || !password) return res.status(400).json({ message: 'Datos incompletos' });
 
         const userFound = await User.findOne({ email });
 
@@ -137,6 +137,50 @@ const logout = async (req, res) => {
     return res.sendStatus(200);
 };
 
+const viewUsers = async (req, res) => {
+    //console.log(req.user);
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+
+    try {
+        User.find({}).then((data) => {
+            return res.status(200).json(data);
+        });
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: "Error al obtener datos",
+        });
+    }
+};
+
+const deleteUsers = async (req, res) => {
+    //console.log(req.body);
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+    if (!Array.isArray(req.body)) return res.status(400).json({ message: "No es un array" });
+    let delet = true;
+    for (const userDel of req.body) {
+        let id = userDel._id;
+        try {
+            const user = await User.findById(id);
+            if (user.role == "admin") return res.status(400).json({ message: "No puedes eliminar a un admin" });
+            const delUser = await User.deleteOne({ _id: user._id });
+            //console.log('Borrado', user, delUser);
+            console.log(delUser);
+        } catch (error) {
+            delet = false;
+            console.log(error);
+            return res.status(500).json({
+                message: "Error al obtener datos",
+            });
+        }
+    }
+    if (delet) {
+        console.log("Borrado")
+        return res.sendStatus(200);
+    };
+};
+
+
 const test = async (req, res) => {
     //console.log(req.user);
     if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
@@ -165,11 +209,13 @@ const testAdmin = async (req, res) => {
     })
 };
 
-module.exports = { 
-    register: register, 
-    login: login, 
-    verifyToken: verifyToken, 
-    logout: logout, 
-    test: test, 
+module.exports = {
+    register: register,
+    login: login,
+    verifyToken: verifyToken,
+    logout: logout,
+    viewUsers: viewUsers,
+    deleteUsers: deleteUsers,
+    test: test,
     testAdmin: testAdmin,
 }
