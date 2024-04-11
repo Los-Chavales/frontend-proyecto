@@ -14,7 +14,7 @@ function AboutUs(){
             </div>
             <div className="info">
                   <div className="info-1">
-                    <p>La Organización Internacional de Policía Criminal es la mayor organización de policía internacional que une a las fuerzas de seguridad de 196 países de todo el mundo</p>
+                    <p className="info-p1">La Organización Internacional de Policía Criminal es la mayor organización de policía internacional que une a las fuerzas de seguridad de 196 países de todo el mundo</p>
                   </div>
                   <div className="info-2">
                   <p>Una notificación roja es un aviso internacional sobre una persona buscada,se utilizan para avisar  a los servicios policiales de todos los países miembros de la existencia de prófugos buscados a escala internacional</p>
