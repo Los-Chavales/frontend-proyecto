@@ -20,15 +20,14 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div className='contenido'>
-
-        <AuthProvider>
-          <ReportProvider>
+      <AuthProvider>
+        <ReportProvider>
 
             <ReportVProvider>
 
-              <Router>
+            <Router>
+            <Header />
+            <div className='contenido'>
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/red" element={<SearcherPage_red />} />
@@ -43,14 +42,14 @@ function App() {
                     <Route path="/users" element={<UsersPage />} />
                   </Route>
                 </Routes>
-              </Router>
+            </div>
+            <Footer />
+            </Router>
               
             </ReportVProvider>
 
-          </ReportProvider>
-        </AuthProvider>
-      </div>
-      <Footer />
+        </ReportProvider>
+      </AuthProvider>
     </>
   )
 }
