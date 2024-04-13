@@ -4,22 +4,22 @@ const ReportsSchema = mongoose.Schema({
   name:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   reported_name:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
-  id: {
+  id_notice: {
     type: String,
     require: false,
-    trim: true
+    trim: true,
   },
   email:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   date_sighting:{
     type: Date,
@@ -28,20 +28,20 @@ const ReportsSchema = mongoose.Schema({
   phone:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   state:{
     type: String,
-    require: true
+    require: true,
   },
   status:{
     type: Boolean,
-    require: true
+    default: false,
   },
   description:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   photo:{
     type: String,

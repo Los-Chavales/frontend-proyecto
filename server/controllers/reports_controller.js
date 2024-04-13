@@ -40,9 +40,9 @@ class ReportsController {
         message: error,
       });
     }
-  }   
+  }
 
-  async showReports (req, res) { // GET
+  async showReports(req, res) { // GET
     try {
       ReportsModel.find({}).then((data) => {
         return res.status(200).json(data);
@@ -56,10 +56,26 @@ class ReportsController {
   }
 
   async approveReport(req, res) {
-/*
     if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
-
-    const { id, status } = req.body;
+    if (!Array.isArray(req.body)) return res.status(400).json({ message: "No es un array" });
+    for (const reportUp of req.body) {
+      const { id_notice, status } = reportUp;
+      if (!id_notice || typeof id_notice != 'string') return res.status(400).json({ message: "ID inválido", value: id_notice });
+      if (!status || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });
+      try {
+        const report = await ReportsModel.findOne({ id_notice: id_notice });
+        report.status = status;
+        const upReport = await ReportsModel.update({ id_notice: id_notice }, report);
+        console.log('Actualizado', reportUp, upReport);
+        //console.log(reportUp);
+      } catch (error) {
+        delet = false;
+        console.log(error);
+        return res.status(500).json({
+          message: "Error al obtener datos",
+        });
+      }
+    }
     try {
       const saveReport = new ReportsModel({
         name,
@@ -83,8 +99,7 @@ class ReportsController {
         message: error,
       });
     }
-    */
-  } 
+  }
 }
 
 module.exports = new ReportsController();
