@@ -6,7 +6,7 @@ function TableReports(report) {
     return (
         <div className="tables">
             <h1 className="tables-title">{report.title}</h1>
-            {report.select && <button className="tables-button" onClick={report.funDel}>Eliminar</button>}
+            {report.select && <button className="tables-button" onClick={report.funDel}>{report.buttonType}</button>}
             <DataTable
                 columns={report.columns}
                 data={report.data}

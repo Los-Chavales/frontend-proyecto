@@ -13,7 +13,7 @@ function Coincidence_yellow({ image_url, name, lastname, date, nationality, link
         <li>Fecha de nacimiento: {date}</li>
         <li>Nacionalidad: {nationality}</li>
         <li><button onClick={() => { setVar1(true) }}>Más detalles</button></li>
-        {var1 && <MoreDetailsY values={values} />}
+        {var1 && <MoreDetailsY values={values} state="Desaparecido"/>}
       </ul>
     </div>
   );

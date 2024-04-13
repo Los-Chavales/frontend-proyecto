@@ -15,6 +15,8 @@ import ReportsPage from './pages/Reports_page.jsx';
 import UsersPage from './pages/Users_page.jsx';
 import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs_page.jsx';
+import CoincidenceReports from './pages/Coincidence_reports.jsx';
+import CoincidenceReportsFree from './pages/Coincidence_reports_free.jsx';
 
 
 const NotFound = () => {
@@ -42,6 +44,9 @@ function App() {
                 <Route path="/red" element={<SearcherPage_red />} />
                 <Route path="/yellow" element={<SearcherPage_yellow />} />
                 <Route path="/report" element={<FormPage />} />
+                <Route path="/report/:id/:name_report/:state" element={<FormPage />} />
+                <Route path="/coincidence_reports/:id" element={<CoincidenceReports />} />
+                <Route path="/coincidence_reports_free" element={<CoincidenceReportsFree />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/discleimer" element={<Disclaimer />} />

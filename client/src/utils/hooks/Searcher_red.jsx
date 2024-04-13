@@ -109,7 +109,7 @@ function Searcher_red() {
     setNotices([]);
     setAlert(false);
     let textSearch = debounceText.trim()//Evitar buscar si está vacío
-    if (textSearch.length > 10) {
+    if (textSearch.length > 25) {
       setMessage('La consulta supera el límite de caracteres');
       setAlert(true);
     } else if (textSearch) {

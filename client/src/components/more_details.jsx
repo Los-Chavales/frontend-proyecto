@@ -5,7 +5,7 @@ import Range from "../utils/hooks/Range";
 import Searcher_red from "../utils/hooks/Searcher_red.jsx"
 import { Link } from "react-router-dom"; 
 
-function MoreDetails({ values }) {
+function MoreDetails({ values, state }) {
   return (
     <>
     <div className="closeDiv">
@@ -36,7 +36,8 @@ function MoreDetails({ values }) {
         </ul>
         <Range arrest_details={values.arrest_details} />
         <hr />
-        <Link to="/report" ><button className="buttonMore">Reportar</button></Link>
+        <Link to={`/report/${values.entity_id}/${values.forename}/${state}`} ><button>Reportar</button></Link>
+        <Link to={`/coincidence_reports/${values.entity_id}`} ><button>Ver Reportes</button></Link>
         </div>
 
       </div>

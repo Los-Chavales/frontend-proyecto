@@ -3,7 +3,7 @@ import "../styles/coincidence.css"
 import "../styles/bar_range.css"
 import { Link } from "react-router-dom"; 
 
-function MoreDetailsY({ values }) {
+function MoreDetailsY({ values, state }) {
   return (
     <>
     <div className="div_detail">
@@ -17,7 +17,8 @@ function MoreDetailsY({ values }) {
           <li>Nacionalidad: {values.nationalities}</li>
         </ul>
       </div>
-      <Link to="/report" ><button>Reportar</button></Link>
+      <Link to={`/report/${values.entity_id}/${values.forename}/${state}`} ><button>Reportar</button></Link>
+      <Link to={`/coincidence_reports/${values.entity_id}`} ><button>Ver Reportes</button></Link>
 
     </div>
       </div>

@@ -24,6 +24,11 @@ const FormValidations = (formData, formDatafile) => {
   if(formData.description === undefined || formData.description === ""){
     errors.push("La descripción del avistamiento es requerida")
   }
+  if(formData.type_report === undefined || formData.type_report === "" || typeof(formData.type_report) !== "string"){
+    errors.push("El tipo de reporte es requerido")
+  }else if(formData.type_report !== "apiData" && formData.type_report !== "free"){
+    errors.push("No es un tipo de reporte válido")
+  }
   if(formDatafile === undefined){
     errors.push("La imagen del avistamiento es requerida")
   }

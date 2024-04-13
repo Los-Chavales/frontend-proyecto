@@ -4,17 +4,22 @@ const ReportsSchema = mongoose.Schema({
   name:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   reported_name:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
+  },
+  id_notice: {
+    type: String,
+    require: true,
+    trim: true,
   },
   email:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   date_sighting:{
     type: Date,
@@ -23,21 +28,30 @@ const ReportsSchema = mongoose.Schema({
   phone:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   state:{
     type: String,
-    require: true
+    require: true,
+  },
+  status:{
+    type: Boolean,
+    default: 'false',
   },
   description:{
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   photo:{
     type: String,
     require: true,
-  }
+  },
+  type_report: {
+    type: String,
+    require: true,
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model("reports", ReportsSchema);

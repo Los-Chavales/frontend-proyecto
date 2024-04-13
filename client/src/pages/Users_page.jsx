@@ -126,7 +126,7 @@ function UsersPage() {
     return (
         <>
             {loadingTable && <Loading />}
-            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} styles={tableStyles} select={true} funSelDel={selectUsers} funDel={deleteUsers} />}
+            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} styles={tableStyles} select={true} funSelDel={selectUsers} funDel={deleteUsers} buttonType="Eliminar" />}
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
         </>
     )
