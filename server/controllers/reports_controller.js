@@ -63,6 +63,7 @@ class ReportsController {
     let uptad = false;
     for (const reportUp of req.body) {
       console.log(reportUp)
+      if (!reportUp) return res.status(400).json({ message: "Sin datos", data: req.body, value: reportUp });
       const { id_notice, status } = reportUp;
       if (!id_notice || typeof id_notice != 'string') return res.status(400).json({ message: "ID inválido", value: id_notice });
       if (status == undefined || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });

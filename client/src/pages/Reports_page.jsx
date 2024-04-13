@@ -166,11 +166,15 @@ function ReportsPage() {
     const registerSelect = async () => {
         const reportsSel = noticeReportY.concat(noticeReportR);
         console.table(reportsSel)
+
+        //Aquí hay que validar que ninguno esté sin id_notice
+        //Si alguno no tiene, entonces de ha de eliminar del arreglo
         reportsSel.forEach((row, index) => {
             let resume = true;
             if (!row || !row.id_notice) {
                 console.log("No tiene ID", row);
-                reportsSel.splice(index, 1);
+                delete(reportsSel[index]);
+                //reportsSel.splice(index, 1);
                 resume = false;
             }
             if (resume && row.status == false) {
@@ -183,6 +187,15 @@ function ReportsPage() {
             }
         });
         console.table(reportsSel)
+        for (let index = 0; index < reportsSel.length; index++) {
+            const element = reportsSel[index];
+            if (!element) reportsSel.splice(index, 1);
+        }
+        //Y si el arreglo está vacío, entonces anular la operación
+        console.table(reportsSel)
+        if (reportsSel.length < 1) return console.log("Vacío", reportsSel);
+        if (reportsSel.length == 1 && reportsSel[0] == undefined) return console.log("Vacío", reportsSel);
+
         if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA
         try {
             const RESPONSE = await API_REPORTS.post("/approve", reportsSel);
