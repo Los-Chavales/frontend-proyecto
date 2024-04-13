@@ -17,7 +17,7 @@ function MoreDetailsY({ values, state }) {
           <li>Nacionalidad: {values.nationalities}</li>
         </ul>
       </div>
-      <Link to={`/report/${values.entity_id}/${values.forename}/${state}`} ><button>Reportar</button></Link>
+      <Link to={`/reportNotice/${values.entity_id}/${values.forename}/${state}`} ><button>Reportar</button></Link>
 
     </div>
       </div>
