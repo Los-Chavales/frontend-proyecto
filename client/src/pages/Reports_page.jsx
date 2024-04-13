@@ -71,10 +71,14 @@ function ReportsPage() {
     const [dataYellow, setDataYellow] = useState([]);
     const [dataRedV, setDataRedV] = useState([])
     const [dataYellowV, setDataYellowV] = useState([]);
+    
+    const [noticeReportR, setNoticeReportR] = useState([]);
+    const [noticeReportY, setNoticeReportY] = useState([]);
+
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
-    const [noticeReport, setNoticeReport] = useState([]);
+    
 
     //Para obtener los datos del servidor
     async function dataReport() {
@@ -160,7 +164,8 @@ function ReportsPage() {
 
     //Función para marcar como aprobado un reporte
     const registerSelect = async () => {
-        const reportsSel = noticeReport;
+        const reportsSel = noticeReportY.concat(noticeReportR);
+        console.table(reportsSel)
         reportsSel.forEach((row, index) => {
             let resume = true;
             if (!row || !row.id_notice) {
@@ -177,6 +182,7 @@ function ReportsPage() {
                 resume = false;
             }
         });
+        console.table(reportsSel)
         if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA
         try {
             const RESPONSE = await API_REPORTS.post("/approve", reportsSel);
@@ -202,19 +208,23 @@ function ReportsPage() {
 
     //Función para actualizar la variable cuando se selecciona una fila
     //HAY QUE HACER FUNCIONES POR SEPARADO PARA CADA TABLA
-    const selectNotices = (notices) => {
+    const selectNoticesR = (notices) => {
         console.log(notices.selectedRows);
-        setNoticeReport(notices.selectedRows);
+        setNoticeReportR(notices.selectedRows);
+    }
+    const selectNoticesY = (notices) => {
+        console.log(notices.selectedRows);
+        setNoticeReportY(notices.selectedRows);
     }
 
     return (
         <>
             {loadingTable && <Loading />}
             {!loadingTable && !errorData &&
-                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNotices} />
+                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} />
             }
             {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNotices} />
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} />
             }
             {!loadingTable && !errorData &&
                 <TableReports data={dataRedV} title="Alertas Rojas Aprobadas" columns={columns} number={3} styles={tableStylesR} />

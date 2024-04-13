@@ -65,7 +65,7 @@ class ReportsController {
       console.log(reportUp)
       const { id_notice, status } = reportUp;
       if (!id_notice || typeof id_notice != 'string') return res.status(400).json({ message: "ID inválido", value: id_notice });
-      if (!status || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });
+      if (status == undefined || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });
       try {
         const report = await ReportsModel.findOne({ id_notice: id_notice });
         report.status = status;

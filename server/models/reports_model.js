@@ -36,7 +36,7 @@ const ReportsSchema = mongoose.Schema({
   },
   status:{
     type: Boolean,
-    default: false,
+    default: 'false',
   },
   description:{
     type: String,
