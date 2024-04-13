@@ -59,48 +59,38 @@ class ReportsController {
   async approveReport(req, res) {
     if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
     if (!Array.isArray(req.body)) return res.status(400).json({ message: "No es un array" });
+
+    let uptad = false;
     for (const reportUp of req.body) {
+      console.log(reportUp)
       const { id_notice, status } = reportUp;
       if (!id_notice || typeof id_notice != 'string') return res.status(400).json({ message: "ID inválido", value: id_notice });
       if (!status || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });
       try {
         const report = await ReportsModel.findOne({ id_notice: id_notice });
         report.status = status;
-        const upReport = await ReportsModel.update({ id_notice: id_notice }, report);
+        const upReport = await ReportsModel.findByIdAndUpdate(report._id, report);
         console.log('Actualizado', reportUp, upReport);
+        uptad = true;
         //console.log(reportUp);
       } catch (error) {
-        delet = false;
+        uptad = false;
         console.log(error);
         return res.status(500).json({
           message: "Error al obtener datos",
+          error: error,
         });
       }
     }
-    try {
-      const saveReport = new ReportsModel({
-        name,
-        reported_name,
-        email,
-        date_sighting,
-        phone,
-        state,
-        description,
-        photo
-      });
-      await saveReport.save();
-      console.log("Registrado con éxito")
-      return res.status(200).json({
-        message: "Registrado con éxito",
-      });
-
-    } catch (error) {
-      console.log(error)
-      return res.status(500).json({
-        message: error,
-      });
+    if (uptad) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
     }
   }
+
+
+
 }
 
 module.exports = new ReportsController();
