@@ -11,6 +11,11 @@ const ReportsSchema = mongoose.Schema({
     require: true,
     trim: true
   },
+  id: {
+    type: String,
+    require: false,
+    trim: true
+  },
   email:{
     type: String,
     require: true,
@@ -27,6 +32,10 @@ const ReportsSchema = mongoose.Schema({
   },
   state:{
     type: String,
+    require: true
+  },
+  status:{
+    type: Boolean,
     require: true
   },
   description:{

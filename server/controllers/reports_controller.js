@@ -54,6 +54,37 @@ class ReportsController {
       });
     }
   }
+
+  async approveReport(req, res) {
+/*
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+
+    const { id, status } = req.body;
+    try {
+      const saveReport = new ReportsModel({
+        name,
+        reported_name,
+        email,
+        date_sighting,
+        phone,
+        state,
+        description,
+        photo
+      });
+      await saveReport.save();
+      console.log("Registrado con éxito")
+      return res.status(200).json({
+        message: "Registrado con éxito",
+      });
+
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: error,
+      });
+    }
+    */
+  } 
 }
 
 module.exports = new ReportsController();

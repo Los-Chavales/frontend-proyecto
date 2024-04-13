@@ -11,6 +11,8 @@ router.get("/", auth, ReportsController.showReports);
 /* POST */
 router.post('/register', upload.single("image"), ReportsController.registerReport);
 
+router.post('/approve', auth, ReportsController.approveReport)
+
 /* GET */
 
 /*router.get('/watch', ReportsController.showReports); */
