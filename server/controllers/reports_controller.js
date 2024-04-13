@@ -71,14 +71,14 @@ class ReportsController {
       console.log("desde el backeend")
       console.log(reportUp)
       if (!reportUp) return res.status(400).json({ message: "Sin datos", data: req.body, value: reportUp });
-      const { id_notice, status } = reportUp;
-      if (!id_notice || typeof id_notice != 'string') return res.status(400).json({ message: "ID inválido", value: id_notice });
+      const { _id, status } = reportUp;
+      if (!_id || typeof _id != 'string') return res.status(400).json({ message: "ID inválido", value: _id });
       if (status == undefined || typeof status != 'boolean') return res.status(400).json({ message: "Status inválido", value: status });
       try {
-        const report = await ReportsModel.findOne({ id_notice: id_notice });
+        const report = await ReportsModel.findById(_id);
         report.status = status;
         const upReport = await ReportsModel.findByIdAndUpdate(report._id, report);
-        console.log('Actualizado', reportUp, upReport);
+        console.log('Actualizado', report, upReport);
         uptad = true;
         //console.log(reportUp);
       } catch (error) {

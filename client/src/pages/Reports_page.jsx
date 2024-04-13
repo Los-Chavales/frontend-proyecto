@@ -173,9 +173,9 @@ function ReportsPage() {
                 resume = false;
             }
         });
-        console.log("tabla con estados actualizados")
-        console.log(reportsSel)
-        if (reportsSel.length < 1) return console.log("Vacío", reportsSel);
+        console.log("tabla con estados actualizados");
+        console.table(reportsSel);
+        if (reportsSel.length < 1) return console.debug("Vacío", reportsSel);
 
         if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA 
 
