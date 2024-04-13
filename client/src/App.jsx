@@ -14,6 +14,19 @@ import Disclaimer from './pages/Disclaimer_page.jsx';
 import ReportsPage from './pages/Reports_page.jsx';
 import UsersPage from './pages/Users_page.jsx';
 import LandingPage from './pages/LandingPage';
+import AboutUs from './pages/AboutUs_page.jsx';
+
+
+const NotFound = () => {
+  return (
+    <>
+      <div className='notFound'>
+        <h1>404 - Página no encontrada</h1>
+        <p>Lo sentimos, la página que buscas no se encuentra disponible.</p>
+      </div>
+    </>
+  );
+};
 
 function App() {
 
@@ -36,7 +49,8 @@ function App() {
                   <Route path="/home" element={<ReportsPage />} />
                   <Route path="/users" element={<UsersPage />} />
                 </Route>
-
+                <Route path="/about_us" element={<AboutUs />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
             <Footer />
