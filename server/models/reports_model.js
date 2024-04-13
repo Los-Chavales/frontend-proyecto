@@ -11,7 +11,7 @@ const ReportsSchema = mongoose.Schema({
     require: true,
     trim: true
   },
-  id: {
+  id_notice: {
     type: String,
     require: false,
     trim: true
