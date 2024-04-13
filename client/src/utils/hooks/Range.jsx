@@ -31,7 +31,6 @@ function Range({ arrest_details }) {
     fETCH_TRANSLATE(arrest_details);
   }, []);
 
-
   return (
     <>
       {approved &&

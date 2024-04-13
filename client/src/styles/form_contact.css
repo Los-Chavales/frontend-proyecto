@@ -27,10 +27,33 @@
 
 /* Formulario */
 
+/* error */
 .p-input {
   color: #A00000;
   margin: 1px;
 } 
+
+/* Notice Formulario */
+
+.container_p_report{
+  align-self: start;
+}
+
+.p_report{
+  color: #544F4F;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  padding: 15px;
+}
+
+.p_report_bold{
+  color: #000;
+}
+
+/* Formulario libre y general */
 
 .description_area{
   resize: none;

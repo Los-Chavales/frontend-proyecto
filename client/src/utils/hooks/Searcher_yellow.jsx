@@ -90,7 +90,7 @@ function Searcher_yellow() {
     setNotices([]);
     setAlert(false);
     let textSearch = debounceText.trim()//Evitar buscar si está vacío
-    if (textSearch.length > 10) {
+    if (textSearch.length > 25) {
       setMessage('La consulta supera el límite de caracteres');
       setAlert(true);
     } else if (textSearch) {
@@ -157,6 +157,7 @@ function Searcher_yellow() {
                 nationality={noticeDat.nationalities}
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/yellow/${noticeDat.entity_id}`}
+                values={noticeDat}
               />
             ))
           }

@@ -8,11 +8,11 @@ const morgan = require('morgan');
 
 app.use(
   cors({
-      origin: 'http://localhost:3000',
-      credentials: true,
-      optionSuccessStatus: 200,
-      methods: ['GET', 'POST'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionSuccessStatus: 200,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 )
 app.use(function (req, res, next) {
@@ -41,4 +41,4 @@ mongoose.connect(process.env.DB_URI)
       console.log("Servidor corriendo en el puerto " + port)
     })
   })
-  .catch((err) => console.error("Conexión fallida", err));
+  .catch((err) => console.error("Conexión fallida \n", err));
