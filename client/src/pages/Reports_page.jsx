@@ -165,18 +165,25 @@ function ReportsPage() {
     //Función para marcar como aprobado un reporte
     const registerSelect = async () => {
         const reportsSel = noticeReportY.concat(noticeReportR);
-        console.table(reportsSel)
+        console.log("tabla que llega")
+        console.table(reportsSel) // llega tal cual 
+        const reportFilter = []
+        reportsSel.forEach((rowF, indexF) => { /* Tomar en cuenta solo los que tienen id_notice */
+            if(rowF.id_notice){
+                reportFilter.push(rowF)
+            }else{
+                console.log("No tiene ID", rowF);
+            }
+        })
 
-        //Aquí hay que validar que ninguno esté sin id_notice
-        //Si alguno no tiene, entonces de ha de eliminar del arreglo
-        reportsSel.forEach((row, index) => {
+        reportFilter.forEach((row, index) => {
             let resume = true;
-            if (!row || !row.id_notice) {
+      /*       if (!row || !row.id_notice) {
                 console.log("No tiene ID", row);
                 delete(reportsSel[index]);
                 //reportsSel.splice(index, 1);
                 resume = false;
-            }
+            } */
             if (resume && row.status == false) {
                 row.status = true;
                 resume = false;
@@ -186,19 +193,22 @@ function ReportsPage() {
                 resume = false;
             }
         });
-        console.table(reportsSel)
-        for (let index = 0; index < reportsSel.length; index++) {
+        console.log("está me interesa array filtrado:")
+        console.table(reportFilter) //borrar los que no tienen id
+        console.log(reportFilter)
+/*         for (let index = 0; index < reportsSel.length; index++) {
             const element = reportsSel[index];
             if (!element) reportsSel.splice(index, 1);
-        }
+        } */
         //Y si el arreglo está vacío, entonces anular la operación
-        console.table(reportsSel)
-        if (reportsSel.length < 1) return console.log("Vacío", reportsSel);
-        if (reportsSel.length == 1 && reportsSel[0] == undefined) return console.log("Vacío", reportsSel);
+        console.log("tabla que se va al backeend")
+        console.table(reportFilter) //se va aenviar
+        if (reportFilter.length < 1) return console.log("Vacío", reportFilter);
+        //if (reportFilter.length == 1 && reportFilter[0] == undefined) return console.log("Vacío", reportFilter);
 
-        if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA
+        if (reportFilter.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA
         try {
-            const RESPONSE = await API_REPORTS.post("/approve", reportsSel);
+            const RESPONSE = await API_REPORTS.post("/approve", reportFilter);
             console.log(RESPONSE);
             if (RESPONSE.status != 200) {
                 console.warn(RESPONSE.data);
@@ -216,7 +226,7 @@ function ReportsPage() {
             setErrorAPI(menError);
             setLoadingTable(false);
             return false;
-        }
+        } 
     }
 
     //Función para actualizar la variable cuando se selecciona una fila
@@ -234,10 +244,10 @@ function ReportsPage() {
         <>
             {loadingTable && <Loading />}
             {!loadingTable && !errorData &&
-                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} />
+                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} buttonType="Aprobar" />
             }
             {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} />
+                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
             }
             {!loadingTable && !errorData &&
                 <TableReports data={dataRedV} title="Alertas Rojas Aprobadas" columns={columns} number={3} styles={tableStylesR} />
