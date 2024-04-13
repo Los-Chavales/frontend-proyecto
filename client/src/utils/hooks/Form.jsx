@@ -15,7 +15,23 @@ function Form() {
   const onSubmit = handleSubmit(async (values) => {
     const formData = new FormData();
 
-    if(paramsDataRoute.id){    /* Enviar formulario con detalles de la API */
+    /* Enviar formulario con detalles libres */
+      formData.append("name", values.name)
+      formData.append("reported_name", values.reported_name)
+      formData.append("email", values.email)
+      formData.append("date_sighting", values.date_sighting)
+      formData.append("phone", values.phone)
+      formData.append("state", values.state)
+      formData.append("description", values.description)
+      formData.append("image", values.photo[0])
+
+    register_report(formData);
+  })
+
+  const onSubmitNotice = handleSubmit(async (values) => {
+    const formData = new FormData();
+
+    /* Enviar formulario con detalles de la API */
       formData.append("id_notice", paramsDataRoute.id)
       formData.append("name", values.name)
       formData.append("reported_name", paramsDataRoute.name_report)
@@ -25,29 +41,19 @@ function Form() {
       formData.append("state", paramsDataRoute.state)
       formData.append("description", values.description)
       formData.append("image", values.photo[0])
-    }else{                   /* Enviar formulario con detalles libres */
-      formData.append("name", values.name)
-      formData.append("reported_name", values.reported_name)
-      formData.append("email", values.email)
-      formData.append("date_sighting", values.date_sighting)
-      formData.append("phone", values.phone)
-      formData.append("state", values.state)
-      formData.append("description", values.description)
-      formData.append("image", values.photo[0])
-    }
 
     register_report(formData);
   })
 
   /* Formulario con datos de la API */
-  if(paramsDataRoute.id){
+  if(paramsDataRoute.id && paramsDataRoute.name_report && paramsDataRoute.state === "Desaparecido" || paramsDataRoute.state === "Reportado"){  //Ver que el estado no esté equivocado, si lo está avisar
     return (
       <>
         <div className="container_form">
           <div className="container_form_img">
             <img src={logo_contact} className="form_img"></img>
           </div>
-          <form onSubmit={onSubmit} className="form_contact">
+          <form onSubmit={onSubmitNotice} className="form_contact">
     
             <input
               type="text" id="name"
@@ -75,7 +81,9 @@ function Form() {
             />
             {errors.phone && (<p className="p-input">Se requiere su teléfono</p>)}
 
-            <p>Nombre del Reportado: {paramsDataRoute.name_report}</p>
+            <div className="container_p_report">
+              <p className="p_report"><span className="p_report_bold">Nombre del Reportado:</span> {paramsDataRoute.name_report}</p>
+            </div>
     
             <div className="input_contact_date">
               <label htmlFor="date_sighting" name="date_sighting" className="label_contact_date">Avistamiento</label>
@@ -88,7 +96,9 @@ function Form() {
             </div>
             {errors.date_sighting && (<p className="p-input" >Se requiere la fecha del avistamiento</p>)}
 
-            <p>Estado: {paramsDataRoute.state}</p>
+            <div className="container_p_report">
+              <p className="p_report"><span className="p_report_bold">Estado:</span> {paramsDataRoute.state}</p>
+            </div>
 
             <textarea
               id="description_report"
