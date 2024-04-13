@@ -18,7 +18,7 @@ function Coincidence_red({ image_url, name, lastname, date, nationality, link, a
         </ul>
       </div>
       <Range arrest_details={arrest_details} />
-      {var1 && <MoreDetails values={values} />}
+      {var1 && <MoreDetails values={values} state="Reportado" />}
     </div>
   );
 }

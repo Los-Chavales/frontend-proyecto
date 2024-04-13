@@ -14,7 +14,7 @@ class ReportsController {
       });
     }
 
-    const { name, reported_name, email, date_sighting, phone, state, description } = req.body
+    const { name, reported_name, email, date_sighting, phone, state, description, id_notice } = req.body
     const photo = req.file.filename
 
     try {
@@ -26,7 +26,8 @@ class ReportsController {
         phone,
         state,
         description,
-        photo
+        photo,
+        id_notice
       });
       await saveReport.save();
       console.log("Registrado con éxito")

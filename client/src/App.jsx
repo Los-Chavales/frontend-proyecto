@@ -42,6 +42,7 @@ function App() {
                 <Route path="/red" element={<SearcherPage_red />} />
                 <Route path="/yellow" element={<SearcherPage_yellow />} />
                 <Route path="/report" element={<FormPage />} />
+                <Route path="/report/:id/:name_report/:state" element={<FormPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/discleimer" element={<Disclaimer />} />
