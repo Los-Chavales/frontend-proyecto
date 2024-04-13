@@ -24,6 +24,7 @@ function Form() {
       formData.append("state", values.state)
       formData.append("description", values.description)
       formData.append("image", values.photo[0])
+      formData.append("type_report", "free")
 
     register_report(formData);
   })
@@ -41,6 +42,7 @@ function Form() {
       formData.append("state", paramsDataRoute.state)
       formData.append("description", values.description)
       formData.append("image", values.photo[0])
+      formData.append("type_report", "apiData")
 
     register_report(formData);
   })

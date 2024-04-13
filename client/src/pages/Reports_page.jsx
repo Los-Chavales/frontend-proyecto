@@ -93,12 +93,6 @@ function ReportsPage() {
                 console.warn("No es un array");
                 return false;
             };
-            //ESTO ES PARA MULTIPLICAR LAS FILAS, PARA PROBAR
-            /*for (let index = 1; index < 20; index++) {
-                if (RESPONSE.data[index] == undefined) {
-                    RESPONSE.data[index] = RESPONSE.data[0];
-                }
-            }*/
             setErrorData(false);
             setErrorAPI("");
             setLoadingTable(false);
@@ -167,23 +161,9 @@ function ReportsPage() {
         const reportsSel = noticeReportY.concat(noticeReportR);
         console.log("tabla que llega")
         console.table(reportsSel) // llega tal cual 
-        const reportFilter = []
-        reportsSel.forEach((rowF, indexF) => { /* Tomar en cuenta solo los que tienen id_notice */
-            if(rowF.id_notice){
-                reportFilter.push(rowF)
-            }else{
-                console.log("No tiene ID", rowF);
-            }
-        })
 
-        reportFilter.forEach((row, index) => {
+        reportsSel.forEach((row, index) => {
             let resume = true;
-      /*       if (!row || !row.id_notice) {
-                console.log("No tiene ID", row);
-                delete(reportsSel[index]);
-                //reportsSel.splice(index, 1);
-                resume = false;
-            } */
             if (resume && row.status == false) {
                 row.status = true;
                 resume = false;
@@ -193,22 +173,15 @@ function ReportsPage() {
                 resume = false;
             }
         });
-        console.log("está me interesa array filtrado:")
-        console.table(reportFilter) //borrar los que no tienen id
-        console.log(reportFilter)
-/*         for (let index = 0; index < reportsSel.length; index++) {
-            const element = reportsSel[index];
-            if (!element) reportsSel.splice(index, 1);
-        } */
-        //Y si el arreglo está vacío, entonces anular la operación
-        console.log("tabla que se va al backeend")
-        console.table(reportFilter) //se va aenviar
-        if (reportFilter.length < 1) return console.log("Vacío", reportFilter);
-        //if (reportFilter.length == 1 && reportFilter[0] == undefined) return console.log("Vacío", reportFilter);
+        console.log("tabla con estados actualizados")
+        console.log(reportsSel)
+        if (reportsSel.length < 1) return console.log("Vacío", reportsSel);
 
-        if (reportFilter.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA
+        if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA 
+
         try {
-            const RESPONSE = await API_REPORTS.post("/approve", reportFilter);
+            const RESPONSE = await API_REPORTS.post("/approve", reportsSel);
+            console.log("saliendo del backeend")
             console.log(RESPONSE);
             if (RESPONSE.status != 200) {
                 console.warn(RESPONSE.data);

@@ -1,8 +1,13 @@
 const ReportsModel = require("../models/reports_model");
 const FormValidations = require("../middlewares/formValidation")
+const { v4: uuidv4 } = require('uuid');
 
 class ReportsController {
   async registerReport(req, res) {
+
+    if(!req.body.id_notice){
+      req.body.id_notice = uuidv4();
+    }
 
     let validationRes = FormValidations(req.body, req.file)
     if (validationRes.length !== 0) {
@@ -14,7 +19,7 @@ class ReportsController {
       });
     }
 
-    const { name, reported_name, email, date_sighting, phone, state, description, id_notice } = req.body
+    const { name, reported_name, email, date_sighting, phone, state, description, id_notice, type_report } = req.body
     const photo = req.file.filename
 
     try {
@@ -27,7 +32,8 @@ class ReportsController {
         state,
         description,
         photo,
-        id_notice
+        id_notice,
+        type_report
       });
       await saveReport.save();
       console.log("Registrado con éxito")
@@ -62,6 +68,7 @@ class ReportsController {
 
     let uptad = false;
     for (const reportUp of req.body) {
+      console.log("desde el backeend")
       console.log(reportUp)
       if (!reportUp) return res.status(400).json({ message: "Sin datos", data: req.body, value: reportUp });
       const { id_notice, status } = reportUp;
@@ -90,6 +97,45 @@ class ReportsController {
     }
   }
 
+
+  async coincidenceReports(req, res) {
+    let id_notice_params = req.params.id;
+    try {
+      ReportsModel.find({ id_notice: id_notice_params, status : true }).find({}).then((data) => {
+        if(data.length === 0) {
+          return res.status(404).json({
+            message:"No existen casos registrados"
+          });
+        }else{
+          return res.status(200).json(data);
+        }
+      });
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Error al obtener datos",
+      });
+    }
+  }
+
+  async coincidenceReportsFree(req, res) {
+    try {
+      ReportsModel.find({ type_report: "free", status : true}).find({}).then((data) => {
+        if(data.length === 0) {
+          return res.status(404).json({
+            message:"No existen casos registrados"
+          });
+        }else{
+          return res.status(200).json(data);
+        }
+      });
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Error al obtener datos",
+      });
+    }
+  }
 
 
 }

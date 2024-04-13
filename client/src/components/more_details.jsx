@@ -37,6 +37,7 @@ function MoreDetails({ values, state }) {
         <Range arrest_details={values.arrest_details} />
         <hr />
         <Link to={`/report/${values.entity_id}/${values.forename}/${state}`} ><button>Reportar</button></Link>
+        <Link to={`/coincidence_reports/${values.entity_id}`} ><button>Ver Reportes</button></Link>
         </div>
 
       </div>

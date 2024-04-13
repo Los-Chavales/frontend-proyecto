@@ -13,7 +13,7 @@ const ReportsSchema = mongoose.Schema({
   },
   id_notice: {
     type: String,
-    require: false,
+    require: true,
     trim: true,
   },
   email:{
@@ -46,7 +46,12 @@ const ReportsSchema = mongoose.Schema({
   photo:{
     type: String,
     require: true,
-  }
+  },
+  type_report: {
+    type: String,
+    require: true,
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model("reports", ReportsSchema);
