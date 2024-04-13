@@ -36,7 +36,7 @@ function CoincidenceReports() {
   const [loadingTable, setLoadingTable] = useState(true);
 
   const paramsDataRoute = useParams();
-  console.log(paramsDataRoute)
+  console.debug(paramsDataRoute)
 
   async function dataReport() {
     try {
