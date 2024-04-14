@@ -56,10 +56,14 @@ function Searcher_red() {
       //let LINK_IMAGE = notice._links.images.href;
       delete notice._links;//Eliminar los links
       notice.entity_id = notice.entity_id.replace("/", '-');//Para cambiar el '/' por '-' en el ID, para realizar otras búsquedas
-      
+
       //Para convertir las nacionalidades de array a string
-      notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
-      
+      if (notice.nationalities) {
+        notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
+      } else {
+        notice.nationalities = "Desconocida";
+      }
+
       //Para buscar el link de la imagen
       let image = '';
       const RESPONSE2 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
@@ -82,14 +86,14 @@ function Searcher_red() {
       let arrest_details = ""
       //const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
       const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}`)
-      .catch((error) => {
-        console.warn('Notice:', notice.entity_id, 'Error:', error.message);
-        cError++
-        //console.debug(error);
-        return { data: false }
-      });
+        .catch((error) => {
+          console.warn('Notice:', notice.entity_id, 'Error:', error.message);
+          cError++
+          //console.debug(error);
+          return { data: false }
+        });
 
-      if(RESPONSE3){
+      if (RESPONSE3) {
         let cases = RESPONSE3.data.arrest_warrants
         arrest_details = ""
         for (let i = 0; i < cases.length; i++) {
@@ -176,7 +180,7 @@ function Searcher_red() {
                 nationality={noticeDat.nationalities}
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/red/${noticeDat.entity_id}`}
-                arrest_details={noticeDat.arrest_details} 
+                arrest_details={noticeDat.arrest_details}
                 values={noticeDat}
               />
             ))
