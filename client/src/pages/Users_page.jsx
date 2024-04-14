@@ -49,7 +49,7 @@ function UsersPage() {
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
-    const [usersDelete, setUsersDelete] = useState([]);
+    const [usersSel, setUsersSel] = useState([]);
     //console.log(user)
 
     async function dataReport() {
@@ -67,11 +67,11 @@ function UsersPage() {
             for (const row of RESPONSE.data) {
                 if (row.createdAt) {
                     let dateFormat = new Date(row.createdAt);
-                    if(dateFormat != "Invalid Date") row.createdAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
+                    if (dateFormat != "Invalid Date") row.createdAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
                 }
                 if (row.updatedAt) {
                     let dateFormat = new Date(row.updatedAt);
-                    if(dateFormat != "Invalid Date") row.updatedAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
+                    if (dateFormat != "Invalid Date") row.updatedAt = dateFormat.toLocaleString("es-ES", { timeZone: 'UTC' });
                 }
             }
             setErrorData(false);
@@ -95,10 +95,32 @@ function UsersPage() {
         dataReport();
     }, [])
 
-    const deleteUsers = async () => {
-        console.log('Borrar',usersDelete);
+
+    const updateUsers = async () => {
+        console.log('Actualizar', usersSel);
+        const usersSelec = usersSel;
+        console.log("tabla que llega")
+        console.table(usersSelec) // llega tal cual 
+        //FALTA IGNORAR ADMINS
+        usersSelec.forEach((row, index) => {
+            let resume = true;
+            if (resume && row.role == 'user') {
+                row.role = 'supervisor';
+                resume = false;
+            }
+            if (resume && row.role == 'supervisor') {
+                row.role = 'user';
+                resume = false;
+            }
+        });
+        console.log("tabla con estados actualizados");
+        console.table(usersSelec);
+        if (usersSelec.length < 1) return console.debug("Vacío", usersSelec);
+
+        if (usersSelec.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA 
+        
         try {
-            const RESPONSE = await API_SERVER.post("/users",usersDelete);
+            const RESPONSE = await API_SERVER.post("/update", usersSel);
             //console.log(RESPONSE);
             if (RESPONSE.status != 200) {
                 console.warn(RESPONSE.data);
@@ -116,18 +138,42 @@ function UsersPage() {
             setErrorAPI(menError);
             setLoadingTable(false);
             return false;
-        }   
+        }
+        
+    }
+    const deleteUsers = async () => {
+        console.log('Borrar', usersSel);
+        try {
+            const RESPONSE = await API_SERVER.post("/delete", usersSel);
+            //console.log(RESPONSE);
+            if (RESPONSE.status != 200) {
+                console.warn(RESPONSE.data);
+                return false;
+            }
+            setLoadingTable(true);
+            dataReport();
+            return
+        } catch (error) {
+            let menError = error.message;
+            if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
+            if (!menError) menError = "Error al borrar";
+            console.error('Error al eliminar:', menError);
+            setErrorData(true);
+            setErrorAPI(menError);
+            setLoadingTable(false);
+            return false;
+        }
     }
     const selectUsers = (usersD) => {
         //console.log(usersD.selectedRows);
-        setUsersDelete(usersD.selectedRows);
+        setUsersSel(usersD.selectedRows);
     }
 
     return (
         <>
             {loadingTable && <Loading />}
-            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} styles={tableStyles} select={true} funSelDel={selectUsers} funDel={deleteUsers} buttonType="Eliminar" />}
-            {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI}/>}
+            {!loadingTable && !errorData && <TableReports data={dataUsers} title="Usuarios Registrados" columns={columns} styles={tableStyles} select={true} funSelDel={selectUsers} funDel={[deleteUsers, updateUsers]} listType={["Eliminar", "Cambiar Rol"]} />}
+            {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
     )
 }
