@@ -57,6 +57,16 @@
     border: none;
     outline: none;
     border-radius: 20px;
+    transition: all .4s;
+}
+
+.main_titles:hover{
+    width: 485px;
+    height: 134px;
+    background-color: #a3a3a3;
+    border: none;
+    outline: none;
+    border-radius: 20px;
 }
 
 .main_titles{
