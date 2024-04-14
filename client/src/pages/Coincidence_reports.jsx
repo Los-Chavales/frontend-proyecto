@@ -5,6 +5,7 @@ import TableReports from "../components/Table_reports";
 import { API_REPORTS } from "../utils/api/conexion_server";
 import Sent from "../components/Sent";
 import Loading from "../components/Loading";
+import sort_dates from "../utils/functions/sort_dates";
 
 
 /* Aún está incompleta */
@@ -28,12 +29,45 @@ const columns = [
   },
 ]
 
+const tableStylesR = {
+  headCells: {
+      style: {
+          backgroundColor: "#A00000",
+          color: '#FFFFFF',
+          fontSize: '20px',
+          fontWeight: 'bold'
+      }
+  },
+  rows: {
+      style: {
+          fontSize: '15px',
+      }
+  }
+}
+const tableStylesY = {
+  headCells: {
+      style: {
+          backgroundColor: "#EC9F0B",
+          color: '#FFFFFF',
+          fontSize: '20px',
+          fontWeight: 'bold'
+      }
+  },
+  rows: {
+      style: {
+          fontSize: '15px',
+      }
+  }
+}
+
 function CoincidenceReports() {
   const [dataCoincidenceR, setCoincidenceR] = useState([]);
   const [errorAPI, setErrorAPI] = useState("");
   const [errorData, setErrorData] = useState(false);
   const [emptyData, setEmptyData] = useState(false);
   const [loadingTable, setLoadingTable] = useState(true);
+  const [dataRed, setDataRed] = useState(false)
+  const [dataYellow, setDataYellow] = useState(false);
 
   const paramsDataRoute = useParams();
   console.debug(paramsDataRoute)
@@ -50,16 +84,15 @@ function CoincidenceReports() {
             console.warn("No es un array");
             return false;
         }
-        for (const row of RESPONSE.data) {
-            if (row.date_sighting) {
-              //console.log(row.date_sighting)
-              let dateFormat = new Date(row.date_sighting);
-              if (dateFormat != "Invalid Date") row.date_sighting = dateFormat.toLocaleDateString("es-ES", { timeZone: 'UTC' });
-          }
-        }
         setErrorData(false);
         setErrorAPI("");
         setLoadingTable(false);
+        if(RESPONSE.data[0].state === "Reportado"){
+          setDataRed(true)
+        } else if (RESPONSE.data[0].state === "Desaparecido"){
+          setDataYellow(true)
+        }
+        sort_dates(RESPONSE.data);
         return setCoincidenceR(RESPONSE.data);
 
     } catch (error) {
@@ -94,7 +127,8 @@ function CoincidenceReports() {
     return (
       <>
         {loadingTable && <Loading />}
-        {!loadingTable && !errorData  && !emptyData && <TableReports data={dataCoincidenceR} title="Reportes Registrados" columns={columns} number={3}  />}
+        {dataRed && !loadingTable && !errorData && !emptyData && <TableReports data={dataCoincidenceR} title="Reportes Registrados" columns={columns} number={10} styles={tableStylesR} />}
+        {dataYellow && !loadingTable && !errorData && !emptyData && <TableReports data={dataCoincidenceR} title="Reportes Registrados" columns={columns} number={10} styles={tableStylesY} />}
         {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         {!loadingTable && emptyData && <Sent title="Lo sentimos" par={errorAPI} />}
       </>
