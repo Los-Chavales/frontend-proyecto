@@ -17,8 +17,9 @@ export default function LoginPage() {
     useEffect(() => {
         if (isAuth) {
             if (user && user.role == "admin") return navigate("/users");
-            navigate("/home");
-            //console.log('navegar')
+            if (user && user.role == "supervisor") return navigate("/home");
+            navigate("/coincidence_reports_free");
+            //console.log('navegar');
         }
     }, [isAuth]);
 
