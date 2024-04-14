@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/coincidence.css"
 import "../styles/bar_range.css"
-import Range from "../utils/hooks/Range";
+import Range from "../utils/hooks/Range"; 
 import MoreDetails from "./more_details";
 
 function Coincidence_red({ image_url, name, lastname, date, nationality, link, arrest_details, values }) {
@@ -18,7 +18,7 @@ function Coincidence_red({ image_url, name, lastname, date, nationality, link, a
         </ul>
       </div>
       <Range arrest_details={arrest_details} />
-      {var1 && <MoreDetails values={values} state="Reportado" />}
+      <MoreDetails values={values} closeModal={var1} changeClose={setVar1} state="Reportado" />
     </div>
   );
 }
