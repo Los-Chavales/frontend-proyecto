@@ -1,9 +1,11 @@
 .sent_container{
+  position: absolute;
   border-radius: 50px;
   border: 4px solid #A00000;
   background: #FFF;
   width:  300px;
-  margin: 10% 0;
+  display: inline-block;
+  margin: 30px 40%;
 }
 
 .sent_info{
@@ -16,6 +18,6 @@
 
 @media (max-width: 912px) {   /* Tablet */
   .sent_container{
-    margin: 0;
+    margin: 30px 20%;
   }
 }
