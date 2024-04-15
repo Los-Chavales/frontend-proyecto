@@ -1,13 +1,13 @@
-.tables{
-    padding-inline: 30px;
-    padding-bottom: 5px;
-    padding-top: 15px;
-    color: white;
+.tables {
+  padding-inline: 30px;
+  padding-bottom: 5px;
+  padding-top: 15px;
+  color: white;
 }
 
 .tables-title {
-    text-align: center;
-    padding: 5px;
+  text-align: center;
+  padding: 5px;
 }
 
 .tables-button {

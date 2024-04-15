@@ -18,7 +18,7 @@ export default function RegisterPage() {
     useEffect(() => {
         if (isAuth) {
             //console.log('/home')
-            navigate("/home");
+            navigate("/coincidence_reports_free");
         }
     }, [isAuth]);
 

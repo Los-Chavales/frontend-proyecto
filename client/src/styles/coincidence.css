@@ -11,14 +11,6 @@
   padding-bottom: 65px;
 }
 
-.div_detail{
-  z-index: 100;
-  width: 900px;
-  height: 600px;
-  position: absolute;
-  margin: 0 auto;
-}
-
 .personCard,
 .containerCard {
   text-align: center;
@@ -82,13 +74,14 @@
   width: 88px;
   height: 114px;
   object-fit: cover;
+  object-position: top;
 }
 
 .yellowCard {
   border: 5px solid #EC9F0B;
 }
 
-.redCard{
+.redCard {
   text-align: left;
   border: 2px solid #A00000;
 }
@@ -116,14 +109,6 @@
 }
 
 .searchBar {
-  /*   width: 550px;
-  height: 62px;
-  border: none;
-  background-color:#D9D9D9;
-  color: #000;
-  text-align: center;
-  transition: all .2s;
-  font-size: 20px; */
   width: 516px;
   height: 48px;
   flex-shrink: 0;
@@ -138,7 +123,7 @@
   text-align: center;
   background: #FFF;
   height: 80%;
-  width: 450px;
+  width: 80%;
   color: #000;
   font-size: 20px;
   border: none;
@@ -154,153 +139,92 @@
   border: 5px solid #EC9F0B;
 }
 
-.red_alert{
-  border: 2px solid #A00000;
+.red_alert {
+  border: 5px solid #A00000;
 }
-
-/* .buscadorContainer input:hover{
-  background-color:#ecdede;
-  color: #000;
-  text-align: center;
-}
-
-.buscadorContainer input:active{
-  background-color:#ecdede;
-  color: #000;
-  text-align: center;
-  outline: 1px solid #f3baba;
-
-} */
 
 .buscador-mensaje {
   margin: 15vh 0;
 }
 
-.containerCardMore{
-  color: rgb(0, 0, 0);
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  padding: 20px 15px;
-  justify-content: left;
-  overflow-wrap: anywhere;
-  border-radius: 5px;
-  height: 500px;
-  
-  
-}
+/* Div emergente */
 
-
-
-#closeDiv{
+#closeDiv {
   position: absolute;
   z-index: 1000;
 }
 
-#closeCheck:checked + .containerCard{
-    display: none;
-  
+#closeCheck:checked+.containerCard {
+  display: none;
+
 }
 
-.imagenCardMoreContainer{
-  width: 400px;
-  position: relative;
-}
-
-.imagenCardMore{
-  object-fit: scale-down;
-  width: 400px;
-  height: 400px;
-}
-
-ul{
+ul {
   list-style: none;
 }
 
-.usernameMore{
-  margin-top: 30px;
-  position:static;
-  font-size: 40px;
-}
 
-.divMore1{
-  float: left;
-}
+@media (max-width: 853px) {
 
-
-.divMore{
-  text-align: left;
-  float: right;
-  margin-left: 50px;
-  font-size: 25px;
-}
-
-hr{
-  margin-top: 20px;
-}
-
-.buttonMore{
-  color: #fff;
-  margin-top: 30px;
-  background-color: #A00000;
-  transition: all .2s;
-}
-
-.buttonMore:hover{
-  background-color: #b92323;
-}
-
-@media (max-width: 820px){ /*Mobile*/
-  .buscador-main{
+  /*Mobile*/
+  .buscador-main {
     margin: 0 15px;
   }
 }
 
-
 @media (max-width: 540px) {
 
   /*Mobile*/
-  .usuariosContainer {
-    padding-bottom: 70px;
+  .searchBar {
+    width: 336px;
+    height: 48px;
+    flex-shrink: 0;
   }
 
-  .searcherContainer {
-    width: 305px;
-    height: 62px;
-    font-size: 15px;
+  .searchBar input {
+    width: 270px;
   }
-
-  .searcherContainer h1 {
-    font-size: 18px;
-  }
-
-  .personCard {
-    min-width: 289px;
-    max-width: 210px;
-
+  .searchBar{
+    width: 300px;
+    height: 30px;
   }
 }
 
+@media (max-width: 390px) {
+  /*Ventana modal*/
+
+  .div_detail {
+    width: 22rem;
+  }
+}
 
 @media (max-width: 280px) {
 
   /*Mobile*/
-  .usuariosContainer {
-    padding-bottom: 70px;
+  .searchBar {
+    width: 300px;
+    height: 48px;
+    flex-shrink: 0;
   }
 
-  .searcherContainer {
-    width: 205px;
-    height: 62px;
-    font-size: 15px;
+  .searchBar input {
+    width: 200px;
   }
 
-  .searcherContainer h1 {
-    font-size: 15px;
-  }
-
-  .personCard {
+  .personCard,
+  .containerCard {
     min-width: 189px;
-    max-width: 110px;
-    font-size: 15px;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    color: white;
+  }
+  .searchBar{
+    width: 280px;
+    height: 30px;
+  }
+
+
 }

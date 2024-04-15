@@ -153,6 +153,38 @@ const viewUsers = async (req, res) => {
     }
 };
 
+const updateUsers = async (req, res) => {
+    console.log(req.body);
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+    if (!Array.isArray(req.body)) return res.status(400).json({ message: "No es un array" });
+    let updat = true;
+    for (const userUp of req.body) {
+        if (!userUp) return res.status(400).json({ message: "Sin datos", data: req.body, value: userUp });
+        const { _id, role } = userUp;
+        if (!_id || typeof _id != 'string') return res.status(400).json({ message: "ID inválido", value: _id });
+        if (role == undefined || typeof role != 'string') return res.status(400).json({ message: "Rol inválido", value: role });
+        if (role != "user" && role != "supervisor") return res.status(400).json({ message: "Rol inválido", value: role });
+        try {
+            const user = await User.findById(_id);
+            if (user.role == "admin") return res.status(400).json({ message: "No puedes actualizar a un admin" });
+            user.role = role;
+            const upUser = await User.findByIdAndUpdate(user._id, user);
+            console.log('Actualizado', user, upUser);
+            //console.log(upUser);
+        } catch (error) {
+            updat = false;
+            console.log(error);
+            return res.status(500).json({
+                message: "Error al obtener datos",
+            });
+        }
+    }
+    if (updat) {
+        console.log("Actualizado")
+        return res.sendStatus(200);
+    };
+};
+
 const deleteUsers = async (req, res) => {
     //console.log(req.body);
     if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
@@ -215,6 +247,7 @@ module.exports = {
     verifyToken: verifyToken,
     logout: logout,
     viewUsers: viewUsers,
+    updateUsers: updateUsers,
     deleteUsers: deleteUsers,
     test: test,
     testAdmin: testAdmin,

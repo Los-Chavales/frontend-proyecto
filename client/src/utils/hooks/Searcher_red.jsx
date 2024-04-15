@@ -5,6 +5,7 @@ import active_debounce from "./debounce.jsx";
 import Coincidence from "../../components/Coincidence_red.jsx"
 import Loading from "../../components/Loading.jsx"
 import Search_glass from "../../assets/search-sharp.png"
+import defaultImage from "../../assets/imgs/defaultPerson.png"
 
 function Searcher_red() {
   const [search, setSearch] = useState("");
@@ -56,10 +57,14 @@ function Searcher_red() {
       //let LINK_IMAGE = notice._links.images.href;
       delete notice._links;//Eliminar los links
       notice.entity_id = notice.entity_id.replace("/", '-');//Para cambiar el '/' por '-' en el ID, para realizar otras búsquedas
-      
+
       //Para convertir las nacionalidades de array a string
-      notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
-      
+      if (notice.nationalities) {
+        notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
+      } else {
+        notice.nationalities = "Desconocida";
+      }
+
       //Para buscar el link de la imagen
       let image = '';
       const RESPONSE2 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
@@ -75,21 +80,20 @@ function Searcher_red() {
         //console.log(imageRes[imageRes.length - 1]._links.self.href);
         image = imageRes.pop()._links.self.href;
         if (!image) { image = '' };
-      }
+      } else { image = defaultImage }
       notice.image = image;
 
       //Para buscar los crimenes de la persona
-      let arrest_details = ""
-      //const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
+      let arrest_details = "";
       const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}`)
-      .catch((error) => {
-        console.warn('Notice:', notice.entity_id, 'Error:', error.message);
-        cError++
-        //console.debug(error);
-        return { data: false }
-      });
+        .catch((error) => {
+          console.warn('Notice:', notice.entity_id, 'Error:', error.message);
+          cError++
+          //console.debug(error);
+          return { data: false }
+        });
 
-      if(RESPONSE3){
+      if (RESPONSE3) {
         let cases = RESPONSE3.data.arrest_warrants
         arrest_details = ""
         for (let i = 0; i < cases.length; i++) {
@@ -131,7 +135,7 @@ function Searcher_red() {
     display: show,
   };
   useEffect(() => {
-    if (load) {
+    if (load || notices.length < 1) {
       setShow('none');
       //console.info('Oculto');
     } else {
@@ -166,7 +170,7 @@ function Searcher_red() {
         {load && <Loading />}
         {alert && <h2 className="buscador-mensaje">{message}</h2>}
         <div className='usuariosContainer' style={styleUsers} onLoad={visible}>
-          {
+          {notices.length > 0 &&
             notices.map(noticeDat => (
               <Coincidence
                 key={noticeDat.entity_id}
@@ -176,7 +180,7 @@ function Searcher_red() {
                 nationality={noticeDat.nationalities}
                 date={noticeDat.date_of_birth}
                 link={`https://ws-public.interpol.int/notices/v1/red/${noticeDat.entity_id}`}
-                arrest_details={noticeDat.arrest_details} 
+                arrest_details={noticeDat.arrest_details}
                 values={noticeDat}
               />
             ))

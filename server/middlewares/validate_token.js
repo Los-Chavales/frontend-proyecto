@@ -27,6 +27,23 @@ const authAdmin = (req, res, next) => {
     jwt.verify(token, TOKEN_SECRET, (error, user) => {
       if (error) return res.status(401).json({ message: "Token inválido" });
       console.log("Validar token: ", user);
+      if (user.role !== 'supervisor' && user.role !== 'admin') return res.status(403).json({ message: "Usuario no autorizado" });
+      req.user = user;//Guardar los datos del usuario para el controller
+      next();
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const authRoot = (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+    //console.log("Validar token: ", token);
+    if (!token) return res.status(401).json({ message: "Sin token, autorización denegada" });
+    jwt.verify(token, TOKEN_SECRET, (error, user) => {
+      if (error) return res.status(401).json({ message: "Token inválido" });
+      console.log("Validar token: ", user);
       if (user.role !== 'admin') return res.status(403).json({ message: "Usuario no autorizado" });
       req.user = user;//Guardar los datos del usuario para el controller
       next();
@@ -36,4 +53,4 @@ const authAdmin = (req, res, next) => {
   }
 };
 
-module.exports = { auth: auth, authAdmin: authAdmin };
+module.exports = { auth: auth, authAdmin: authAdmin, authRoot: authRoot };

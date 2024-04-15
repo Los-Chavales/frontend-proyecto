@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 class ReportsController {
   async registerReport(req, res) {
 
-    if(!req.body.id_notice){
+    if (!req.body.id_notice) {
       req.body.id_notice = uuidv4();
     }
 
@@ -68,7 +68,7 @@ class ReportsController {
 
     let uptad = false;
     for (const reportUp of req.body) {
-      console.log("desde el backeend")
+      console.log("Actualizar")
       console.log(reportUp)
       if (!reportUp) return res.status(400).json({ message: "Sin datos", data: req.body, value: reportUp });
       const { _id, status } = reportUp;
@@ -97,16 +97,36 @@ class ReportsController {
     }
   }
 
+  async deleteReport(req, res) {
+    if (!req.user) return res.status(500).json({ message: "Sin datos del token" });
+    const reportDel = req.body;
+    //console.log("Borrar:\n", reportDel);
+    if (!reportDel) return res.status(400).json({ message: "Sin datos", data: req.body, value: reportDel });
+    const { _id } = reportDel;
+    if (!_id || typeof _id != 'string') return res.status(400).json({ message: "ID inválido", value: _id });
+    try {
+      const report = await ReportsModel.findById(_id);
+      const delReport = await ReportsModel.deleteOne({ _id: report._id });
+      console.log('Borrado', report, delReport);
+      res.status(200).json({ message: "Eliminado", value: delReport });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        message: "Error al eliminar",
+        error: error,
+      });
+    }
+  }
 
   async coincidenceReports(req, res) {
     let id_notice_params = req.params.id;
     try {
-      ReportsModel.find({ id_notice: id_notice_params, status : true }).find({}).then((data) => {
-        if(data.length === 0) {
+      ReportsModel.find({ id_notice: id_notice_params, status: true }).find({}).then((data) => {
+        if (data.length === 0) {
           return res.status(404).json({
-            message:"No existen casos registrados"
+            message: "No existen casos registrados"
           });
-        }else{
+        } else {
           return res.status(200).json(data);
         }
       });
@@ -120,12 +140,12 @@ class ReportsController {
 
   async coincidenceReportsFree(req, res) {
     try {
-      ReportsModel.find({ type_report: "free", status : true}).find({}).then((data) => {
-        if(data.length === 0) {
+      ReportsModel.find({ type_report: "free", status: true }).find({}).then((data) => {
+        if (data.length === 0) {
           return res.status(404).json({
-            message:"No existen casos registrados"
+            message: "No existen casos registrados"
           });
-        }else{
+        } else {
           return res.status(200).json(data);
         }
       });
