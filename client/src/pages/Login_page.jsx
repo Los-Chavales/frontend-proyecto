@@ -27,7 +27,7 @@ export default function LoginPage() {
         <main>
             <div className="form-user-container">
                 <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
-                    <h1>Acceso</h1>
+                    <h1 className="tittle_user_form">Acceso</h1>
 
                     <input className="input-user" type="email" name="email" placeholder="Correo Electrónico"
                         {...register("email", { required: true })}

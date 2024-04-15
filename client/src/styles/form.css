@@ -9,6 +9,9 @@
     margin: 10px;
 }
 
+.tittle_user_form{
+    color: #000;
+}
 
 .form-user {
     display: flex;
