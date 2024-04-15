@@ -5,7 +5,7 @@ function TableReports(report) {
     //console.log(report.title, report.data, report.columns, report.number, report.styles, report.select, report.funSelDel, report.funDel)
     return (
         <div className="tables">
-            <h1 className="tables-title">{report.title}</h1>
+            <h2 className="tables-title">{report.title}</h2>
             {report.select && report.buttonType && <button className="tables-button" onClick={report.funDel}>{report.buttonType}</button>}
             {report.listType &&
                 report.listType.map((buttonOp, i) => (

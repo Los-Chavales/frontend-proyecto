@@ -1,77 +1,79 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
+import "../styles/reports.css";
 import TableReports from "../components/Table_reports";
 import { API_REPORTS } from "../utils/api/conexion_server";
 import Sent from "../components/Sent";
 import Loading from "../components/Loading";
 
-const columns = [
-    {
-        name: "Reportado",
-        selector: row => row.reported_name,
-    },
-    {
-        name: "Nombre",
-        selector: row => row.name,
-    },
-    {
-        name: "Email",
-        selector: row => row.email,
-    },
-    {
-        name: "Teléfono",
-        selector: row => row.phone,
-    },
-    {
-        name: "Fecha",
-        selector: row => row.date_sighting.toString(),
-    },
-    {
-        name: "Mensaje",
-        selector: row => row.description,
-    },
-    {
-        name: "Evidencia",
-        selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
-    },
-]
-const tableStylesR = {
-    headCells: {
-        style: {
-            backgroundColor: "#A00000",
-            color: '#FFFFFF',
-            fontSize: '20px',
-            fontWeight: 'bold'
-        }
-    },
-    rows: {
-        style: {
-            fontSize: '15px',
-        }
-    }
-}
-const tableStylesY = {
-    headCells: {
-        style: {
-            backgroundColor: "#EC9F0B",
-            color: '#FFFFFF',
-            fontSize: '20px',
-            fontWeight: 'bold'
-        }
-    },
-    rows: {
-        style: {
-            fontSize: '15px',
-        }
-    }
-}
-
 function ReportsPage() {
+    //Configuración de las tablas
+    const columns = [
+        {
+            name: "Reportado",
+            selector: row => row.reported_name,
+        },
+        {
+            name: "Nombre",
+            selector: row => row.name,
+        },
+        {
+            name: "Email",
+            selector: row => row.email,
+        },
+        {
+            name: "Teléfono",
+            selector: row => row.phone,
+        },
+        {
+            name: "Fecha",
+            selector: row => row.date_sighting.toString(),
+        },
+        {
+            name: "Mensaje",
+            selector: row => row.description,
+        },
+        {
+            name: "Evidencia",
+            selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
+        },
+    ]
+    const tableStylesR = {
+        headCells: {
+            style: {
+                backgroundColor: "#A00000",
+                color: '#FFFFFF',
+                fontSize: '20px',
+                fontWeight: 'bold'
+            }
+        },
+        rows: {
+            style: {
+                fontSize: '15px',
+            }
+        }
+    }
+    const tableStylesY = {
+        headCells: {
+            style: {
+                backgroundColor: "#EC9F0B",
+                color: '#FFFFFF',
+                fontSize: '20px',
+                fontWeight: 'bold'
+            }
+        },
+        rows: {
+            style: {
+                fontSize: '15px',
+            }
+        }
+    }
+
     const [dataRed, setDataRed] = useState([])
     const [dataYellow, setDataYellow] = useState([]);
     const [dataRedV, setDataRedV] = useState([])
     const [dataYellowV, setDataYellowV] = useState([]);
-    
+
     const [noticeReportR, setNoticeReportR] = useState([]);
     const [noticeReportY, setNoticeReportY] = useState([]);
     const [noticeReportRV, setNoticeReportRV] = useState([]);
@@ -80,7 +82,7 @@ function ReportsPage() {
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
-    
+
 
     //Para obtener los datos del servidor
     async function dataReport() {
@@ -201,7 +203,7 @@ function ReportsPage() {
             setErrorAPI(menError);
             setLoadingTable(false);
             return false;
-        } 
+        }
     }
 
     //Función para actualizar la variable cuando se selecciona una fila
@@ -226,18 +228,23 @@ function ReportsPage() {
     return (
         <>
             {loadingTable && <Loading />}
+
             {!loadingTable && !errorData &&
-                <TableReports data={dataRed} title="Reporte de Alertas Rojas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} buttonType="Aprobar" />
+                <section className="reports_containers">
+                    <h1 className="title_users">Reporte de Alertas Rojas</h1>
+                    <TableReports data={dataRed} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} buttonType="Aprobar" />
+                    <TableReports data={dataRedV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesRV} buttonType="Anular" />
+                </section>
             }
+
             {!loadingTable && !errorData &&
-                <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
+                <section className="reports_containers">
+                    <h1 className="title_users">Reporte de Alertas Amarillas</h1>
+                    <TableReports data={dataYellow} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
+                    <TableReports data={dataYellowV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesYV} buttonType="Anular" />
+                </section>
             }
-            {!loadingTable && !errorData &&
-                <TableReports data={dataRedV} title="Alertas Rojas Aprobadas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesRV} buttonType="Anular" />
-            }
-            {!loadingTable && !errorData &&
-                <TableReports data={dataYellowV} title="Alertas Amarillas Aprobadas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesYV} buttonType="Anular" />
-            }
+
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
     )
