@@ -193,8 +193,6 @@ ul {
   }
 }
 
-
-
 @media (max-width: 280px) {
 
   /*Mobile*/
@@ -212,10 +210,10 @@ ul {
   .containerCard {
     min-width: 189px;
   }
+}
 
-  /*Ventana modal*/
-  .div_detail {
-    width: 19rem;
+@media (prefers-color-scheme: dark) {
+  button {
+    color: white;
   }
-
 }

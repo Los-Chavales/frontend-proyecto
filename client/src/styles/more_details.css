@@ -244,3 +244,9 @@ hr {
         margin-left: 10px;
     }
 }
+
+@media (max-width: 280px) {
+    .div_detail {
+        width: 14rem;
+    }
+}
