@@ -33,7 +33,7 @@ VITE_URL_API=https://ws-public.interpol.int/notices/v1/
 VITE_URL_API_TRANSLATOR=https://text-translator2.p.rapidapi.com/translate
 VITE_KEY_API_TRANSLATOR=e5ccbf1ba4msh40f3052a3cbc0e2p124c3bjsn6744d5c43780
 VITE_HOST_API_TRANSLATOR=text-translator2.p.rapidapi.com
-VITE_URL_SERVER=http://localhost:4000/auth
+VITE_URL_SERVER=http://localhost:4000/
 
     La estrutura del .env dirigido a la carpeta server es la siguiente:
 DB_URI=mongodb+srv://tracker_db:TxfVjSEXp8A8mhya@mwtracker.fwmni9a.mongodb.net/mwtracker_db?retryWrites=true&w=majority&appName=mwtracker
