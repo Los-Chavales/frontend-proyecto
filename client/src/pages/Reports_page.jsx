@@ -20,12 +20,31 @@ function ReportsPage() {
         setWindowDetails(false);
         setWindowContent('');
     }
-    /*useEffect(() => {
-        if (windowContent != '' && !windowDetails) {
-            //console.log(windowContent);
-            setWindowDetails(true);
+    //Eliminar reportes
+    const deleteReport = async function (reportDel) {
+        console.debug("Eliminar:", reportDel);
+        try {
+            const RESPONSE = await API_REPORTS.post("/delete", reportDel);
+            console.debug("saliendo del backeend");
+            console.debug(RESPONSE);
+            if (RESPONSE.status != 200) {
+                console.warn(RESPONSE.data);
+                return false;
+            }
+            setLoadingTable(true);
+            loadData();
+            return
+        } catch (error) {
+            let menError = error.message;
+            if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
+            if (!menError) menError = "Error al borrar";
+            console.error('Error al eliminar:', menError);
+            setErrorData(true);
+            setErrorAPI(menError);
+            setLoadingTable(false);
+            return false;
         }
-    }, [windowContent])*/
+    }
 
     //Configuración de las tablas
     const columns = [
@@ -56,6 +75,10 @@ function ReportsPage() {
         {
             name: "Evidencia",
             selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
+        },
+        {
+            name: "Acción",
+            selector: row => <button onClick={() => deleteReport(row)}>Eliminar</button>,
         },
     ]
     const tableStylesR = {
@@ -88,21 +111,21 @@ function ReportsPage() {
             }
         }
     }
-
+    //Para guardar los datos a mostrar
     const [dataRed, setDataRed] = useState([])
     const [dataYellow, setDataYellow] = useState([]);
     const [dataRedV, setDataRedV] = useState([])
     const [dataYellowV, setDataYellowV] = useState([]);
-
+    //Para almacenar los reportes a actualizar
     const [noticeReportR, setNoticeReportR] = useState([]);
     const [noticeReportY, setNoticeReportY] = useState([]);
     const [noticeReportRV, setNoticeReportRV] = useState([]);
     const [noticeReportYV, setNoticeReportYV] = useState([]);
-
+    //Para controlar los estados del loader y mostrar errores
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
-
+    //Para mostrar/ocultar las secciones de la página
     const [hiddenSectionR, setHiddenSectionR] = useState(true);
     const [hiddenSectionY, setHiddenSectionY] = useState(true);
 
@@ -186,8 +209,8 @@ function ReportsPage() {
     //Función para marcar como aprobado un reporte
     const registerSelect = async () => {
         const reportsSel = noticeReportY.concat(noticeReportR).concat(noticeReportYV).concat(noticeReportRV);
-        console.log("tabla que llega")
-        console.table(reportsSel) // llega tal cual 
+        //console.log("tabla que llega")
+        //console.table(reportsSel) // llega tal cual 
 
         reportsSel.forEach((row, index) => {
             let resume = true;
@@ -200,16 +223,16 @@ function ReportsPage() {
                 resume = false;
             }
         });
-        console.log("tabla con estados actualizados");
-        console.table(reportsSel);
+        //console.log("tabla con estados actualizados");
+        //console.table(reportsSel);
         if (reportsSel.length < 1) return console.debug("Vacío", reportsSel);
 
         if (reportsSel.length < 1) return console.warn('No hay datos para actualizar');//COLOCAR EN LA PÁGINA 
 
         try {
             const RESPONSE = await API_REPORTS.post("/approve", reportsSel);
-            console.log("saliendo del backeend")
-            console.log(RESPONSE);
+            //console.log("saliendo del backeend")
+            //console.log(RESPONSE);
             if (RESPONSE.status != 200) {
                 console.warn(RESPONSE.data);
                 return false;
@@ -220,8 +243,8 @@ function ReportsPage() {
         } catch (error) {
             let menError = error.message;
             if (error.response && error.response.data && error.response.data.message) menError = error.response.data.message;
-            if (!menError) menError = "Error al borrar";
-            console.error('Error al eliminar:', menError);
+            if (!menError) menError = "Error al actualizar";
+            console.error('Error al actualizar:', menError);
             setErrorData(true);
             setErrorAPI(menError);
             setLoadingTable(false);

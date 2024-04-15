@@ -17,7 +17,10 @@ router.get("/coincidence_reports_free", ReportsController.coincidenceReportsFree
 /* POST */
 router.post('/register', upload.single("image"), ReportsController.registerReport);
 
-router.post('/approve', authAdmin, ReportsController.approveReport)
+router.post('/approve', authAdmin, ReportsController.approveReport);
+
+/* Delete */
+router.post('/delete', authAdmin, ReportsController.deleteReport);
 
 
 module.exports = router;
