@@ -7,60 +7,70 @@ import Sent from "../components/Sent";
 import Loading from "../components/Loading";
 import sort_dates from "../utils/functions/sort_dates";
 
-
-/* Aún está incompleta */
-
-const columns = [
-  {
-      name: "Nombre",
-      selector: row => row.reported_name,
-  },
-  {
-      name: "Fecha",
-      selector: row => row.date_sighting.toString(),
-  },
-  {
-      name: "Mensaje",
-      selector: row => row.description,
-  },
-  {
-      name: "Evidencia",
-      selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
-  },
-]
-
-const tableStylesR = {
-  headCells: {
-      style: {
-          backgroundColor: "#A00000",
-          color: '#FFFFFF',
-          fontSize: '20px',
-          fontWeight: 'bold'
-      }
-  },
-  rows: {
-      style: {
-          fontSize: '15px',
-      }
-  }
-}
-const tableStylesY = {
-  headCells: {
-      style: {
-          backgroundColor: "#EC9F0B",
-          color: '#FFFFFF',
-          fontSize: '20px',
-          fontWeight: 'bold'
-      }
-  },
-  rows: {
-      style: {
-          fontSize: '15px',
-      }
-  }
-}
-
 function CoincidenceReports() {
+    /* Tabla */
+  const columns = [
+    {
+        name: "Nombre",
+        selector: row => row.reported_name,
+    },
+    {
+        name: "Fecha",
+        selector: row => row.date_sighting.toString(),
+    },
+    {
+        name: "Mensaje",
+        selector: row => <a onClick={() => showWindow(row.description)}>{row.description}</a>,
+    },
+    {
+        name: "Evidencia",
+        selector: row => <button><a href={`http://localhost:4000/${row.photo}`} target="_blank" rel="noopener noreferrer">Ver foto</a></button>,
+    },
+  ]
+
+  const tableStylesR = {
+    headCells: {
+        style: {
+            backgroundColor: "#A00000",
+            color: '#FFFFFF',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }
+    },
+    rows: {
+        style: {
+            fontSize: '15px',
+        }
+    }
+  }
+  const tableStylesY = {
+    headCells: {
+        style: {
+            backgroundColor: "#EC9F0B",
+            color: '#FFFFFF',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }
+    },
+    rows: {
+        style: {
+            fontSize: '15px',
+        }
+    }
+  }
+  //Función para abrir la ventana modal
+  const [windowDetails, setWindowDetails] = useState(false);
+  const [windowContent, setWindowContent] = useState('');
+  const showWindow = function (message) {
+    if (message) {
+      setWindowContent(message);
+      setWindowDetails(true);
+    }
+  }
+  const closeWindow = () => {
+    setWindowDetails(false);
+    setWindowContent('');
+  }
   const [dataCoincidenceR, setCoincidenceR] = useState([]);
   const [errorAPI, setErrorAPI] = useState("");
   const [errorData, setErrorData] = useState(false);
@@ -127,6 +137,19 @@ function CoincidenceReports() {
     return (
       <>
         {loadingTable && <Loading />}
+        {!loadingTable && !errorData && windowDetails &&
+          <section className="modal-message">
+            <div className="modal-container">
+              <h3 className="modal-title">Mensaje</h3>
+              <button className="modal-close" onClick={closeWindow}>
+                X
+              </button>
+              <div className="modal-content">
+                <p>{windowContent}</p>
+              </div>
+            </div>
+          </section>
+        }
         {dataRed && !loadingTable && !errorData && !emptyData && <TableReports data={dataCoincidenceR} title="Reportes Registrados" columns={columns} number={10} styles={tableStylesR} />}
         {dataYellow && !loadingTable && !errorData && !emptyData && <TableReports data={dataCoincidenceR} title="Reportes Registrados" columns={columns} number={10} styles={tableStylesY} />}
         {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
