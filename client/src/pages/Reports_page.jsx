@@ -325,7 +325,7 @@ function ReportsPage() {
                 <section className="reports_containers">
                     <div className="header_reports_containers">
                         <h1 className="title_users">Reporte de Alertas Amarillas</h1>
-                        <button className="hidden_section_button" onClick={hiddenMenuY}>{hiddenSectionR ? "Mostrar" : "Ocultar"}</button>
+                        <button className="hidden_section_button" onClick={hiddenMenuY}>{hiddenSectionY ? "Mostrar" : "Ocultar"}</button>
                     </div>
                     {!hiddenSectionY &&
                         <div>
