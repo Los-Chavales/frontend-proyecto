@@ -32,6 +32,47 @@
 }
 
 
+
+.modal-message {
+    color: black;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    position: relative;
+    padding: 1rem;
+    /*min-width: 220px;*/
+    max-width: 480px;
+    min-height: 200px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.modal-title {
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    position: relative;
+}
+
+
 @media (max-width: 610px) {
     .title_users {
         font-size: 45px;
@@ -46,6 +87,9 @@
 
     h2 {
         font-size: 20px;
+    }
+    .modal-container {
+        max-width: 70vw;
     }
 }
 

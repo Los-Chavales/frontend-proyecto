@@ -7,6 +7,26 @@ import Sent from "../components/Sent";
 import Loading from "../components/Loading";
 
 function ReportsPage() {
+    //Función para abrir la ventana modal
+    const [windowDetails, setWindowDetails] = useState(false);
+    const [windowContent, setWindowContent] = useState('');
+    const showWindow = function (message) {
+        if (message) {
+            setWindowContent(message);
+            setWindowDetails(true);
+        }
+    }
+    const closeWindow = () => {
+        setWindowDetails(false);
+        setWindowContent('');
+    }
+    /*useEffect(() => {
+        if (windowContent != '' && !windowDetails) {
+            //console.log(windowContent);
+            setWindowDetails(true);
+        }
+    }, [windowContent])*/
+
     //Configuración de las tablas
     const columns = [
         {
@@ -31,7 +51,7 @@ function ReportsPage() {
         },
         {
             name: "Mensaje",
-            selector: row => row.description,
+            selector: row => <a onClick={() => showWindow(row.description)}>{row.description}</a>,
         },
         {
             name: "Evidencia",
@@ -238,7 +258,7 @@ function ReportsPage() {
 
     }
     const hiddenMenuY = () => {
-        if (hiddenSectionR) {
+        if (hiddenSectionY) {
             setHiddenSectionY(false);
         } else {
             setHiddenSectionY(true);
@@ -248,6 +268,20 @@ function ReportsPage() {
     return (
         <>
             {loadingTable && <Loading />}
+
+            {!loadingTable && !errorData && windowDetails &&
+                <section className="modal-message">
+                    <div className="modal-container">
+                        <h3 className="modal-title">Mensaje</h3>
+                        <button className="modal-close" onClick={closeWindow}>
+                            X
+                        </button>
+                        <div className="modal-content">
+                            <p>{windowContent}</p>
+                        </div>
+                    </div>
+                </section>
+            }
 
             {!loadingTable && !errorData &&
                 <section className="reports_containers">
@@ -268,7 +302,7 @@ function ReportsPage() {
                 <section className="reports_containers">
                     <div className="header_reports_containers">
                         <h1 className="title_users">Reporte de Alertas Amarillas</h1>
-                        <button className="hidden_section_button" onClick={hiddenMenuY}>Mostrar</button>
+                        <button className="hidden_section_button" onClick={hiddenMenuY}>{hiddenSectionR ? "Mostrar" : "Ocultar"}</button>
                     </div>
                     {!hiddenSectionY &&
                         <div>
