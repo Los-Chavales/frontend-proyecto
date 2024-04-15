@@ -125,7 +125,7 @@
         font-size: 16px;
     }
     .main_titles{
-        width: 765px;
+        width: 830px;
         height: 160px;
         overflow: hidden;
     }
@@ -147,7 +147,7 @@
     .main_title_2{
         margin: 0;
         justify-content: flex-start;
-        margin-left: 800px;
+        margin-left: 840px;
         overflow: hidden;
     }
 
@@ -230,10 +230,10 @@
   }
 
 
-  /* Large Desktops (1200px and up) */
-@media (min-width: 1200px) {
+ /* Large Desktops (1200px and up) */
+ /* @media (min-width: 1200px) { */
     /* Styles for large screens */
-    .main_text{
+   /*  .main_text{
         height: 297px;
         display: flex;
         flex-direction: column;
@@ -277,7 +277,7 @@
     }
     
   }
-
+ */
 
   /* Desktops (1920px) */
 @media (min-width: 1920px){

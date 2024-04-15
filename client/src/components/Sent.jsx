@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/sent.css"
+import { Link } from "react-router-dom";
 
 function Sent(texts) {
   const [t2, setT2] = useState("Gracias por la Información");
@@ -18,6 +19,7 @@ function Sent(texts) {
         <div className="sent_info">
           <h2>{t2}</h2>
           <p>{pt}</p>
+          <Link to="/"><button>Volver a Inicio</button></Link> 
         </div>
       </div>
     </>

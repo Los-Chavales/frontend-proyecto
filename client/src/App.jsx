@@ -46,11 +46,11 @@ function App() {
                 <Route path="/report" element={<FormPage />} />
                 <Route path="/report/:id/:name_report/:state" element={<FormPage />} />
                 <Route path="/coincidence_reports/:id" element={<CoincidenceReports />} />
-                <Route path="/coincidence_reports_free" element={<CoincidenceReportsFree />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/discleimer" element={<Disclaimer />} />
                 <Route element={<ProtectRoute />}>
+                  <Route path="/coincidence_reports_free" element={<CoincidenceReportsFree />} />
                   <Route path="/home" element={<ReportsPage />} />
                   <Route path="/users" element={<UsersPage />} />
                 </Route>

@@ -12,7 +12,7 @@ router.get("/", authAdmin, ReportsController.showReports);
 router.get("/coincidence_reports/:id", ReportsController.coincidenceReports);
 
 /* registrados libremente */
-router.get("/coincidence_reports_free", ReportsController.coincidenceReportsFree);
+router.get("/coincidence_reports_free", auth, ReportsController.coincidenceReportsFree);
 
 /* POST */
 router.post('/register', upload.single("image"), ReportsController.registerReport);

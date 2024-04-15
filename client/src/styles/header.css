@@ -8,8 +8,15 @@
     height: 70px;
 }
 
+.nav_container{
+    display: flex;
+    flex-direction: row;
+    margin: 0 5px;
+}
+
 .logo-header {
-    height: 45px;
+    height: 40px;
+    margin: 0 5px;
     /*margin-left: 20px;
    margin-top: 5px;*/
 }
@@ -20,13 +27,24 @@
 }
 
 .div-user {
-    display: flex;
     color: white;
     margin-right: 20px;
+    display: flex; 
     align-items: center;
-    flex-direction: row;
-    column-gap: 20px;
     justify-content: center;
+}
+
+.button-login{
+    padding: 3px 2px;
+    font-size: 13px;
+}
+
+.p-user{
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
 }
 
 @media (max-width: 700px){ /*Tablet*/
@@ -50,6 +68,10 @@
     
 }
 
+.menu_mobile{
+    display: none;
+}
+
 a{
     text-decoration: none;
 }
@@ -66,8 +88,10 @@ ol,ul{
 }
 
 .list_icon {
-    color: #000000;
+   /*  color: #000000; */
+    color: #fff;
     cursor: pointer;
+    margin: 50% 0;
 }
 .ul_links {
     background-color: rgb(255, 255, 255);
@@ -77,7 +101,7 @@ ol,ul{
     top: 20px;
     left: 0;
     height:0;
-    overflow: hidden;
+    overflow: auto;
     /* height: calc(100vh - var(--altura_header)); */
     display: flex;
     flex-direction: column;
@@ -102,87 +126,99 @@ ol,ul{
     font-weight: bold;
 }
 
-@media (min-width:830px){
-    .labe_hamburguesa {
-        display: none;
+
+/* Desktop */
+
+@media (min-width: 1110px){
+    .div-user {
+        display: flex;
+        color: white;
+        margin-right: 20px;
+        margin-left: 5px;
+        align-items: center;
+        flex-direction: row;
+        column-gap: 20px;  
+        justify-content: center; 
+     }
+    .p-user{
+        margin-right: 5px;
     }
-    .ul_links{
-        background-color: rgb(255, 255, 255);
+     
+    .mobile {
+        display: none;
+   }
+   .labe_hamburguesa {
+       display: none;
+   }
+   .ul_links{
         position: static;
         width: auto;
         height: auto;
-        flex-direction: row;
-        gap: 2rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0;
-        margin-right: 20px;
+        flex-direction: row; 
+        gap: 0;
+        overflow: hidden;
+        text-align: center;
     }
-    .li_links{
-        line-height: 100%;
-    }
-    .link{
-        font-size: 0.8rem;
-        transition: all .3s;
-        padding: .2rem .7rem;
-    }
-
-}
-
-@media (min-width: 830px){
     .ul_links{
         float:inline-end;
         justify-content:flex-end;
         margin:0;
         top: 0px;
         align-items:flex-end;
-        margin-right: 30px;
         background-color: #042A53;
-    
-    
     }
-    .link{
+   .link{
         background-color: none;
         color: #fff;
-        font-size: .8rem;
+        font-size: 0.9rem;
+        padding: .2rem .7rem;
     }
-    
-    
-    .link:hover{
-        color: #bbbbbb;
+    .button-login{
+        padding: 0;
     }
+    /*Desplegable*/
+    ul li ul.ul_links_hidden li{
+        display: block;
+        background-color: #0b5bb1;
+        text-align: start;
+        padding-left: 5px;
     }
-
-/* Desktop */
-@media (min-width: 992px){
-.ul_links{
-    float:inline-end;
-    justify-content:flex-end;
-    margin:0;
-    top: 0px;
-    align-items:flex-end;
-    margin-right: 30px;
-    background-color: #042A53;
-
-
-}
-
-.link{
-    background-color: none;
-    color: #fff;
-    font-size: 1rem;
-}
-
-
-.link:hover{
-    color: #bbbbbb;
-}
+    ul li ul.ul_links_hidden{
+        width: 150px;
+        position: absolute;
+        display: none;
+        padding-top: 1.45rem;;
+        background-color: #042A53;;
+    }
+    ul li:hover ul.ul_links_hidden{
+        display: block;
+    } 
+    .link_hidden{
+        color: #fff;
+        font-weight: bold;
+    }
 
 }
 
 /*Huge*/
-@media (min-width: 1280px) {
-
+@media (min-width: 1127px) {
+    .link{
+        font-size: 1rem;
+    }
+    .div-user{
+       gap: 0;
+    }
+    .button-login{
+        padding: 3px 2px;
+    }
+    /*Desplegable*/
+    ul li ul.ul_links_hidden li{
+        display: block;
+        background-color: #0b5bb1;
+        padding: 5px;
+    }
+    ul li ul.ul_links_hidden{
+        padding-top: 1.45rem;
+        background-color: #042A53;
+    }
 }
