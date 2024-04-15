@@ -5,6 +5,7 @@ import active_debounce from "./debounce.jsx";
 import Coincidence from "../../components/Coincidence_red.jsx"
 import Loading from "../../components/Loading.jsx"
 import Search_glass from "../../assets/search-sharp.png"
+import defaultImage from "../../assets/imgs/defaultPerson.png"
 
 function Searcher_red() {
   const [search, setSearch] = useState("");
@@ -79,7 +80,7 @@ function Searcher_red() {
         //console.log(imageRes[imageRes.length - 1]._links.self.href);
         image = imageRes.pop()._links.self.href;
         if (!image) { image = '' };
-      }
+      } else { image = defaultImage }
       notice.image = image;
 
       //Para buscar los crimenes de la persona

@@ -5,6 +5,7 @@ import active_debounce from "./debounce.jsx";
 import Coincidence from "../../components/Coincidence_yellow.jsx"
 import Loading from "../../components/Loading.jsx";
 import Search_glass from "../../assets/search-sharp.png"
+import defaultImage from "../../assets/imgs/defaultPerson.png"
 
 function Searcher_yellow() {
   const [search, setSearch] = useState("");
@@ -79,7 +80,7 @@ function Searcher_yellow() {
         //console.log(imageRes[imageRes.length - 1]._links.self.href);
         image = imageRes.pop()._links.self.href;
         if (!image) { image = '' };
-      }
+      } else { image = defaultImage }
       notice.image = image;
 
       noticesArr.push(notice)
