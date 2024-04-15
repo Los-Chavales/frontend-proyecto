@@ -83,8 +83,7 @@ function Searcher_red() {
       notice.image = image;
 
       //Para buscar los crimenes de la persona
-      let arrest_details = ""
-      //const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}/images`)
+      let arrest_details = "";
       const RESPONSE3 = await API_INTERPOL.get(`/red/${notice.entity_id}`)
         .catch((error) => {
           console.warn('Notice:', notice.entity_id, 'Error:', error.message);

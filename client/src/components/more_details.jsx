@@ -10,7 +10,7 @@ function MoreDetails({ values, state, closeModal, changeClose }) {
     <>
       {closeModal &&
         <div className="div_detail">
-          <div className=" redCard containerCardMore">
+          <div className={`${values.arrest_details ? 'redCard' : 'yellowCard'} containerCardMore`}>
 
             <div className="close_container">
               <button className="close_button" onClick={() => { changeClose(false) }}>X</button>
@@ -30,12 +30,11 @@ function MoreDetails({ values, state, closeModal, changeClose }) {
                   <div className="divDetailsContents">
                     <ul className="divDetailsContents">
                       <li>Apellido: {values.name}</li>
-
                       <li>Fecha de nacimiento: {values.date_of_birth} </li>
                       <li>Nacionalidad: {values.nationalities}</li>
-
+                      {!values.arrest_details && <li>ID: {values.entity_id}</li>}
                     </ul>
-                    <Range arrest_details={values.arrest_details} />
+                    {values.arrest_details && <Range arrest_details={values.arrest_details} />}
                   </div>
                   <hr />
                   <div className="divDetailsBottons">
