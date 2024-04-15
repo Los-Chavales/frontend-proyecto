@@ -94,7 +94,7 @@ e ir a la ruta con el puerto asignado para ver la página, esta ruta se puede ve
 
 ## Instrucciones adicionales:
 
-* [Manuales de uso](https://drive.google.com/drive/folders/1aeiQ0ILpyWXOAJgG9p_YWaIZZP8IFJU0?usp=sharing) - Para el prototipado web
+* [Manuales de uso](https://drive.google.com/drive/folders/1aeiQ0ILpyWXOAJgG9p_YWaIZZP8IFJU0?usp=sharing)
 
 ## Autores
 
