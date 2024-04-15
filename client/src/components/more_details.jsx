@@ -6,14 +6,23 @@ import Range from "../utils/hooks/Range";
 import { Link } from "react-router-dom";
 
 function MoreDetails({ values, state, closeModal, changeClose }) {
+  const [closeDetails, setCloseDetails] = useState(false)
+  const closeDiv = () => {
+    setCloseDetails(true);
+    setTimeout(() => {
+      //console.warn("cerrar")
+      changeClose(false);
+      setCloseDetails(false);
+    }, 345);
+  }
   return (
     <>
       {closeModal &&
         <div className="div_detail">
-          <div className={`${values.arrest_details ? 'redCard' : 'yellowCard'} containerCardMore`}>
+          <div className={`${values.arrest_details ? 'redCard' : 'yellowCard'} containerCardMore ${closeDetails ? 'containerCardMoreClose' : ''}`}>
 
             <div className="close_container">
-              <button className="close_button" onClick={() => { changeClose(false) }}>X</button>
+              <button className="close_button" onClick={closeDiv}>X</button>
             </div>
 
             <div className="personCardRedMore">
