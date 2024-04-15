@@ -74,6 +74,8 @@ function ReportsPage() {
     
     const [noticeReportR, setNoticeReportR] = useState([]);
     const [noticeReportY, setNoticeReportY] = useState([]);
+    const [noticeReportRV, setNoticeReportRV] = useState([]);
+    const [noticeReportYV, setNoticeReportYV] = useState([]);
 
     const [errorAPI, setErrorAPI] = useState("");
     const [errorData, setErrorData] = useState(false);
@@ -158,7 +160,7 @@ function ReportsPage() {
 
     //Función para marcar como aprobado un reporte
     const registerSelect = async () => {
-        const reportsSel = noticeReportY.concat(noticeReportR);
+        const reportsSel = noticeReportY.concat(noticeReportR).concat(noticeReportYV).concat(noticeReportRV);
         console.log("tabla que llega")
         console.table(reportsSel) // llega tal cual 
 
@@ -212,6 +214,14 @@ function ReportsPage() {
         console.log(notices.selectedRows);
         setNoticeReportY(notices.selectedRows);
     }
+    const selectNoticesRV = (notices) => {
+        console.log(notices.selectedRows);
+        setNoticeReportRV(notices.selectedRows);
+    }
+    const selectNoticesYV = (notices) => {
+        console.log(notices.selectedRows);
+        setNoticeReportYV(notices.selectedRows);
+    }
 
     return (
         <>
@@ -223,10 +233,10 @@ function ReportsPage() {
                 <TableReports data={dataYellow} title="Reporte de Alertas Amarillas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
             }
             {!loadingTable && !errorData &&
-                <TableReports data={dataRedV} title="Alertas Rojas Aprobadas" columns={columns} number={3} styles={tableStylesR} />
+                <TableReports data={dataRedV} title="Alertas Rojas Aprobadas" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesRV} buttonType="Anular" />
             }
             {!loadingTable && !errorData &&
-                <TableReports data={dataYellowV} title="Alertas Amarillas Aprobadas" columns={columns} number={3} styles={tableStylesY} />
+                <TableReports data={dataYellowV} title="Alertas Amarillas Aprobadas" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesYV} buttonType="Anular" />
             }
             {!loadingTable && errorData && <Sent title="Ha ocurrido un error" par={errorAPI} />}
         </>
