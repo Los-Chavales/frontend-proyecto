@@ -11,13 +11,18 @@
 }
 
 .containerCardMore {
+    animation: emerge 350ms linear 0s normal none;
     background-color: rgb(245, 245, 245);
+}
+
+.containerCardMoreClose {
+    animation: disappear 350ms linear 0s normal none;
 }
 
 .div_detail {
     z-index: 100;
     width: 900px;
-    height: 600px;
+    height: 650px;
     position: absolute;
     margin: 0 auto;
     left: 0;
@@ -249,4 +254,23 @@ hr {
     .div_detail {
         width: 14rem;
     }
+}
+
+@keyframes emerge {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes disappear {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+        display: none;
+	}
 }
