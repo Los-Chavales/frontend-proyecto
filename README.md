@@ -28,6 +28,7 @@ Para instalar y probar este proyecto, tenga en cuenta lo siguiente:
 *	Node.js con npm
 *	Conexión a internet (para acceder al servido de la API REST)
 * Archivos .env con los secretos para conectarse a la API dentro de las carpetas client y server:
+
   La estrutura del .env dirigido a la carpeta client es la siguiente:
 VITE_URL_API=https://ws-public.interpol.int/notices/v1/
 VITE_URL_API_TRANSLATOR=https://text-translator2.p.rapidapi.com/translate
@@ -38,6 +39,10 @@ VITE_URL_SERVER=http://localhost:4000/
     La estrutura del .env dirigido a la carpeta server es la siguiente:
 DB_URI=mongodb+srv://tracker_db:TxfVjSEXp8A8mhya@mwtracker.fwmni9a.mongodb.net/mwtracker_db?retryWrites=true&w=majority&appName=mwtracker
 TOKEN_SECRET=yoursecret
+
+### Descargue los archivos .env aquí:
+
+[Descargar variables de entorno](https://drive.google.com/drive/folders/1VEsdi18C-eRn7UCalz8JZrGe8VnZA3hI)
 
 ### Instalación
 
@@ -64,24 +69,6 @@ npm run dev
 ```
 
 4. Ir a la ruta con el puerto asignado para ver la página, esta ruta se puede ver por consola
-
-
-### Caso del modo producción 
-
-crear la carpeta dist con el comando:
-
-```
-npm run build
-```
-
-ejecutar la aplicación en la carpeta dist con el comando:
-
-```
-npm run preview
-```
-
-e ir a la ruta con el puerto asignado para ver la página, esta ruta se puede ver por consola
-
 
 
 ## Construido con:
