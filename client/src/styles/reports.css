@@ -4,7 +4,57 @@
     margin: 50px 0px;
 }
 
+.header_reports_containers {
+    margin-inline: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .title_users {
     color: white;
-    margin-left: 30px;
+}
+
+.hidden_section_button {
+    width: 100px;
+    max-height: 113px;
+    transition: all .2s;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 15px;
+    border-style: solid;
+}
+
+.hidden_section_button:hover {
+    border-color: lightgray;
+    background-color: lightgray;
+}
+
+
+@media (max-width: 610px) {
+    .title_users {
+        font-size: 45px;
+    }
+}
+
+
+@media (max-width: 590px) {
+    .title_users {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    .title_users {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
 }

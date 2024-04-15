@@ -83,6 +83,9 @@ function ReportsPage() {
     const [errorData, setErrorData] = useState(false);
     const [loadingTable, setLoadingTable] = useState(true);
 
+    const [hiddenSectionR, setHiddenSectionR] = useState(true);
+    const [hiddenSectionY, setHiddenSectionY] = useState(true);
+
 
     //Para obtener los datos del servidor
     async function dataReport() {
@@ -225,23 +228,54 @@ function ReportsPage() {
         setNoticeReportYV(notices.selectedRows);
     }
 
+    //Para alternar entre mostrar u ocultar las secciónes del menú
+    const hiddenMenuR = () => {
+        if (hiddenSectionR) {
+            setHiddenSectionR(false);
+        } else {
+            setHiddenSectionR(true);
+        }
+
+    }
+    const hiddenMenuY = () => {
+        if (hiddenSectionR) {
+            setHiddenSectionY(false);
+        } else {
+            setHiddenSectionY(true);
+        }
+    }
+
     return (
         <>
             {loadingTable && <Loading />}
 
             {!loadingTable && !errorData &&
                 <section className="reports_containers">
-                    <h1 className="title_users">Reporte de Alertas Rojas</h1>
-                    <TableReports data={dataRed} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} buttonType="Aprobar" />
-                    <TableReports data={dataRedV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesRV} buttonType="Anular" />
+                    <div className="header_reports_containers">
+                        <h1 className="title_users">Reporte de Alertas Rojas</h1>
+                        <button className="hidden_section_button" onClick={hiddenMenuR}>{hiddenSectionR ? "Mostrar" : "Ocultar"}</button>
+                    </div>
+                    {!hiddenSectionR &&
+                        <div>
+                            <TableReports data={dataRed} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesR} buttonType="Aprobar" />
+                            <TableReports data={dataRedV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesR} select={true} funDel={registerSelect} funSelDel={selectNoticesRV} buttonType="Anular" />
+                        </div>
+                    }
                 </section>
             }
 
             {!loadingTable && !errorData &&
                 <section className="reports_containers">
-                    <h1 className="title_users">Reporte de Alertas Amarillas</h1>
-                    <TableReports data={dataYellow} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
-                    <TableReports data={dataYellowV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesYV} buttonType="Anular" />
+                    <div className="header_reports_containers">
+                        <h1 className="title_users">Reporte de Alertas Amarillas</h1>
+                        <button className="hidden_section_button" onClick={hiddenMenuY}>Mostrar</button>
+                    </div>
+                    {!hiddenSectionY &&
+                        <div>
+                            <TableReports data={dataYellow} title="Pendientes por Aprobar" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesY} buttonType="Aprobar" />
+                            <TableReports data={dataYellowV} title="Reportes Aprobados" columns={columns} number={3} styles={tableStylesY} select={true} funDel={registerSelect} funSelDel={selectNoticesYV} buttonType="Anular" />
+                        </div>
+                    }
                 </section>
             }
 
