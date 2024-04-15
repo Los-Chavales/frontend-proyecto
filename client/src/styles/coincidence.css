@@ -148,28 +148,6 @@
 
 /* Div emergente */
 
-.containerCardMore .personCardRedMore {
-  color: rgb(0, 0, 0);
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  padding: 20px 15px;
-  justify-content: space-evenly;
-  overflow-wrap: anywhere;
-  /*   border-radius: 5px; */
-  height: 100%;
-}
-
-
-.div_detail {
-  z-index: 100;
-  width: 900px;
-  height: 600px;
-  position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
 #closeDiv {
   position: absolute;
   z-index: 1000;
@@ -180,80 +158,10 @@
 
 }
 
-.imagenCardMoreContainer {
-  width: 400px;
-  position: relative;
-}
-
-.imagenCardMore {
-  object-fit: contain;
-  width: 400px;
-  height: 400px;
-}
-
 ul {
   list-style: none;
 }
 
-.usernameMore {
-  /*margin-top: 30px;*/
-  position: static;
-  font-size: 30px;
-  text-align: center;
-}
-
-.divMore1 {
-  float: left;
-}
-
-
-.divMore {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  float: right;
-  margin-left: 50px;
-  font-size: 25px;
-}
-
-.divDetails {
-  display: flex;
-  flex-direction: column;
-  height: -webkit-fill-available;
-  justify-content: space-between;
-}
-
-.divDetailsContents {
-  display: contents;
-}
-
-hr {
-  margin-top: 20px;
-}
-
-.buttonMore {
-  color: #fff;
-  margin-top: 30px;
-  background-color: #A00000;
-  transition: all .2s;
-}
-
-.buttonMore:hover {
-  background-color: #b92323;
-}
-
-.close_container {
-  text-align: right;
-}
-
-.close_button {
-  color: #b92323;
-  padding: 5px 10px;
-}
-
-.close_button:hover {
-  background-color: #E5E5E5;
-}
 
 @media (max-width: 853px) {
 
@@ -261,22 +169,7 @@ hr {
   .buscador-main {
     margin: 0 15px;
   }
-
-  /*Ventana modal*/
-  .div_detail {
-    width: 700px;
-  }
-
-  .more_button {
-    padding: 5px;
-  }
-
-  .divMore {
-    margin: 5px;
-  }
-
 }
-
 
 @media (max-width: 540px) {
 
@@ -289,38 +182,6 @@ hr {
 
   .searchBar input {
     width: 270px;
-  }
-
-  /*Ventana modal*/
-
-  .div_detail {
-    width: 25rem;
-  }
-
-  .divMore {
-    margin: 0;
-  }
-
-  .imagenCardMoreContainer {
-    width: 100px;
-  }
-
-  .imagenCardMore {
-    object-fit: scale-down;
-    width: 100px;
-    height: 145px;
-  }
-
-  .divMore {
-    font-size: 15px;
-  }
-
-  .usernameMore {
-    font-size: 13px;
-  }
-
-  .divMore {
-    margin-left: 10px;
   }
 }
 

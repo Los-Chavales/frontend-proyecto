@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/coincidence.css"
 import "../styles/bar_range.css"
+import "../styles/more_details.css"
 import Range from "../utils/hooks/Range";
 import { Link } from "react-router-dom";
 
@@ -9,8 +10,14 @@ function MoreDetails({ values, state, closeModal, changeClose }) {
     <>
       {closeModal &&
         <div className="div_detail">
-          <div className="containerCardMore redCard">
+          <div className=" redCard containerCardMore">
+
+            <div className="close_container">
+              <button className="close_button" onClick={() => { changeClose(false) }}>X</button>
+            </div>
+
             <div className="personCardRedMore">
+
               <div className="divMore1">
                 <div className="imagenCardMoreContainer">
                   <img className="imagenCardMore" src={values.image} alt="Reportado"></img>
@@ -19,9 +26,6 @@ function MoreDetails({ values, state, closeModal, changeClose }) {
               </div>
 
               <div className="divMore">
-                <div className="close_container">
-                  <button className="close_button" onClick={() => { changeClose(false) }}>X</button>
-                </div>
                 <div className="divDetails">
                   <div className="divDetailsContents">
                     <ul className="divDetailsContents">
@@ -34,7 +38,7 @@ function MoreDetails({ values, state, closeModal, changeClose }) {
                     <Range arrest_details={values.arrest_details} />
                   </div>
                   <hr />
-                  <div>
+                  <div className="divDetailsBottons">
                     <Link to={`/report/${values.entity_id}/${values.forename}/${state}`} target="_blank" rel="noopener noreferrer" ><button className="more_button">Reportar</button></Link>
                     <Link to={`/coincidence_reports/${values.entity_id}`} target="_blank" rel="noopener noreferrer" ><button className="more_button">Ver Reportes</button></Link>
                   </div>

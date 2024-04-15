@@ -1,0 +1,246 @@
+.containerCardMore .personCardRedMore {
+    color: rgb(0, 0, 0);
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    padding-inline: 15px;
+    padding-bottom: 20px;
+    justify-content: space-evenly;
+    overflow-wrap: anywhere;
+    /*   border-radius: 5px; */
+    height: 100%;
+}
+
+.containerCardMore {
+    background-color: rgb(245, 245, 245);
+}
+
+.div_detail {
+    z-index: 100;
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.imagenCardMoreContainer {
+    width: 400px;
+    position: relative;
+}
+
+.imagenCardMore {
+    object-fit: contain;
+    width: -webkit-fill-available;
+    height: 400px;
+}
+
+ul {
+    list-style: none;
+}
+
+.usernameMore {
+    /*margin-top: 30px;*/
+    position: static;
+    font-size: 30px;
+    text-align: center;
+}
+
+.divMore1 {
+    float: left;
+}
+
+
+.divMore {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    float: right;
+    font-size: 25px;
+}
+
+.divDetails {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    justify-content: space-between;
+    margin-inline: 25px;
+}
+
+.divDetailsContents {
+    display: contents;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divDetailsBottons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.more_button {
+    /*color: #fff;*/
+    /*margin-top: 30px;*/
+    /*background-color: #A00000;*/
+    transition: all .2s;
+    min-width: 133px;
+    min-height: 38px;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 15px;
+    border-style: solid;
+}
+
+.more_button:hover {
+    border-color: lightgray;
+    background-color: lightgray;
+}
+
+
+.close_container {
+    text-align: right;
+}
+
+.close_button {
+    color: #b92323;
+    /*padding: 5px 10px;*/
+    margin-top: 1px;
+    margin-right: 1px;
+}
+
+.close_button:hover {
+    background-color: #E5E5E5;
+}
+
+
+
+
+@media (max-width: 924px) {
+
+    /*Ventana modal*/
+    .div_detail {
+        width: 700px;
+    }
+
+    .more_button {
+        min-width: 115px;
+        padding: 5px;
+    }
+
+    .divMore {
+        font-size: 21px;
+    }
+
+    .imagenCardMoreContainer {
+        width: 350px;
+    }
+
+    .imagenCardMore {
+        height: 380px;
+    }
+
+}
+
+@media (max-width: 737px) {
+    .div_detail {
+        width: 32rem;
+    }
+
+    .more_button {
+        font-size: 15px;
+        min-width: 0px;
+        min-height: 35px;
+    }
+
+    .divMore {
+        font-size: 17px;
+    }
+
+    .imagenCardMoreContainer {
+        width: 235px;
+    }
+
+    .imagenCardMore {
+        height: 250px;
+    }
+
+    .usernameMore {
+        font-size: 23px;
+    }
+
+}
+
+@media (max-width: 540px) {
+    .div_detail {
+        width: 25rem;
+    }
+
+    .more_button {
+        font-size: 13px;
+    }
+
+    .divMore {
+        font-size: 14px;
+    }
+
+    .imagenCardMoreContainer {
+        width: 135px;
+    }
+
+    .imagenCardMore {
+        object-fit: scale-down;
+        height: 178px;
+    }
+
+    .usernameMore {
+        margin-top: 5%;
+        font-size: 17px;
+    }
+
+    .divMore {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 430px) {
+    .div_detail {
+        width: 20rem;
+    }
+
+    .containerCardMore .personCardRedMore {
+        flex-direction: column;
+    }
+
+    .more_button {
+        font-size: 13px;
+        min-width: 96px;
+    }
+
+    .divMore {
+        font-size: 14px;
+    }
+
+    .imagenCardMoreContainer {
+        width: auto;
+    }
+
+    .imagenCardMore {
+        object-fit: contain;
+        height: 185px;
+    }
+
+    .usernameMore {
+        margin-top: 0%;
+        margin-bottom: 1%;
+        font-size: 17px;
+    }
+
+    .divMore {
+        margin-left: 10px;
+    }
+}

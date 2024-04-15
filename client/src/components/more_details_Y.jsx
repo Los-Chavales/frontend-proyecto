@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/coincidence.css"
+import "../styles/more_details.css"
 import { Link, useActionData } from "react-router-dom"; 
 
 function MoreDetailsY({ values, state, closeModal, changeClose }) {
