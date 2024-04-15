@@ -231,9 +231,9 @@
 
 
  /* Large Desktops (1200px and up) */
- /* @media (min-width: 1200px) { */
+  @media (min-width: 1200px) { 
     /* Styles for large screens */
-   /*  .main_text{
+  .main_text{
         height: 297px;
         display: flex;
         flex-direction: column;
@@ -277,7 +277,7 @@
     }
     
   }
- */
+ 
 
   /* Desktops (1920px) */
 @media (min-width: 1920px){

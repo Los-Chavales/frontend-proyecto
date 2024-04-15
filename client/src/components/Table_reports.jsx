@@ -8,13 +8,13 @@ function TableReports(report) {
             <h2 className="tables-title">{report.title}</h2>
             {report.select && report.buttonType && <button className="tables-button" onClick={report.funDel}>{report.buttonType}</button>}
             {report.listType &&
-                report.listType.map((buttonOp, i) => (
-                    <div className="user-options-container" key={i}>
-                        <ul className="user-options" key={i}>
+                <div className="user-options-container">
+                    <ul className="user-options">
+                        {report.listType.map((buttonOp, i) => (
                             <li key={i}><button className="tables-button" onClick={report.funDel[i]} key={i}>{buttonOp}</button></li>
-                        </ul>
-                    </div>
-                ))
+                        ))}
+                    </ul>
+                </div>
             }
             <DataTable
                 columns={report.columns}

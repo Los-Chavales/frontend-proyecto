@@ -173,6 +173,9 @@ ol,ul{
         font-size: 0.9rem;
         padding: .2rem .7rem;
     }
+    .link:hover{
+        color: #aff6ff;
+    }
     .button-login{
         padding: 0;
     }
@@ -196,6 +199,12 @@ ol,ul{
     .link_hidden{
         color: #fff;
         font-weight: bold;
+    }
+    .link_hidden:hover{
+        color: #fff;
+    }
+    .li_links_hidden:hover{
+        background-color: #177ce7;
     }
 
 }
