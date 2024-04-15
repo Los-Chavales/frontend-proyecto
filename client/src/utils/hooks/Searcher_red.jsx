@@ -135,7 +135,7 @@ function Searcher_red() {
     display: show,
   };
   useEffect(() => {
-    if (load) {
+    if (load || notices.length < 1) {
       setShow('none');
       //console.info('Oculto');
     } else {
@@ -170,7 +170,7 @@ function Searcher_red() {
         {load && <Loading />}
         {alert && <h2 className="buscador-mensaje">{message}</h2>}
         <div className='usuariosContainer' style={styleUsers} onLoad={visible}>
-          {
+          {notices.length > 0 &&
             notices.map(noticeDat => (
               <Coincidence
                 key={noticeDat.entity_id}

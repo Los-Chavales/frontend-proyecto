@@ -147,7 +147,7 @@ function Searcher_yellow() {
           <option value="name">Apellido</option>
           <option value="nationality">Nacionalidad</option>
         </select>
-        {!load && notices.length > 0 && <h1>Desaparecidos</h1>}
+        <h1>Desaparecidos</h1>
         {load && <Loading />}
         {alert && <h2 className="buscador-mensaje">{message}</h2>}
         <div className='usuariosContainer' style={styleUsers} onLoad={visible}>
