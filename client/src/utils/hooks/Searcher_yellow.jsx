@@ -56,10 +56,14 @@ function Searcher_yellow() {
       //let LINK_IMAGE = notice._links.images.href;
       delete notice._links;//Eliminar los links
       notice.entity_id = notice.entity_id.replace("/", '-');//Para cambiar el '/' por '-' en el ID, para realizar otras búsquedas
-      
+
       //Para convertir las nacionalidades de array a string
-      notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
-      
+      if (notice.nationalities) {
+        notice.nationalities = notice.nationalities.toString().replace(/,/g, ', ');
+      } else {
+        notice.nationalities = "Desconocida";
+      }
+
       //Para buscar el link de la imagen
       let image = '';
       const RESPONSE2 = await API_INTERPOL.get(`/yellow/${notice.entity_id}/images`)
@@ -112,7 +116,7 @@ function Searcher_yellow() {
     display: show,
   };
   useEffect(() => {
-    if (load) {
+    if (load || notices.length < 1) {
       setShow('none');
       //console.info('Oculto');
     } else {
@@ -143,11 +147,11 @@ function Searcher_yellow() {
           <option value="name">Apellido</option>
           <option value="nationality">Nacionalidad</option>
         </select>
-        <h1>Desaparecidos</h1>
+        {!load && notices.length > 0 && <h1>Desaparecidos</h1>}
         {load && <Loading />}
         {alert && <h2 className="buscador-mensaje">{message}</h2>}
         <div className='usuariosContainer' style={styleUsers} onLoad={visible}>
-          {
+          {notices.length > 0 &&
             notices.map(noticeDat => (
               <Coincidence
                 key={noticeDat.entity_id}
