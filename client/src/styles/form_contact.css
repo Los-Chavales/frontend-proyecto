@@ -32,6 +32,11 @@
   color: #A00000;
   margin: 1px;
 } 
+.p-inputFile {
+  color: blue;
+  margin-top: -10px;
+  margin-bottom: 14px;
+} 
 
 /* Notice Formulario */
 
