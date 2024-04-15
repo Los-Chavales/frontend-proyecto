@@ -32,7 +32,7 @@ Para instalar y probar este proyecto, tenga en cuenta lo siguiente:
   La estrutura del .env dirigido a la carpeta client es la siguiente:
 VITE_URL_API=https://ws-public.interpol.int/notices/v1/
 VITE_URL_API_TRANSLATOR=https://text-translator2.p.rapidapi.com/translate
-VITE_KEY_API_TRANSLATOR=e5ccbf1ba4msh40f3052a3cbc0e2p124c3bjsn6744d5c43780
+VITE_KEY_API_TRANSLATOR=8aae49512emshb75fc9a2777a16cp10db8bjsn63450422966e
 VITE_HOST_API_TRANSLATOR=text-translator2.p.rapidapi.com
 VITE_URL_SERVER=http://localhost:4000/
 
@@ -76,7 +76,7 @@ npm run dev
 * [Figma](https://www.figma.com/file/hnGNc3peh2HlhEIAlEiFEW/Proyecto-Final?type=design&node-id=0%3A1&mode=design&t=DA4KiR9hPnfWuSLG-1) - Para el prototipado web
 * [Node.js](https://nodejs.org/en) - Dependencias
 * [API REST Interpol](https://interpol.api.bund.dev/) - Api de Interpol para buscar personas desaparecidas y prófugos.
-* [Vite](https://vitejs.dev/) - Usado para crear componentes y empaquetar
+* [Vite y React](https://vitejs.dev/) - Usado para crear componentes y empaquetar
 
 
 ## Instrucciones adicionales:
