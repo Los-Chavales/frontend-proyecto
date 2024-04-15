@@ -92,6 +92,10 @@ e ir a la ruta con el puerto asignado para ver la página, esta ruta se puede ve
 * [Vite](https://vitejs.dev/) - Usado para crear componentes y empaquetar
 
 
+## Instrucciones adicionales:
+
+* [Manuales de uso](https://drive.google.com/drive/folders/1aeiQ0ILpyWXOAJgG9p_YWaIZZP8IFJU0?usp=sharing) - Para el prototipado web
+
 ## Autores
 
 * **José Simón García Castellanos** - *(C.I: 30.786.086)* - [DarthNeo03](https://github.com/DarthNeo03)
