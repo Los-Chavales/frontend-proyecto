@@ -45,7 +45,7 @@ const calculate_range = (crimes) => {
   }
 
   let range = 10;
-  console.log(points)
+  console.debug(points)
   if(points.length === 0){
     range = 10
   }else if(points.length === 1){
